@@ -61,7 +61,7 @@ function Login() {
           variant="primary"
           type="button"
           data-testid="login-submit-btn"
-          disabled={ (password.length < minPasswordLength) || !(validateEmail(email)) }
+          disabled={ (password.length <= minPasswordLength) || !(validateEmail(email)) }
           onClick={ () => handleClick() }
 
         >
