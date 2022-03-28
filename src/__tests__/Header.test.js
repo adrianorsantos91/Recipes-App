@@ -12,3 +12,14 @@ test('Verificando se existe os elementos da Header.', () => {
   expect(profileTopIcon).toBeInTheDocument();
   expect(searchTopIcon).toBeInTheDocument();
 });
+
+test('Verificando se o botão do perfil redireciona para a pagina correta', () => {
+  beforeEach(() => {
+    renderWithRouter(<Header />);
+    const profileLink = screen.getByRole('img', { name: 'perfil' });
+    const searchLink = screen.getByRole('img', { name: 'perfil' });
+
+    userEvent.click(profileLink);
+    userEvent.click(searchLink);
+  });
+});
