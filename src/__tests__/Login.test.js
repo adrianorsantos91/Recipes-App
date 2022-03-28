@@ -11,7 +11,7 @@ describe('Testes realizados na página de login', () => {
     window.getComputedStyle = () => {};
   });
   const USER_EMAIL = 'email.teste@teste.com';
-  const USER_PASSWORD = '123456';
+  const USER_PASSWORD = '1234567';
 
   it('Existe um input de login funcional', () => {
     renderWithRouter(<App />);
