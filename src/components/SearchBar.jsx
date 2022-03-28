@@ -5,6 +5,7 @@ const SearchBar = () => {
 
   const changeRadioValue = ({ target: { id } }) => {
     setRadioValue(id);
+    console.log(radioValue);
   };
 
   return (
