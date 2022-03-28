@@ -9,13 +9,18 @@ const SearchBar = () => {
   };
 
   return (
-    <form onChange={ changeRadioValue }>
+    <form>
+      <input
+        data-testid="search-input"
+        type="text"
+      />
       <label htmlFor="ingredient-search">
         <input
           data-testid="ingredient-search-radio"
           type="radio"
           name="search-radio"
           id="ingredient-search"
+          onChange={ changeRadioValue }
         />
         Ingredient
       </label>
@@ -26,6 +31,7 @@ const SearchBar = () => {
           type="radio"
           name="search-radio"
           id="name-search"
+          onChange={ changeRadioValue }
         />
         Name
       </label>
@@ -36,6 +42,7 @@ const SearchBar = () => {
           type="radio"
           name="search-radio"
           id="first-letter-search"
+          onChange={ changeRadioValue }
         />
         First Letter
       </label>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const [isSearching, setIsSearching] = useState(false);
@@ -15,7 +16,7 @@ const Header = () => {
         />
       </Link>
       <h1 data-testid="page-title">Foods</h1>
-      <button onClick={() => !isSearching }>
+      <button type="button" onClick={ () => setIsSearching(!isSearching) }>
         <img
           src="searchIcon.svg"
           alt="search"
@@ -24,7 +25,9 @@ const Header = () => {
           data-testid="search-top-btn"
         />
       </button>
-        {isSearching && <SearchBar />}
+      {
+        isSearching && <SearchBar />
+      }
     </div>
   );
 };
