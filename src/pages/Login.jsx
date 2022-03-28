@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { minPasswordLength } from '../helpers';
 import rockGlass from '../images/rockGlass.svg';
 import '../index.css';
@@ -8,12 +9,19 @@ import '../App.css';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  /* const history = useHistory(); */
+  const history = useHistory();
 
   function validateEmail(e) {
     const regex = /\S+@\S+\.\S+/;
     const emailValidation = regex.test(e);
     return emailValidation;
+  }
+
+  function handleClick() {
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', JSON.stringify({ email }));
+    history.push('/foods');
   }
 
   return (
@@ -54,6 +62,7 @@ function Login() {
           type="button"
           data-testid="login-submit-btn"
           disabled={ (password.length < minPasswordLength) || !(validateEmail(email)) }
+          onClick={ () => handleClick() }
 
         >
           Login

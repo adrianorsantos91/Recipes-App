@@ -1,7 +1,7 @@
 import Login from './Login';
+import Foods from './Foods';
 
-const a = 'a';
 export {
   Login,
-  a,
+  Foods,
 };
