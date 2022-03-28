@@ -11,9 +11,9 @@ describe('Testes realizados na página de login', () => {
     window.getComputedStyle = () => {};
   });
   const USER_EMAIL = 'email.teste@teste.com';
-  const notUSER_EMAIL = 'email.testeteste.com';
+  const NOTUSER_EMAIL = 'email.testeteste.com';
   const USER_PASSWORD = '1234567';
-  const notUSER_PASSWORD = '12345';
+  const NOTUSER_PASSWORD = '12345';
 
   it('Existe um input de login funcional', () => {
     renderWithRouter(<App />);
@@ -44,8 +44,8 @@ describe('Testes realizados na página de login', () => {
     const loginInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
     const btnLogin = screen.getByTestId('login-submit-btn');
-    userEvent.type(loginInput, notUSER_EMAIL);
-    userEvent.type(passwordInput, notUSER_PASSWORD);
+    userEvent.type(loginInput, NOTUSER_EMAIL);
+    userEvent.type(passwordInput, NOTUSER_PASSWORD);
     expect(btnLogin).toHaveProperty('disabled', true);
   });
 });
