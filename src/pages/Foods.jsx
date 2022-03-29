@@ -20,8 +20,6 @@ export default function Foods() {
     fetchName();
   }, []);
 
-  console.log(data);
-
   return (
     <div>
       <Header title="Foods" hasSearch />
