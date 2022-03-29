@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Footer, Header } from '../components';
 
 const Profile = () => (
   <>
     <Header title="Profile" />
     <h2 data-testid="profile-email">email@email.com</h2>
-    <button type="button" data-testid="profile-done-btn">
-      Done Recipes
-    </button>
+    <Link to="/done-recipes">
+      <button type="button" data-testid="profile-done-btn">
+        Done Recipes
+      </button>
+    </Link>
     <button type="button" data-testid="profile-favorite-btn">
       Favorite Recipes
     </button>
