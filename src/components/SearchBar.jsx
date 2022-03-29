@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import { requestObject } from '../helpers';
 
 const SearchBar = () => {
   const [radioValue, setRadioValue] = useState('');
+  const [searchInput, setSearchInput] = useState('');
 
   const changeRadioValue = ({ target: { id } }) => {
     setRadioValue(id);
-    console.log(radioValue);
+  };
+
+  const updateSearchInput = ({ target: { value } }) => {
+    setSearchInput(value);
+  };
+
+  const requestAPI = () => {
+    requestObject[radioValue](searchInput);
   };
 
   return (
@@ -13,6 +22,8 @@ const SearchBar = () => {
       <input
         data-testid="search-input"
         type="text"
+        value={ searchInput }
+        onChange={ updateSearchInput }
       />
       <label htmlFor="ingredient-search">
         <input
@@ -50,6 +61,7 @@ const SearchBar = () => {
       <button
         data-testid="exec-search-btn"
         type="button"
+        onClick={ requestAPI }
       >
         Search
 
