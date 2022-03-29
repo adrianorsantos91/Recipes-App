@@ -53,6 +53,7 @@
 }
 
 @keyframes clink {
+  
   0% {
     transform: rotate(-10deg);
   }
