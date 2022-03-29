@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Card, Button } from 'react-bootstrap';
 import { Header, Footer } from '../components';
 import './Foods.css';
 import { action, FOOD_DATA } from '../redux/actions';
+import '../App.css';
 
 export default function Foods() {
   const [data, setData] = useState([]);
@@ -18,10 +20,22 @@ export default function Foods() {
     fetchName();
   }, []);
 
+  console.log(data);
+
   return (
     <div>
       <Header title="Foods" hasSearch />
-      {data.map((recipe) => <span key={ recipe.idMeal }>{recipe.strMeal}</span>)}
+      {data.map((recipe) => (
+        <div key={ recipe.idMeal } className="container">
+          <Card style={ { width: '18rem' } }>
+            <Card.Img variant="top" src={ recipe.strMealThumb } />
+            <Card.Body>
+              <Card.Title>{recipe.strMeal}</Card.Title>
+              <Button variant="primary">See more</Button>
+            </Card.Body>
+          </Card>
+        </div>
+      ))}
       <Footer />
     </div>
   );
