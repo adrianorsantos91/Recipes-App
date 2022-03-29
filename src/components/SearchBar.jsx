@@ -18,10 +18,16 @@ const SearchBar = () => {
   const requestAPI = () => {
     requestFoodObject[radioValue](searchInput)
       .then(({ meals }) => {
-        if (!meals) {
+        if (meals === undefined) {
           global.alert('Your search must have only 1 (one) character');
           return;
         }
+
+        if (meals === null) {
+          global.alert('Sorry, we haven\'t found any recipes for these filters.');
+          return;
+        }
+
         if (meals.length === 1) {
           const [meal] = meals;
           const { idMeal } = meal;
