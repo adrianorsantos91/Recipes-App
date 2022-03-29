@@ -24,7 +24,7 @@ export default function Foods() {
     <div>
       <Header title="Foods" hasSearch />
       {
-        recipes.map((recipe, index) => (
+        recipes.filter((_, index) => index < FIRST_TWELVE_RECIPE).map((recipe, index) => (
           <div
             data-testid={ `${index}-recipe-card` }
             key={ recipe.idMeal }
