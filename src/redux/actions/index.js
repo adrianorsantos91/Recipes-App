@@ -1,5 +1,5 @@
 export const ACTION1 = 'ACTION1';
-export const ACTION2 = 'ACTION2';
+export const FOOD_DATA = 'FOOD_DATA';
 
 export const action = (type, payload) => ({
   type,
