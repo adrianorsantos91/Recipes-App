@@ -11,7 +11,7 @@ import {
 } from './fetchDrinkAPI';
 
 export const minPasswordLength = 6;
-export const FIRST_TWELVE_RECIPE = 12;
+export const FIRST_TWELVE_RECIPES = 12;
 
 export const requestFoodObject = {
   'ingredient-search': (searchInput) => fetchFoodsIngredients(searchInput),
