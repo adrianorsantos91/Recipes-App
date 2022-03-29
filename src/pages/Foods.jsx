@@ -9,6 +9,7 @@ import '../App.css';
 export default function Foods() {
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
+  const exhibitionNumber = 12;
 
   useEffect(() => {
     const URL_NAME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -23,7 +24,7 @@ export default function Foods() {
   return (
     <div>
       <Header title="Foods" hasSearch />
-      {data.map((recipe) => (
+      {data.filter((_item, index) => index < exhibitionNumber).map((recipe) => (
         <div key={ recipe.idMeal } className="container">
           <Card style={ { width: '18rem' } }>
             <Card.Img variant="top" src={ recipe.strMealThumb } />
