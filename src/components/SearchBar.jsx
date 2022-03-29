@@ -63,7 +63,6 @@ const SearchBar = () => {
         }
 
         if (drinks.length > 1) {
-          console.log(drinks);
           dispatch(action(DRINK_DATA, drinks));
         }
       });

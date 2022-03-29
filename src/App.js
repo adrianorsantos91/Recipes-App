@@ -1,10 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Switch } from 'react-router-dom';
 import Routes from './Routes';
 
 function App() {
   return (
-    <Routes />
+    <Switch>
+      <Routes />
+    </Switch>
   );
 }
 

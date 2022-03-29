@@ -17,6 +17,7 @@ export default function Drinks() {
     const fetchName = async () => {
       const { drinks } = await fetch(URL_NAME).then((response) => response.json());
       dispatch(action(DRINK_DATA, drinks));
+      return null;
     };
     fetchName();
   }, []);
