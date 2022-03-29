@@ -6,6 +6,8 @@ const Routes = () => (
   <Switch>
     <Route exact path="/" component={ Login } />
     <Route path="/foods" component={ Foods } />
+    {/* <Route exact path="/drinks" render={ Drinks } /> */}
+    {/* <Route exact path="/explore" component={ Explore } /> */}
   </Switch>
 );
 

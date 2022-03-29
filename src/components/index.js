@@ -1,8 +1,9 @@
 import SearchBar from './SearchBar';
-
-const placeholder = 'placeholder';
+import Header from './Header';
+import Footer from './Footer';
 
 export {
   SearchBar,
-  placeholder,
+  Header,
+  Footer,
 };
