@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { requestFoodObject } from '../helpers';
 
 const SearchBar = () => {
   const [radioValue, setRadioValue] = useState('');
   const [searchInput, setSearchInput] = useState('');
+  const history = useHistory();
 
   const changeRadioValue = ({ target: { id } }) => {
     setRadioValue(id);
@@ -14,7 +16,18 @@ const SearchBar = () => {
   };
 
   const requestAPI = () => {
-    requestFoodObject[radioValue](searchInput);
+    requestFoodObject[radioValue](searchInput)
+      .then(({ meals }) => {
+        if (!meals) {
+          global.alert('Your search must have only 1 (one) character');
+          return;
+        }
+        if (meals.length === 1) {
+          const [meal] = meals;
+          const { idMeal } = meal;
+          history.push(`/foods/${idMeal}`);
+        }
+      });
   };
 
   return (
