@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
 import { Header, Footer } from '../components';
 import { action, FOOD_DATA } from '../redux/actions';
-import { FIRST_TWELVE_RECIPES } from '../helpers';
+import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
 import '../App.css';
 import './Foods.css';
 
@@ -20,9 +20,22 @@ export default function Foods() {
     fetchName();
   }, []);
 
+  const categories = recipes.map((category) => category.strCategory);
+
+  const filteredCategories = categories.filter(
+    (el, pos) => categories.indexOf(el) === pos,
+  );
+
   return (
     <div>
       <Header title="Foods" hasSearch />
+
+      {filteredCategories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
+        .map((category) => (
+          <div className="flex" key={ category }>
+            <Button variant="outline-dark">{category}</Button>
+          </div>
+        ))}
       {
         recipes.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((recipe, index) => (

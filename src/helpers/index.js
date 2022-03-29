@@ -12,6 +12,7 @@ import {
 
 export const minPasswordLength = 6;
 export const FIRST_TWELVE_RECIPES = 12;
+export const FIRST_FIVE_CATEGORIES = 5;
 
 export const requestFoodObject = {
   'ingredient-search': (searchInput) => fetchFoodsIngredients(searchInput),
