@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import imageProfile from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-const Header = () => {
+const Header = ({ title, hasSearch }) => {
   const [isSearching, setIsSearching] = useState(false);
-  const history = useHistory();
 
   return (
     <div>
@@ -23,23 +23,34 @@ const Header = () => {
         data-testid="page-title"
       >
         {
-          history.location.pathname === '/foods' ? 'Foods' : 'Drinks'
+          title
         }
       </h1>
-      <button type="button" onClick={ () => setIsSearching(!isSearching) }>
-        <img
-          src={ searchIcon }
-          alt="search"
-          width="50"
-          height="50"
-          data-testid="search-top-btn"
-        />
-      </button>
+      {
+        hasSearch && (
+          <button type="button" onClick={ () => setIsSearching(!isSearching) }>
+            <img
+              src={ searchIcon }
+              alt="search"
+              width="50"
+              height="50"
+              data-testid="search-top-btn"
+            />
+          </button>
+        )
+      }
       {
         isSearching && <SearchBar />
       }
     </div>
   );
 };
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  hasSearch: PropTypes.bool,
+};
+
+Header.defaultProps = { hasSearch: undefined };
 
 export default Header;

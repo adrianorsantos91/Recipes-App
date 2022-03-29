@@ -1,9 +1,9 @@
 import React from 'react';
-import { Footer } from '../components';
+import { Footer, Header } from '../components';
 
 const Profile = () => (
   <>
-    <h1 data-testid="page-title">Profile</h1>
+    <Header title="Profile" />
     <Footer />
   </>
 );

@@ -5,6 +5,13 @@ import Explore from './Explore';
 import FoodDetail from './FoodDetail';
 import DrinkDetail from './DrinkDetail';
 import Profile from './Profile';
+import ExploreDrinks from './ExploreDrinks';
+import ExploreFoods from './ExploreFoods';
+import ExploreNationalities from './ExploreNationalities';
+import ExploreIngredients from './ExploreIngredients';
+import ExploreDrinksIngredients from './ExploreDrinksIngredients';
+import DoneRecipes from './DoneRecipes';
+import FavoriteRecipes from './FavoritesRecipes';
 
 export {
   Login,
@@ -14,4 +21,11 @@ export {
   FoodDetail,
   DrinkDetail,
   Profile,
+  ExploreDrinks,
+  ExploreFoods,
+  ExploreNationalities,
+  ExploreIngredients,
+  ExploreDrinksIngredients,
+  DoneRecipes,
+  FavoriteRecipes,
 };
