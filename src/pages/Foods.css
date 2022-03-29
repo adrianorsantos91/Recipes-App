@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 640px;
+  width: 340px;
+}
+
+footer {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex: 1 1;
+  height: 100px;
+  justify-content: center;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+footer button {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 5px;
+}

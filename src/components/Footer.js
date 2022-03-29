@@ -1,39 +1,33 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/';
+import drink from '../images/drinkIcon.svg';
+import explore from '../images/exploreIcon.svg';
+import meal from '../images/mealIcon.svg';
 
 const Footer = () => {
-  const { history } = useDispatch();
+  const history = useHistory();
   return (
     <footer data-testid="footer">
       <button
         type="button"
-        data-testid="drinks-bottom-btn"
         onClick={ () => history.push('/drinks') }
       >
-        <img src="../images/drinkIcon.svg" alt="Icon Drink" />
+        <img src={ drink } alt="Icon Drink" data-testid="drinks-bottom-btn" />
       </button>
       <button
         type="button"
-        data-testid="explore-bottom-btn"
         onClick={ () => history.push('/explore') }
       >
-        <img src="../images/exploreIcon.svg" alt="Icon Explore" />
+        <img src={ explore } alt="Icon Explore" data-testid="explore-bottom-btn" />
       </button>
       <button
         type="button"
-        data-testid="food-bottom-btn"
         onClick={ () => history.push('/foods') }
       >
-        <img src="../images/mealIcon.svg" alt="Icon Meal" />
+        <img src={ meal } alt="Icon Meal" data-testid="food-bottom-btn" />
       </button>
     </footer>
   );
 };
 
-export default connect()(Footer);
-
-// Footer.propTypes = {
-//   // dispatch: PropTypes.func.isRequired,
-//   history: PropTypes.shape(PropTypes.object).isRequired,
-// };
+export default Footer;
