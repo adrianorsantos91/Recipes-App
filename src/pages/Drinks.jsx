@@ -1,7 +1,7 @@
 import React from 'react';
-import Footer from '../components/Footer';
+import { Footer } from '../components';
 
-export default function bebidas() {
+export default function Drinks() {
   return (
     <div>
       <h1>Drinks</h1>
