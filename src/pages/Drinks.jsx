@@ -1,10 +1,10 @@
 import React from 'react';
-import { Footer } from '../components';
+import { Footer, Header } from '../components';
 
 export default function Drinks() {
   return (
     <div>
-      <h1>Drinks</h1>
+      <Header />
       <Footer />
     </div>
   );
