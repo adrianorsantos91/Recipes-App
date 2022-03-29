@@ -5,7 +5,7 @@ import './Foods.css';
 export default function Foods() {
   return (
     <div>
-      <Header />
+      <Header title="Foods" hasSearch />
       <Footer />
     </div>
   );

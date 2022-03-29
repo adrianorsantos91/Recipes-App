@@ -1,10 +1,10 @@
 import React from 'react';
 import { Footer, Header } from '../components';
 
-export default function Drinks() {
+export default function ExploreNationalities() {
   return (
     <div>
-      <Header title="Drinks" hasSearch />
+      <Header title="Explore Nationalities" hasSearch />
       <Footer />
     </div>
   );
