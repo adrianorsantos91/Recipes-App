@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { requestDrinkObject, requestFoodObject } from '../helpers';
+import { action, FOOD_DATA, DRINK_DATA } from '../redux/actions';
 
 const SearchBar = () => {
   const [radioValue, setRadioValue] = useState('');
   const [searchInput, setSearchInput] = useState('');
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const changeRadioValue = ({ target: { id } }) => {
@@ -33,6 +36,10 @@ const SearchBar = () => {
           const { idMeal } = meal;
           history.push(`/foods/${idMeal}`);
         }
+
+        if (meals.length > 1) {
+          dispatch(action(FOOD_DATA, meals));
+        }
       });
   };
 
@@ -53,6 +60,11 @@ const SearchBar = () => {
           const [drink] = drinks;
           const { idDrink } = drink;
           history.push(`/drinks/${idDrink}`);
+        }
+
+        if (drinks.length > 1) {
+          console.log(drinks);
+          dispatch(action(DRINK_DATA, drinks));
         }
       });
   };

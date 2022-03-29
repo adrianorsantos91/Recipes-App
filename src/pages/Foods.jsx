@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Header, Footer } from '../components';
 import './Foods.css';
 import { action, FOOD_DATA } from '../redux/actions';
 
 export default function Foods() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const dispatch = useDispatch();
+  const recipes = useSelector(({ foodData }) => foodData);
+  // console.log(data);
 
   useEffect(() => {
     const URL_NAME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
     const fetchName = async () => {
       const { meals } = await fetch(URL_NAME).then((response) => response.json());
-      setData(meals);
+      // setData(meals);
       dispatch(action(FOOD_DATA, meals));
     };
     fetchName();
@@ -21,7 +23,22 @@ export default function Foods() {
   return (
     <div>
       <Header title="Foods" hasSearch />
-      {data.map((recipe) => <span key={ recipe.idMeal }>{recipe.strMeal}</span>)}
+      {
+        recipes.map((recipe, index) => (
+          <div
+            data-testid={ `${index}-recipe-card` }
+            key={ recipe.idMeal }
+          >
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ recipe.strMealThumb }
+              alt=""
+              width="100px"
+            />
+            <p data-testid={ `${index}-card-name` }>{recipe.strMeal}</p>
+          </div>
+        ))
+      }
       <Footer />
     </div>
   );
