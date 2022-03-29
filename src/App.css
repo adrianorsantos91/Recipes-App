@@ -38,6 +38,7 @@
 }
 
 @keyframes shake {
+
   0% {
     transform: rotate(5deg);
   }
@@ -52,6 +53,7 @@
 }
 
 @keyframes clink {
+  
   0% {
     transform: rotate(-10deg);
   }
