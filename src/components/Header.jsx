@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
-const Header = () => {
+const Header = (props) => {
   const [isSearching, setIsSearching] = useState(false);
   return (
     <div>
@@ -26,7 +26,7 @@ const Header = () => {
         />
       </button>
       {
-        isSearching && <SearchBar />
+        isSearching && <SearchBar { ...props } />
       }
     </div>
   );

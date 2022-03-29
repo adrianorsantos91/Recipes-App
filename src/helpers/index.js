@@ -1,30 +1,8 @@
+import { fetchFirstLetter, fetchIngredients, fetchName } from './fetchFoodAPI';
+
 export const minPasswordLength = 6;
 
-const fetchIngredients = (ingredient) => {
-  const URL_INGREDIENTS = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
-
-  fetch(URL_INGREDIENTS)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-};
-
-const fetchName = (name) => {
-  const URL_NAME = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
-
-  fetch(URL_NAME)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-};
-
-const fetchFirstLetter = (firstLetter) => {
-  const URL_FIRST_LETTER = `https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`;
-
-  fetch(URL_FIRST_LETTER)
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-};
-
-export const requestObject = {
+export const requestFoodObject = {
   'ingredient-search': (searchInput) => fetchIngredients(searchInput),
   'name-search': (searchInput) => fetchName(searchInput),
   'first-letter-search': (searchInput) => (

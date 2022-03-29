@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { requestObject } from '../helpers';
+import { requestFoodObject } from '../helpers';
 
 const SearchBar = () => {
   const [radioValue, setRadioValue] = useState('');
@@ -14,7 +14,7 @@ const SearchBar = () => {
   };
 
   const requestAPI = () => {
-    requestObject[radioValue](searchInput);
+    requestFoodObject[radioValue](searchInput);
   };
 
   return (
