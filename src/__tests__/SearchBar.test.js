@@ -107,36 +107,50 @@ describe('Testes do componente "SearchBar"', () => {
   // test(
   //   'Testa se pesquisar por "Arrabiata" é redirecionado para a página de detalhe',
   //   async () => {
-  //     window.alert = jest.fn();
-  //     const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
-  //     Object.defineProperty(window, 'window', {
-  //       value: {
-  //         alert: jest.fn(),
-  //       },
-  //     });
-  //     const alert = jest.spyOn(global, 'alert').mockImplementation();
+  // const alertMock = jest.spyOn(window, 'alert').mockImplementation();
+  // Object.defineProperty(window, 'window', {
+  //   value: {
+  //     alert: jest.fn(),
+  //   },
+  // });
+  // const alert = jest.spyOn(window, 'alert').mockImplementation();
+  // window.alert = jest.fn();
+  // window.alert.mockClear();
 
-  //     const { history } = renderWithRedux(<App />);
-  //     history.push('/foods');
+  // global.alert = jest.fn();
+  // jest.spyOn(window, 'alert').mockImplementation(() => {});
+  // global.alert = jest.fn();
+  // global.fetch = jest.fn().mockResolvedValue({
+  //   json: jest.fn().mockResolvedValue({ drinks: null }),
+  // });
 
-  //     const toggleSearch = screen.getByRole('img', { name: /search/i });
-  //     userEvent.click(toggleSearch);
+  // const { history } = renderWithRedux(<App />);
+  // history.push('/drinks');
 
-  //     const inputSearch = screen.queryByTestId('search-input');
-  //     const ingredientRadio = screen.queryByText(/first/i);
-  //     const buttonSearch = screen.queryByTestId(execSearchButton);
+  // const toggleSearch = screen.getByRole('img', { name: /search/i });
+  // userEvent.click(toggleSearch);
 
-  //     userEvent.type(inputSearch, 'ab');
-  //     userEvent.click(ingredientRadio);
-  //     userEvent.click(buttonSearch);
+  // const inputSearch = screen.queryByTestId('search-input');
+  // const firstRadio = screen.queryByText(/first/i);
+  // const buttonSearch = screen.queryByTestId(execSearchButton);
 
-  //     screen.logTestingPlaygroundURL();
-  //     console.log(queryByRole('alert'));
-  //     await waitForElement(() => {
-  //       Object.defineProperty(window, 'alert', alert);
-  //       expect(alert).toHaveBeenCalled();
-  //       expect(alertMock).toHaveBeenCalled();
-  //     });
+  // userEvent.type(inputSearch, 'ab');
+  // userEvent.click(firstRadio);
+  // userEvent.click(buttonSearch);
+
+  // expect(global.alert)
+  //   .toHaveBeenCalledWith('Sorry, we haven\'t found any recipes for these filters.');
+
+  // const a = await screen.findByRole('alert');
+  // expect(a).toHaveBeenCalled();
+
+  // screen.logTestingPlaygroundURL();
+  // console.log(queryByRole('alert'));
+  // await waitForElement(() => {
+  //   Object.defineProperty(window, 'alert', alert);
+  //   expect(alert).toHaveBeenCalled();
+  //   expect(alertMock).toHaveBeenCalled();
+  // });
   //   },
   // );
 

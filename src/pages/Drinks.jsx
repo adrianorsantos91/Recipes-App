@@ -19,7 +19,8 @@ export default function Drinks() {
     <div>
       <Header title="Drinks" hasSearch />
       {
-        allDrinks.filter((_, index) => index < FIRST_TWELVE_RECIPES)
+        allDrinks
+        && allDrinks.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((drink, index) => (
             <div
               data-testid={ `${index}-recipe-card` }
