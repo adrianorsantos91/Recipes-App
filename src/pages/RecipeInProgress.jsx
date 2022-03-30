@@ -1,39 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { requestDrinkAPI, requestFoodAPI } from '../helpers';
 
 const RecipeInProgress = () => {
   const { pathname } = useLocation();
   const [recipe, setRecipe] = useState({});
-  const [,, idRecipe] = pathname.split('/');
-
-  const requestAPI = () => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`)
-    .then((response) => response.json())
-    .then(({ meals }) => {
-      const [meal] = meals;
-
-      const ingredientKeys = Object.keys(meal)
-        .filter((key) => key.includes('strIngredient'));
-
-      const ingredientsList = Object.entries(meal)
-        .filter((arrayFiltered) => (
-          ingredientKeys
-            .some((ingredient) => ingredient === arrayFiltered[0] && arrayFiltered[1])
-        )).map((element) => element[1]);
-
-      const objectRecipe = {
-        title: meal.strMeal,
-        image: meal.strMealThumb,
-        category: meal.strCategory,
-        instructions: meal.strInstructions,
-        ingredients: ingredientsList,
-      };
-
-      setRecipe(objectRecipe);
-    })
-    .catch((error) => error.message);
+  const [, recipeType, idRecipe] = pathname.split('/');
 
   useEffect(() => {
-    requestAPI();
+    if (recipeType === 'foods') {
+      requestFoodAPI(setRecipe, idRecipe);
+    } else {
+      requestDrinkAPI(setRecipe, idRecipe);
+    }
   }, []);
 
   return (

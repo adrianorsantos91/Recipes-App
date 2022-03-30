@@ -29,3 +29,58 @@ export const requestDrinkObject = {
   'first-letter-search': (searchInput) => fetchDrinksFirstLetter(searchInput),
   '': () => global.alert('Select any option'),
 };
+
+export const requestFoodAPI = (setRecipe, idRecipe) => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idRecipe}`)
+    .then((response) => response.json())
+    .then(({ meals }) => {
+      const [meal] = meals;
+
+      const ingredientKeys = Object.keys(meal)
+        .filter((key) => key.includes('strIngredient'));
+
+      const ingredientsList = Object.entries(meal)
+        .filter((arrayFiltered) => (
+          ingredientKeys
+            .some((ingredient) => ingredient === arrayFiltered[0] && arrayFiltered[1])
+        )).map((element) => element[1]);
+
+      const objectRecipe = {
+        title: meal.strMeal,
+        image: meal.strMealThumb,
+        category: meal.strCategory,
+        instructions: meal.strInstructions,
+        ingredients: ingredientsList,
+      };
+
+      setRecipe(objectRecipe);
+    })
+    .catch((error) => error.message)
+);
+
+export const requestDrinkAPI = (setRecipe, idRecipe) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idRecipe}`)
+    .then((response) => response.json())
+    .then(({ drinks }) => {
+      const [drink] = drinks;
+      const ingredientKeys = Object.keys(drink)
+        .filter((key) => key.includes('strIngredient'));
+
+      const ingredientsList = Object.entries(drink)
+        .filter((arrayFiltered) => (
+          ingredientKeys
+            .some((ingredient) => ingredient === arrayFiltered[0] && arrayFiltered[1])
+        )).map((element) => element[1]);
+
+      const objectRecipe = {
+        title: drink.strDrink,
+        image: drink.strDrinkThumb,
+        category: drink.strCategory,
+        instructions: drink.strInstructions,
+        ingredients: ingredientsList,
+      };
+
+      setRecipe(objectRecipe);
+    })
+    .catch((error) => error.message)
+);
