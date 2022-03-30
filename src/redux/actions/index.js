@@ -1,6 +1,7 @@
 export const DRINK_DATA = 'DRINK_DATA';
 export const FOOD_DATA = 'FOOD_DATA';
 export const FOOD_CATEGORY_DATA = 'FOOD_CATEGORY_DATA';
+export const DRINKS_CATEGORY_DATA = 'DRINKS_CATEGORY_DATA';
 
 export const action = (type, payload) => ({
   type,
@@ -37,6 +38,16 @@ export const fetchDrinkThunk = () => (
       .catch((error) => error.message)
   )
 );
+
+export const fetchDrinksCategoryThunk = () => (
+  (dispatch) => (
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+      .then((response) => response.json())
+      .then(({ drinks: strCategory }) => {
+        dispatch(action(DRINKS_CATEGORY_DATA, strCategory));
+      })
+      .catch((error) => error.message)
+  ));
 
 // const URL_NAME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 // const fetchName = async () => {

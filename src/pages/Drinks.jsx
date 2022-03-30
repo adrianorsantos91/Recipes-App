@@ -2,22 +2,38 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
 import { Footer, Header } from '../components';
-import { FIRST_TWELVE_RECIPES } from '../helpers';
+import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
 import './Foods.css';
 import '../App.css';
-import { fetchDrinkThunk } from '../redux/actions';
+import { fetchDrinkThunk, fetchDrinksCategoryThunk } from '../redux/actions';
 
 export default function Drinks() {
   const allDrinks = useSelector(({ drinkData }) => drinkData);
+  const categories = useSelector(({ categoryDrinkData }) => categoryDrinkData);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchDrinkThunk());
+    dispatch(fetchDrinksCategoryThunk());
   }, []);
 
   return (
     <div>
       <Header title="Drinks" hasSearch />
+
+      {categories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
+        .map((category) => (
+          <div className="flex" key={ category.strCategory }>
+            <Button
+              data-testid={ `${category.strCategory}-category-filter` }
+              variant="outline-dark"
+            >
+              {category.strCategory}
+
+            </Button>
+          </div>
+        ))}
+
       {
         allDrinks
         && allDrinks.filter((_, index) => index < FIRST_TWELVE_RECIPES)

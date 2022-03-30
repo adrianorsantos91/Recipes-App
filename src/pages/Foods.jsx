@@ -12,8 +12,6 @@ export default function Foods() {
   const recipes = useSelector(({ foodData }) => foodData);
   const categories = useSelector(({ categoryFoodData }) => categoryFoodData);
 
-  console.log(categories);
-
   useEffect(() => {
     dispatch(fetchFoodsThunk());
     dispatch(fetchFoodsCategoryThunk());
@@ -26,7 +24,13 @@ export default function Foods() {
       {categories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
         .map((category) => (
           <div className="flex" key={ category.strCategory }>
-            <Button variant="outline-dark">{category.strCategory}</Button>
+            <Button
+              data-testid={ `${category.strCategory}-category-filter` }
+              variant="outline-dark"
+            >
+              {category.strCategory}
+
+            </Button>
           </div>
         ))}
       {
