@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { requestFoodObject } from '../helpers';
+import { requestDrinkObject, requestFoodObject } from '../helpers';
+import { action, DRINK_DATA, FOOD_DATA } from '../redux/actions';
 
 const SearchBar = () => {
   const [radioValue, setRadioValue] = useState('');
   const [searchInput, setSearchInput] = useState('');
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const changeRadioValue = ({ target: { id } }) => {
@@ -15,26 +18,63 @@ const SearchBar = () => {
     setSearchInput(value);
   };
 
+  const requestFoodAPI = () => {
+    requestFoodObject[radioValue](searchInput)
+      .then(({ meals }) => {
+        if (meals === undefined) {
+          global.alert('Your search must have only 1 (one) character');
+          return;
+        }
+
+        if (meals === null) {
+          global.alert('Sorry, we haven\'t found any recipes for these filters.');
+          return;
+        }
+
+        if (meals.length === 1) {
+          const [meal] = meals;
+          const { idMeal } = meal;
+          history.push(`/foods/${idMeal}`);
+        }
+
+        if (meals.length > 1) {
+          dispatch(action(FOOD_DATA, meals));
+        }
+      });
+  };
+
+  const requestDrinkAPI = () => {
+    requestDrinkObject[radioValue](searchInput)
+      .then(({ drinks }) => {
+        if (drinks === undefined) {
+          global.alert('Your search must have only 1 (one) character');
+          return;
+        }
+
+        if (drinks === null) {
+          global.alert('Sorry, we haven\'t found any recipes for these filters.');
+          return;
+        }
+
+        if (drinks.length === 1) {
+          const [drink] = drinks;
+          const { idDrink } = drink;
+          history.push(`/drinks/${idDrink}`);
+        }
+
+        if (drinks.length > 1) {
+          dispatch(action(DRINK_DATA, drinks));
+        }
+      });
+  };
+
   const requestAPI = () => {
     if (history.location.pathname === '/foods') {
-      requestFoodObject[radioValue](searchInput)
-        .then(({ meals }) => {
-          if (meals === undefined) {
-            global.alert('Your search must have only 1 (one) character');
-            return;
-          }
+      requestFoodAPI();
+    }
 
-          if (meals === null) {
-            global.alert('Sorry, we haven\'t found any recipes for these filters.');
-            return;
-          }
-
-          if (meals.length === 1) {
-            const [meal] = meals;
-            const { idMeal } = meal;
-            history.push(`/foods/${idMeal}`);
-          }
-        });
+    if (history.location.pathname === '/drinks') {
+      requestDrinkAPI();
     }
   };
 
