@@ -13,7 +13,7 @@ export const fetchFoodsThunk = () => (
       .then(({ meals }) => {
         dispatch(action(FOOD_DATA, meals));
       })
-      .catch((error) => error)
+      .catch((error) => error.message)
   ));
 
 export const fetchDrinkThunk = () => (
@@ -23,7 +23,7 @@ export const fetchDrinkThunk = () => (
       .then(({ drinks }) => {
         dispatch(action(DRINK_DATA, drinks));
       })
-      .catch((error) => error)
+      .catch((error) => error.message)
   )
 );
 
