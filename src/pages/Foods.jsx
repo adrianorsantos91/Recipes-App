@@ -12,8 +12,6 @@ export default function Foods() {
   const recipes = useSelector(({ foodData }) => foodData);
   const categories = useSelector(({ categoryFoodData }) => categoryFoodData);
 
-  console.log(categories);
-
   useEffect(() => {
     dispatch(fetchFoodsThunk());
     dispatch(fetchFoodsCategoryThunk());
