@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
 import { Footer, Header } from '../components';
@@ -11,11 +11,27 @@ export default function Drinks() {
   const allDrinks = useSelector(({ drinkData }) => drinkData);
   const categories = useSelector(({ categoryDrinkData }) => categoryDrinkData);
   const dispatch = useDispatch();
+  const [filter, setFilter] = useState('');
+  const [filteredList, setFilteredList] = useState([]);
+
+  function handleCategoryClick({ target }) {
+    setFilter(target.value);
+  }
 
   useEffect(() => {
     dispatch(fetchDrinkThunk());
     dispatch(fetchDrinksCategoryThunk());
   }, []);
+
+  useEffect(() => {
+    if (!filter.length) {
+      setFilteredList(allDrinks);
+      console.log('vazio');
+    } else {
+      setFilteredList(allDrinks.filter((category) => category.strCategory === filter));
+      console.log('filtrado');
+    }
+  }, [allDrinks, filter]);
 
   return (
     <div>
@@ -27,6 +43,8 @@ export default function Drinks() {
             <Button
               data-testid={ `${category.strCategory}-category-filter` }
               variant="outline-dark"
+              value={ category.strCategory }
+              onClick={ (value) => handleCategoryClick(value) }
             >
               {category.strCategory}
 
@@ -35,8 +53,8 @@ export default function Drinks() {
         ))}
 
       {
-        allDrinks
-        && allDrinks.filter((_, index) => index < FIRST_TWELVE_RECIPES)
+
+        filteredList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((drink, index) => (
             <div
               data-testid={ `${index}-recipe-card` }
@@ -56,7 +74,15 @@ export default function Drinks() {
                     {drink.strDrink}
 
                   </Card.Title>
-                  <Button variant="primary">See more</Button>
+                  {/* render pra ver categoria */}
+                  <span>{drink.strCategory}</span>
+                  <br />
+                  <Button
+                    variant="primary"
+                  >
+                    See more
+
+                  </Button>
                 </Card.Body>
               </Card>
             </div>
