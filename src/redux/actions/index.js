@@ -16,6 +16,17 @@ export const fetchFoodsThunk = () => (
       .catch((error) => error)
   ));
 
+export const fetchDrinkThunk = () => (
+  (dispatch) => (
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+      .then((response) => response.json())
+      .then(({ drinks }) => {
+        dispatch(action(DRINK_DATA, drinks));
+      })
+      .catch((error) => error)
+  )
+);
+
 // const URL_NAME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 // const fetchName = async () => {
 //   const { meals } = await fetch(URL_NAME).then((response) => response.json());

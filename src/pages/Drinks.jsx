@@ -5,19 +5,14 @@ import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES } from '../helpers';
 import './Foods.css';
 import '../App.css';
-import { action, DRINK_DATA } from '../redux/actions';
+import { fetchDrinkThunk } from '../redux/actions';
 
 export default function Drinks() {
   const allDrinks = useSelector(({ drinkData }) => drinkData);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const URL_NAME = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-    const fetchName = async () => {
-      const { drinks } = await fetch(URL_NAME).then((response) => response.json());
-      dispatch(action(DRINK_DATA, drinks));
-    };
-    fetchName();
+    dispatch(fetchDrinkThunk());
   }, []);
 
   return (

@@ -3,7 +3,11 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRedux from '../helpers/renderWithRedux';
 import App from '../App';
-// import responseIngredientAPI from '../mocks/responseIngredientSearch';
+import responseIngredientAPI from '../mocks/responseIngredientSearch';
+import responseDrinkSearch from '../mocks/responseDrinkSearch';
+
+const searchInput = 'search-input';
+const execSearchButton = 'exec-search-btn';
 
 describe('Testes do componente "SearchBar"', () => {
   test('Verifica se ao fazer Login é redirecionado para "/foods"', () => {
@@ -33,7 +37,7 @@ describe('Testes do componente "SearchBar"', () => {
 
     const USER_EMAIL = 'email.teste@teste.com';
     const USER_PASSWORD = '1234567';
-    const testIdToggleMenu = 'exec-search-btn';
+    const testIdToggleMenu = execSearchButton;
 
     const loginInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
@@ -84,9 +88,9 @@ describe('Testes do componente "SearchBar"', () => {
       const toggleSearch = screen.getByRole('img', { name: /search/i });
       userEvent.click(toggleSearch);
 
-      const inputSearch = screen.queryByTestId('search-input');
+      const inputSearch = screen.queryByTestId(searchInput);
       const nameRadio = screen.queryByText(/name/i);
-      const buttonSearch = screen.queryByTestId('exec-search-btn');
+      const buttonSearch = screen.queryByTestId(execSearchButton);
 
       userEvent.type(inputSearch, 'Arrabiata');
       userEvent.click(nameRadio);
@@ -119,7 +123,7 @@ describe('Testes do componente "SearchBar"', () => {
 
   //     const inputSearch = screen.queryByTestId('search-input');
   //     const ingredientRadio = screen.queryByText(/first/i);
-  //     const buttonSearch = screen.queryByTestId('exec-search-btn');
+  //     const buttonSearch = screen.queryByTestId(execSearchButton);
 
   //     userEvent.type(inputSearch, 'ab');
   //     userEvent.click(ingredientRadio);
@@ -134,30 +138,62 @@ describe('Testes do componente "SearchBar"', () => {
   //     });
   //   },
   // );
+
+  test(
+    'Verifica se ao pesquisar a receita pelo ingrediente, faz uma requisição à API',
+    () => {
+      window.alert = jest.fn();
+      window.alert.mockClear();
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(responseIngredientAPI),
+      });
+
+      const { history } = renderWithRedux(<App />);
+      history.push('/foods');
+
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
+
+      const inputSearch = screen.queryByTestId(searchInput);
+      const ingredientRadio = screen.queryByText(/ingredient/i);
+      const buttonSearch = screen.queryByTestId(execSearchButton);
+
+      userEvent.type(inputSearch, 'chicken');
+      userEvent.click(ingredientRadio);
+      userEvent.click(buttonSearch);
+
+      expect(fetch).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
+    },
+  );
+
+  test(
+    'Verifica se ao pesquisar a bebida pelo nome, faz uma requisição à API',
+    () => {
+      window.alert = jest.fn();
+      window.alert.mockClear();
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(responseDrinkSearch),
+      });
+
+      const { history } = renderWithRedux(<App />);
+      history.push('/drinks');
+
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
+
+      const inputSearch = screen.queryByTestId(searchInput);
+      const nameRadio = screen.queryByText(/name/i);
+      const buttonSearch = screen.queryByTestId(execSearchButton);
+
+      userEvent.type(inputSearch, 'aquamarine');
+      userEvent.click(nameRadio);
+      userEvent.click(buttonSearch);
+
+      expect(fetch).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(global.fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=aquamarine');
+    },
+  );
 });
-
-// window.alert = jest.fn();
-
-// test('Verifica se ao pesquisar pelo ingrediente, faz uma requisição à API', () => {
-//   window.alert.mockClear();
-//   global.fetch = jest.fn().mockResolvedValue({
-//     json: jest.fn().mockResolvedValue(responseIngredientAPI),
-//   });
-
-//   const { history } = renderWithRedux(<App />);
-//   history.push('/foods');
-
-//   const toggleSearch = screen.getByRole('img', { name: /search/i });
-//   userEvent.click(toggleSearch);
-
-//   const inputSearch = screen.queryByTestId('search-input');
-//   const ingredientRadio = screen.queryByText(/ingredient/i);
-//   const buttonSearch = screen.queryByTestId('exec-search-btn');
-
-//   userEvent.type(inputSearch, 'chicken');
-//   userEvent.click(ingredientRadio);
-//   userEvent.click(buttonSearch);
-
-// expect(fetch).toHaveBeenCalled();
-//   expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
-// });
