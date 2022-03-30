@@ -20,7 +20,7 @@ export default function Drinks() {
       return null;
     };
     fetchName();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

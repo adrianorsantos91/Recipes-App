@@ -18,7 +18,7 @@ export default function Foods() {
       dispatch(action(FOOD_DATA, meals));
     };
     fetchName();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
