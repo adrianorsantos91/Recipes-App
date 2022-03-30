@@ -6,7 +6,7 @@ const Profile = () => {
   const [email, setEmail] = useState('');
 
   useEffect(() => {
-    const userEmail = (JSON.parse(localStorage.getItem('user')));
+    const userEmail = (JSON.parse(localStorage.getItem('user'))) || { email: '' };
     setEmail(userEmail.email);
   }, []);
 
