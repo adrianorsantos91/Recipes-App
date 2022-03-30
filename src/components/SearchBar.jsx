@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { requestDrinkObject, requestFoodObject } from '../helpers';
-import { action, FOOD_DATA, DRINK_DATA } from '../redux/actions';
+import { action, DRINK_DATA, FOOD_DATA } from '../redux/actions';
 
 const SearchBar = () => {
   const [radioValue, setRadioValue] = useState('');

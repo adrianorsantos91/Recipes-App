@@ -1,4 +1,3 @@
-// <<<<<<< HEAD
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
@@ -6,27 +5,22 @@ import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES } from '../helpers';
 import './Foods.css';
 import '../App.css';
-import { action, DRINK_DATA } from '../redux/actions';
+import { fetchDrinkThunk } from '../redux/actions';
 
 export default function Drinks() {
   const allDrinks = useSelector(({ drinkData }) => drinkData);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const URL_NAME = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-    const fetchName = async () => {
-      const { drinks } = await fetch(URL_NAME).then((response) => response.json());
-      dispatch(action(DRINK_DATA, drinks));
-      return null;
-    };
-    fetchName();
-  }, [dispatch]);
+    dispatch(fetchDrinkThunk());
+  }, []);
 
   return (
     <div>
       <Header title="Drinks" hasSearch />
       {
-        allDrinks.filter((_, index) => index < FIRST_TWELVE_RECIPES)
+        allDrinks
+        && allDrinks.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((drink, index) => (
             <div
               data-testid={ `${index}-recipe-card` }
