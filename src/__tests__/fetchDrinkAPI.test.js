@@ -5,6 +5,7 @@ import {
 } from '../helpers/fetchDrinkAPI';
 import responseDrinkSearch from '../mocks/responseDrinkSearch';
 import responseDrinkFirstLetter from '../mocks/responseDrinkFirstLetter';
+import { fetchDrinkThunk } from '../redux/actions';
 
 describe('Testa casos de sucesso', () => {
   test('Testa a função "fetchDrinksIngredients"', async () => {
@@ -62,6 +63,13 @@ describe('Testa casos de erro', () => {
 
   test('Testa se a função "fetchDrinksFirstLetter" dispara erro', async () => {
     const response = await fetchDrinksFirstLetter('ch');
+
+    expect(response).toEqual('error');
+    expect(fetch).toHaveBeenCalled();
+  });
+
+  test('Testa se a função "fetchDrinkThunk" dispara erro', async () => {
+    const response = await fetchDrinkThunk()();
 
     expect(response).toEqual('error');
     expect(fetch).toHaveBeenCalled();
