@@ -5,6 +5,7 @@ import renderWithRedux from '../helpers/renderWithRedux';
 import App from '../App';
 import responseIngredientAPI from '../mocks/responseIngredientSearch';
 import responseDrinkSearch from '../mocks/responseDrinkSearch';
+import responseUniqueDrink from '../mocks/responseUniqueDrink';
 
 const searchInput = 'search-input';
 const execSearchButton = 'exec-search-btn';
@@ -194,6 +195,34 @@ describe('Testes do componente "SearchBar"', () => {
       expect(fetch).toHaveBeenCalled();
       expect(fetch).toHaveBeenCalledTimes(2);
       expect(global.fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=aquamarine');
+    },
+  );
+
+  test(
+    'Verifica se ao retornar um único ingrediente, é redirecionado para tela de detalhes',
+    async () => {
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(responseUniqueDrink),
+      });
+
+      const { history } = renderWithRedux(<App />);
+      history.push('/drinks');
+
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
+
+      const inputSearch = screen.queryByTestId(searchInput);
+      const nameRadio = screen.queryByText(/name/i);
+      const buttonSearch = screen.queryByTestId(execSearchButton);
+
+      userEvent.type(inputSearch, 'aquamarine');
+      userEvent.click(nameRadio);
+      userEvent.click(buttonSearch);
+
+      const titleDrinkDetail = await screen.findByText(/drink detail/i);
+
+      expect(titleDrinkDetail).toBeInTheDocument();
+      expect(history.location.pathname).toBe('/drinks/178319');
     },
   );
 });
