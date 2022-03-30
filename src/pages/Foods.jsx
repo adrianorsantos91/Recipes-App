@@ -2,13 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
 import { Header, Footer } from '../components';
-<<<<<<< HEAD
-import { action, FOOD_DATA } from '../redux/actions';
-import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
-=======
 import { fetchFoodsThunk } from '../redux/actions';
-import { FIRST_TWELVE_RECIPES } from '../helpers';
->>>>>>> e1f37a65d87e43692db089b578d9c9c67293a338
+import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
 import '../App.css';
 import './Foods.css';
 
