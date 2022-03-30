@@ -10,6 +10,8 @@ import {
   fetchDrinksName,
 } from './fetchDrinkAPI';
 
+// import { fetchFoodsIngredientsThunk } from '../redux/actions';
+
 export const minPasswordLength = 6;
 export const FIRST_TWELVE_RECIPES = 12;
 

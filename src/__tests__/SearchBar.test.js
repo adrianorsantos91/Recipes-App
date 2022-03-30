@@ -72,29 +72,92 @@ describe('Testes do componente "SearchBar"', () => {
     expect(screen.queryByTestId(testIdToggleMenu)).not.toBeInTheDocument();
   });
 
-  // window.alert = jest.fn();
+  test(
+    'Testa se pesquisar por "Arrabiata" é redirecionado para a página de detalhe',
+    async () => {
+      window.alert = jest.fn();
+      window.alert.mockClear();
 
-  // test('Verifica se ao pesquisar pelo ingrediente, faz uma requisição à API', () => {
-  //   window.alert.mockClear();
-  //   global.fetch = jest.fn().mockResolvedValue({
-  //     json: jest.fn().mockResolvedValue(responseIngredientAPI),
-  //   });
+      const { history } = renderWithRedux(<App />);
+      history.push('/foods');
 
-  //   const { history } = renderWithRedux(<App />);
-  //   history.push('/foods');
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
 
-  //   const toggleSearch = screen.getByRole('img', { name: /search/i });
-  //   userEvent.click(toggleSearch);
+      const inputSearch = screen.queryByTestId('search-input');
+      const nameRadio = screen.queryByText(/name/i);
+      const buttonSearch = screen.queryByTestId('exec-search-btn');
 
-  //   const inputSearch = screen.queryByTestId('search-input');
-  //   const ingredientRadio = screen.queryByText(/ingredient/i);
-  //   const buttonSearch = screen.queryByTestId('exec-search-btn');
+      userEvent.type(inputSearch, 'Arrabiata');
+      userEvent.click(nameRadio);
+      userEvent.click(buttonSearch);
 
-  //   userEvent.type(inputSearch, 'chicken');
-  //   userEvent.click(ingredientRadio);
-  //   userEvent.click(buttonSearch);
+      const titleFoodDetail = await screen
+        .findByRole('heading', { name: /food detail/i });
 
-  //   // expect(fetch).toHaveBeenCalled();
-  //   expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
-  // });
+      expect(titleFoodDetail).toBeInTheDocument();
+    },
+  );
+
+  // test(
+  //   'Testa se pesquisar por "Arrabiata" é redirecionado para a página de detalhe',
+  //   async () => {
+  //     window.alert = jest.fn();
+  //     const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
+  //     Object.defineProperty(window, 'window', {
+  //       value: {
+  //         alert: jest.fn(),
+  //       },
+  //     });
+  //     const alert = jest.spyOn(global, 'alert').mockImplementation();
+
+  //     const { history } = renderWithRedux(<App />);
+  //     history.push('/foods');
+
+  //     const toggleSearch = screen.getByRole('img', { name: /search/i });
+  //     userEvent.click(toggleSearch);
+
+  //     const inputSearch = screen.queryByTestId('search-input');
+  //     const ingredientRadio = screen.queryByText(/first/i);
+  //     const buttonSearch = screen.queryByTestId('exec-search-btn');
+
+  //     userEvent.type(inputSearch, 'ab');
+  //     userEvent.click(ingredientRadio);
+  //     userEvent.click(buttonSearch);
+
+  //     screen.logTestingPlaygroundURL();
+  //     console.log(queryByRole('alert'));
+  //     await waitForElement(() => {
+  //       Object.defineProperty(window, 'alert', alert);
+  //       expect(alert).toHaveBeenCalled();
+  //       expect(alertMock).toHaveBeenCalled();
+  //     });
+  //   },
+  // );
 });
+
+// window.alert = jest.fn();
+
+// test('Verifica se ao pesquisar pelo ingrediente, faz uma requisição à API', () => {
+//   window.alert.mockClear();
+//   global.fetch = jest.fn().mockResolvedValue({
+//     json: jest.fn().mockResolvedValue(responseIngredientAPI),
+//   });
+
+//   const { history } = renderWithRedux(<App />);
+//   history.push('/foods');
+
+//   const toggleSearch = screen.getByRole('img', { name: /search/i });
+//   userEvent.click(toggleSearch);
+
+//   const inputSearch = screen.queryByTestId('search-input');
+//   const ingredientRadio = screen.queryByText(/ingredient/i);
+//   const buttonSearch = screen.queryByTestId('exec-search-btn');
+
+//   userEvent.type(inputSearch, 'chicken');
+//   userEvent.click(ingredientRadio);
+//   userEvent.click(buttonSearch);
+
+// expect(fetch).toHaveBeenCalled();
+//   expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
+// });
