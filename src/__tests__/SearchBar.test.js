@@ -1,13 +1,18 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../helpers/renderWithRouter';
+import renderWithRedux from '../helpers/renderWithRedux';
 import App from '../App';
 import responseIngredientAPI from '../mocks/responseIngredientSearch';
+import responseDrinkSearch from '../mocks/responseDrinkSearch';
+import responseUniqueDrink from '../mocks/responseUniqueDrink';
+
+const searchInput = 'search-input';
+const execSearchButton = 'exec-search-btn';
 
 describe('Testes do componente "SearchBar"', () => {
   test('Verifica se ao fazer Login é redirecionado para "/foods"', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = renderWithRedux(<App />);
 
     // https://github.com/nickcolley/jest-axe/issues/147
     const { getComputedStyle } = window;
@@ -29,11 +34,11 @@ describe('Testes do componente "SearchBar"', () => {
   });
 
   test('Testa se ao clicar no botão abre e fecha o menu de pesquisa', () => {
-    renderWithRouter(<App />);
+    renderWithRedux(<App />);
 
     const USER_EMAIL = 'email.teste@teste.com';
     const USER_PASSWORD = '1234567';
-    const testIdToggleMenu = 'exec-search-btn';
+    const testIdToggleMenu = execSearchButton;
 
     const loginInput = screen.getByLabelText('Email');
     const passwordInput = screen.getByLabelText('Password');
@@ -72,26 +77,166 @@ describe('Testes do componente "SearchBar"', () => {
     expect(screen.queryByTestId(testIdToggleMenu)).not.toBeInTheDocument();
   });
 
-  test('Verifica se ao pesquisar pelo ingrediente, faz uma requisição à API', () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      json: jest.fn().mockResolvedValue(responseIngredientAPI),
-    });
+  test(
+    'Testa se pesquisar por "Arrabiata" é redirecionado para a página de detalhe',
+    async () => {
+      window.alert = jest.fn();
+      window.alert.mockClear();
 
-    const { history } = renderWithRouter(<App />);
-    history.push('/foods');
+      const { history } = renderWithRedux(<App />);
+      history.push('/foods');
 
-    const toggleSearch = screen.getByRole('img', { name: /search/i });
-    userEvent.click(toggleSearch);
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
 
-    const inputSearch = screen.queryByTestId('search-input');
-    const ingredientRadio = screen.queryByText(/ingredient/i);
-    const buttonSearch = screen.queryByTestId('exec-search-btn');
+      const inputSearch = screen.queryByTestId(searchInput);
+      const nameRadio = screen.queryByText(/name/i);
+      const buttonSearch = screen.queryByTestId(execSearchButton);
 
-    userEvent.type(inputSearch, 'chicken');
-    userEvent.click(ingredientRadio);
-    userEvent.click(buttonSearch);
+      userEvent.type(inputSearch, 'Arrabiata');
+      userEvent.click(nameRadio);
+      userEvent.click(buttonSearch);
 
-    expect(fetch).toHaveBeenCalled();
-    expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
-  });
+      const titleFoodDetail = await screen
+        .findByRole('heading', { name: /food detail/i });
+
+      expect(titleFoodDetail).toBeInTheDocument();
+    },
+  );
+
+  // test(
+  //   'Testa se pesquisar por "Arrabiata" é redirecionado para a página de detalhe',
+  //   async () => {
+  // const alertMock = jest.spyOn(window, 'alert').mockImplementation();
+  // Object.defineProperty(window, 'window', {
+  //   value: {
+  //     alert: jest.fn(),
+  //   },
+  // });
+  // const alert = jest.spyOn(window, 'alert').mockImplementation();
+  // window.alert = jest.fn();
+  // window.alert.mockClear();
+
+  // global.alert = jest.fn();
+  // jest.spyOn(window, 'alert').mockImplementation(() => {});
+  // global.alert = jest.fn();
+  // global.fetch = jest.fn().mockResolvedValue({
+  //   json: jest.fn().mockResolvedValue({ drinks: null }),
+  // });
+
+  // const { history } = renderWithRedux(<App />);
+  // history.push('/drinks');
+
+  // const toggleSearch = screen.getByRole('img', { name: /search/i });
+  // userEvent.click(toggleSearch);
+
+  // const inputSearch = screen.queryByTestId('search-input');
+  // const firstRadio = screen.queryByText(/first/i);
+  // const buttonSearch = screen.queryByTestId(execSearchButton);
+
+  // userEvent.type(inputSearch, 'ab');
+  // userEvent.click(firstRadio);
+  // userEvent.click(buttonSearch);
+
+  // expect(global.alert)
+  //   .toHaveBeenCalledWith('Sorry, we haven\'t found any recipes for these filters.');
+
+  // const a = await screen.findByRole('alert');
+  // expect(a).toHaveBeenCalled();
+
+  // screen.logTestingPlaygroundURL();
+  // console.log(queryByRole('alert'));
+  // await waitForElement(() => {
+  //   Object.defineProperty(window, 'alert', alert);
+  //   expect(alert).toHaveBeenCalled();
+  //   expect(alertMock).toHaveBeenCalled();
+  // });
+  //   },
+  // );
+
+  test(
+    'Verifica se ao pesquisar a receita pelo ingrediente, faz uma requisição à API',
+    () => {
+      window.alert = jest.fn();
+      window.alert.mockClear();
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(responseIngredientAPI),
+      });
+
+      const { history } = renderWithRedux(<App />);
+      history.push('/foods');
+
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
+
+      const inputSearch = screen.queryByTestId(searchInput);
+      const ingredientRadio = screen.queryByText(/ingredient/i);
+      const buttonSearch = screen.queryByTestId(execSearchButton);
+
+      userEvent.type(inputSearch, 'chicken');
+      userEvent.click(ingredientRadio);
+      userEvent.click(buttonSearch);
+
+      expect(fetch).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
+    },
+  );
+
+  test(
+    'Verifica se ao pesquisar a bebida pelo nome, faz uma requisição à API',
+    () => {
+      window.alert = jest.fn();
+      window.alert.mockClear();
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(responseDrinkSearch),
+      });
+
+      const { history } = renderWithRedux(<App />);
+      history.push('/drinks');
+
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
+
+      const inputSearch = screen.queryByTestId(searchInput);
+      const nameRadio = screen.queryByText(/name/i);
+      const buttonSearch = screen.queryByTestId(execSearchButton);
+
+      userEvent.type(inputSearch, 'aquamarine');
+      userEvent.click(nameRadio);
+      userEvent.click(buttonSearch);
+
+      expect(fetch).toHaveBeenCalled();
+      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(global.fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=aquamarine');
+    },
+  );
+
+  test(
+    'Verifica se ao retornar um único ingrediente, é redirecionado para tela de detalhes',
+    async () => {
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(responseUniqueDrink),
+      });
+
+      const { history } = renderWithRedux(<App />);
+      history.push('/drinks');
+
+      const toggleSearch = screen.getByRole('img', { name: /search/i });
+      userEvent.click(toggleSearch);
+
+      const inputSearch = screen.queryByTestId(searchInput);
+      const nameRadio = screen.queryByText(/name/i);
+      const buttonSearch = screen.queryByTestId(execSearchButton);
+
+      userEvent.type(inputSearch, 'aquamarine');
+      userEvent.click(nameRadio);
+      userEvent.click(buttonSearch);
+
+      const titleDrinkDetail = await screen.findByText(/drink detail/i);
+
+      expect(titleDrinkDetail).toBeInTheDocument();
+      expect(history.location.pathname).toBe('/drinks/178319');
+    },
+  );
 });
