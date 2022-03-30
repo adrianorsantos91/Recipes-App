@@ -7,7 +7,7 @@ const reducer = (state = INITIAL_STATE, action) => {
   case DRINK_DATA:
     return action.payload;
   default:
-    return state;
+    return [...state];
   }
 };
 

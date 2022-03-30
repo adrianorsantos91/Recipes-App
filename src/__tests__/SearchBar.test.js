@@ -72,7 +72,10 @@ describe('Testes do componente "SearchBar"', () => {
     expect(screen.queryByTestId(testIdToggleMenu)).not.toBeInTheDocument();
   });
 
+  // window.alert = jest.fn();
+
   // test('Verifica se ao pesquisar pelo ingrediente, faz uma requisição à API', () => {
+  //   window.alert.mockClear();
   //   global.fetch = jest.fn().mockResolvedValue({
   //     json: jest.fn().mockResolvedValue(responseIngredientAPI),
   //   });
@@ -91,7 +94,7 @@ describe('Testes do componente "SearchBar"', () => {
   //   userEvent.click(ingredientRadio);
   //   userEvent.click(buttonSearch);
 
-  // expect(fetch).toHaveBeenCalled();
-  // expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
+  //   // expect(fetch).toHaveBeenCalled();
+  //   expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
   // });
 });
