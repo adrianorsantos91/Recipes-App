@@ -1,12 +1,17 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../helpers/renderWithRouter';
+// import renderWithRouter from '../helpers/renderWithRouter';
+import renderWithRedux from '../helpers/renderWithRedux';
 import App from '../App';
 
 describe('Verifica se o menu inferior esta direcionando para as urls corretas', () => {
   test('Se ao clicar no botão /drinks-bottom-btn/ direciona para a url /drinks', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = renderWithRedux(<App />);
+
+    // https://github.com/nickcolley/jest-axe/issues/147
+    const { getComputedStyle } = window;
+    window.getComputedStyle = (elt) => getComputedStyle(elt);
 
     history.push('/foods');
 
@@ -18,7 +23,7 @@ describe('Verifica se o menu inferior esta direcionando para as urls corretas', 
   });
 
   test('Se ao clicar no botão /explore-bottom-btn/ direciona para a url /explore', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = renderWithRedux(<App />);
 
     history.push('/foods');
 
@@ -30,7 +35,7 @@ describe('Verifica se o menu inferior esta direcionando para as urls corretas', 
   });
 
   test('Se ao clicar no botão /foods-bottom-btn/ permanece na url /foods', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = renderWithRedux(<App />);
 
     history.push('/foods');
 
@@ -42,7 +47,7 @@ describe('Verifica se o menu inferior esta direcionando para as urls corretas', 
   });
 
   test('Se ao clicar no botão foods na tela explore volta para /foods', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = renderWithRedux(<App />);
 
     history.push('/foods');
 
@@ -58,7 +63,7 @@ describe('Verifica se o menu inferior esta direcionando para as urls corretas', 
   });
 
   test('Se ao clicar no botão foods na tela drinks volta para /foods', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = renderWithRedux(<App />);
 
     history.push('/foods');
 

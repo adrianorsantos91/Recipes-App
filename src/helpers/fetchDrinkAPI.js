@@ -4,7 +4,7 @@ export const fetchDrinksIngredients = (ingredient) => {
   return fetch(URL_INGREDIENTS)
     .then((response) => response.json())
     .then((data) => data)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };
 
 export const fetchDrinksName = (name) => {
@@ -13,7 +13,7 @@ export const fetchDrinksName = (name) => {
   return fetch(URL_NAME)
     .then((response) => response.json())
     .then((data) => data)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };
 
 export const fetchDrinksFirstLetter = (firstLetter) => {
@@ -22,5 +22,5 @@ export const fetchDrinksFirstLetter = (firstLetter) => {
   return fetch(URL_FIRST_LETTER)
     .then((response) => response.json())
     .then((data) => data)
-    .catch((error) => error);
+    .catch((error) => error.message);
 };

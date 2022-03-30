@@ -2,8 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
 import { Header, Footer } from '../components';
+<<<<<<< HEAD
 import { action, FOOD_DATA } from '../redux/actions';
 import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
+=======
+import { fetchFoodsThunk } from '../redux/actions';
+import { FIRST_TWELVE_RECIPES } from '../helpers';
+>>>>>>> e1f37a65d87e43692db089b578d9c9c67293a338
 import '../App.css';
 import './Foods.css';
 
@@ -12,12 +17,7 @@ export default function Foods() {
   const recipes = useSelector(({ foodData }) => foodData);
 
   useEffect(() => {
-    const URL_NAME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-    const fetchName = async () => {
-      const { meals } = await fetch(URL_NAME).then((response) => response.json());
-      dispatch(action(FOOD_DATA, meals));
-    };
-    fetchName();
+    dispatch(fetchFoodsThunk());
   }, []);
 
   const categories = recipes.map((category) => category.strCategory);

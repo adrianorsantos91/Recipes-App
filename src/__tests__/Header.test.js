@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import renderWithRouter from '../helpers/renderWithRouter';
 
 test('Verificando se existe os elementos da Header.', () => {
-  renderWithRouter(<Header />);
+  renderWithRouter(<Header title="name" hasSearch />);
   const title = screen.getByTestId('page-title');
   const profileTopIcon = screen.getByTestId('profile-top-btn');
   const searchTopIcon = screen.getByTestId('search-top-btn');
@@ -16,7 +16,7 @@ test('Verificando se existe os elementos da Header.', () => {
 });
 
 test('Verificando se o botão do perfil redireciona para a pagina correta', () => {
-  renderWithRouter(<Header />);
+  renderWithRouter(<Header title="name" hasSearch />);
   const profileLink = screen.getByRole('img', { name: 'perfil' });
   const searchLink = screen.getByRole('img', { name: 'perfil' });
 
