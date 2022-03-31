@@ -23,7 +23,14 @@ export default function ExploreFoods() {
           By Nationality
         </Button>
       </Link>
-      <Link to="/explore/foods/surprise-me">Surprise me!</Link>
+      <Link to="/explore/foods/surprise-me">
+        <Button
+          variant="outline-dark"
+          data-testid="explore-by-nationality"
+        >
+          Surprise me!
+        </Button>
+      </Link>
       <Footer />
     </div>
   );
