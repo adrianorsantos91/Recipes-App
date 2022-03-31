@@ -2,6 +2,8 @@ export const DRINK_DATA = 'DRINK_DATA';
 export const FOOD_DATA = 'FOOD_DATA';
 export const FOOD_DATA_DETAILS = 'FOOD_DATA_DETAILS';
 export const DRINK_DATA_DETAILS = 'DRINK_DATA_DETAILS';
+export const DRINK_RECOMMENDATION = 'DRINK_RECOMMENDATION';
+export const FOOD_RECOMMENDATION = 'FOOD_RECOMMENDATION';
 
 export const action = (type, payload) => ({
   type,

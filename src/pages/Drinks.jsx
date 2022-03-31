@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card, Button } from 'react-bootstrap';
 import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES } from '../helpers';
-import './Foods.css';
+import '../styles/Foods.css';
 import '../App.css';
 import { fetchDrinkThunk } from '../redux/actions';
 
