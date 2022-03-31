@@ -11,6 +11,7 @@ const RecipeInProgress = () => {
   const [recipe, setRecipe] = useState({});
   const [, recipeType, idRecipe] = pathname.split('/');
   const [inProgress, setInProgress] = useState([]);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     if (recipeType === 'foods') {
@@ -36,13 +37,29 @@ const RecipeInProgress = () => {
     }
   };
 
+  const copyLinkRecipe = () => {
+    const [recipeURL] = (window.location.href).split('/in-progress');
+    navigator.clipboard.writeText(recipeURL);
+    setIsCopied(true);
+  };
+
   return (
     <div>
       <h1>Recipe in Progress...</h1>
       <img data-testid="recipe-photo" src={ recipe.image } alt="recipe" width="100px" />
       <p data-testid="recipe-title">{recipe.title}</p>
-      <button data-testid="share-btn" type="button">Share</button>
+      <button
+        data-testid="share-btn"
+        type="button"
+        onClick={ copyLinkRecipe }
+      >
+        Share
+
+      </button>
       <button data-testid="favorite-btn" type="button">Favorite</button>
+      {
+        isCopied && <span>Link copied!</span>
+      }
       <ul>
         {
           recipe.ingredients
