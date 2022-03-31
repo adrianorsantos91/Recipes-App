@@ -6,12 +6,19 @@ const RecipeInProgress = () => {
   const { pathname } = useLocation();
   const [recipe, setRecipe] = useState({});
   const [, recipeType, idRecipe] = pathname.split('/');
+  const [inProgress, setInProgress] = useState([]);
+  console.log(inProgress);
 
   useEffect(() => {
     if (recipeType === 'foods') {
       requestFoodAPI(setRecipe, idRecipe);
     } else {
       requestDrinkAPI(setRecipe, idRecipe);
+    }
+
+    const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (recipeInProgress) {
+      setInProgress(recipeInProgress.cocktails[idRecipe]);
     }
   }, []);
 
@@ -58,7 +65,8 @@ const RecipeInProgress = () => {
                 type="checkbox"
                 name={ ingredient }
                 id={ recipe.id }
-                onClick={ saveLocalStorageOnClick }
+                onChange={ saveLocalStorageOnClick }
+                checked={ inProgress.includes(ingredient) }
               />
               {ingredient}
 
