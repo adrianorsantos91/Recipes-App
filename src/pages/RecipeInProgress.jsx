@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import {
   requestDrinkAPI,
   requestFoodAPI,
@@ -23,6 +23,12 @@ const RecipeInProgress = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
 
+  const verifyCheckbox = () => {
+    const allCheckbox = document.querySelectorAll('input[type=checkbox]');
+    const checkboxChecked = document.querySelectorAll('input:checked');
+    setIsDisabled(allCheckbox.length !== checkboxChecked.length);
+  };
+
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     setIsFavorite(favoriteRecipes.some(({ id }) => id === idRecipe));
@@ -37,7 +43,12 @@ const RecipeInProgress = () => {
         setInProgress(recipeInProgress.cocktails[idRecipe]);
       }
     }
+    verifyCheckbox();
   }, []);
+
+  useEffect(() => {
+    verifyCheckbox();
+  }, [recipe, inProgress]);
 
   const saveLocalStorageOnClick = ({ target: { id, name } }) => {
     if (recipeType === 'foods') {
@@ -50,16 +61,6 @@ const RecipeInProgress = () => {
   const favoriteRecipe = (currentRecipe) => {
     saveFavoriteRecipe(currentRecipe, recipeType, isFavorite, setIsFavorite);
   };
-
-  const verifyCheckbox = () => {
-    const allCheckbox = document.querySelectorAll('input[type=checkbox]');
-    const checkboxChecked = document.querySelectorAll('input:checked');
-    setIsDisabled(allCheckbox.length !== checkboxChecked.length);
-  };
-
-  useEffect(() => {
-    verifyCheckbox();
-  }, [inProgress]);
 
   return (
     <div>
@@ -113,14 +114,16 @@ const RecipeInProgress = () => {
       </ul>
       <p data-testid="recipe-category">{recipe.category}</p>
       <p data-testid="instructions">{recipe.instructions}</p>
-      <button
-        data-testid="finish-recipe-btn"
-        type="button"
-        disabled={ isDisabled }
-      >
-        Finish Recipe
+      <Link to="/done-recipes">
+        <button
+          data-testid="finish-recipe-btn"
+          type="button"
+          disabled={ isDisabled }
+        >
+          Finish Recipe
 
-      </button>
+        </button>
+      </Link>
     </div>
   );
 };
