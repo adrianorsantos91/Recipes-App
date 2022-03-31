@@ -12,6 +12,7 @@ import {
 } from '../helpers/recipesInProgress';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 import saveFavoriteRecipe from '../helpers/favoriteRecipe';
 
 const RecipeInProgress = () => {
@@ -68,11 +69,14 @@ const RecipeInProgress = () => {
       <img data-testid="recipe-photo" src={ recipe.image } alt="recipe" width="100px" />
       <p data-testid="recipe-title">{recipe.title}</p>
       <button
-        data-testid="share-btn"
         type="button"
         onClick={ () => copyLinkRecipe(setIsCopied) }
       >
-        Share
+        <img
+          data-testid="share-btn"
+          src={ shareIcon }
+          alt="button share icon"
+        />
 
       </button>
       <button
@@ -82,7 +86,7 @@ const RecipeInProgress = () => {
         <img
           data-testid="favorite-btn"
           src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-          alt="white heart favorite icon"
+          alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
         />
 
       </button>
