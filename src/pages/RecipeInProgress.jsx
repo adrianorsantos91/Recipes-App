@@ -15,6 +15,28 @@ const RecipeInProgress = () => {
     }
   }, []);
 
+  const saveLocalStorageOnClick = ({ target: { id, name } }) => {
+    const INITIAL_STATE = {
+      cocktails: { },
+      meals: { },
+    };
+
+    const recipesInProgress = (
+      JSON.parse(localStorage.getItem('inProgressRecipes'))
+    ) || INITIAL_STATE;
+
+    const updateLocalStorage = {
+      ...recipesInProgress,
+      cocktails: {
+        ...recipesInProgress.cocktails,
+        [id]: recipesInProgress
+          .cocktails[id] ? [...recipesInProgress.cocktails[id], name] : [name],
+      },
+    };
+
+    localStorage.setItem('inProgressRecipes', JSON.stringify(updateLocalStorage));
+  };
+
   return (
     <div>
       <h1>Recipe in Progress...</h1>
@@ -32,7 +54,12 @@ const RecipeInProgress = () => {
               htmlFor={ ingredient }
               style={ { display: 'block' } }
             >
-              <input type="checkbox" name="" id={ ingredient } />
+              <input
+                type="checkbox"
+                name={ ingredient }
+                id={ recipe.id }
+                onClick={ saveLocalStorageOnClick }
+              />
               {ingredient}
 
             </label>
