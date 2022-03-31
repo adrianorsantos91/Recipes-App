@@ -44,7 +44,7 @@ const RecipeInProgress = () => {
       }
     }
     verifyCheckbox();
-  }, []);
+  }, [idRecipe, recipeType]);
 
   useEffect(() => {
     verifyCheckbox();
