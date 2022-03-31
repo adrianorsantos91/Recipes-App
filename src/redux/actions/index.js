@@ -4,6 +4,7 @@ export const FOOD_DATA_DETAILS = 'FOOD_DATA_DETAILS';
 export const DRINK_DATA_DETAILS = 'DRINK_DATA_DETAILS';
 export const DRINK_RECOMMENDATION = 'DRINK_RECOMMENDATION';
 export const FOOD_RECOMMENDATION = 'FOOD_RECOMMENDATION';
+export const FOOD_CATEGORY_DATA = 'FOOD_CATEGORY_DATA';
 
 export const action = (type, payload) => ({
   type,
@@ -16,6 +17,16 @@ export const fetchFoodsThunk = () => (
       .then((response) => response.json())
       .then(({ meals }) => {
         dispatch(action(FOOD_DATA, meals));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchFoodsCategoryThunk = () => (
+  (dispatch) => (
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+      .then((response) => response.json())
+      .then(({ meals: strCategory }) => {
+        dispatch(action(FOOD_CATEGORY_DATA, strCategory));
       })
       .catch((error) => error.message)
   ));
