@@ -51,6 +51,7 @@ export const requestFoodAPI = (setRecipe, idRecipe) => (
         category: meal.strCategory,
         instructions: meal.strInstructions,
         ingredients: ingredientsList,
+        id: meal.idMeal,
       };
 
       setRecipe(objectRecipe);

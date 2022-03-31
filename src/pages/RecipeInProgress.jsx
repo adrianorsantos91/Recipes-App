@@ -1,47 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { requestDrinkAPI, requestFoodAPI } from '../helpers';
+import {
+  drinkRecipeInProgress,
+  foodRecipeInProgress,
+} from '../helpers/recipesInProgress';
 
 const RecipeInProgress = () => {
   const { pathname } = useLocation();
   const [recipe, setRecipe] = useState({});
   const [, recipeType, idRecipe] = pathname.split('/');
   const [inProgress, setInProgress] = useState([]);
-  console.log(inProgress);
 
   useEffect(() => {
     if (recipeType === 'foods') {
       requestFoodAPI(setRecipe, idRecipe);
+      const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (recipeInProgress) {
+        setInProgress(recipeInProgress.meals[idRecipe]);
+      }
     } else {
       requestDrinkAPI(setRecipe, idRecipe);
-    }
-
-    const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (recipeInProgress) {
-      setInProgress(recipeInProgress.cocktails[idRecipe]);
+      const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (recipeInProgress) {
+        setInProgress(recipeInProgress.cocktails[idRecipe]);
+      }
     }
   }, []);
 
   const saveLocalStorageOnClick = ({ target: { id, name } }) => {
-    const INITIAL_STATE = {
-      cocktails: { },
-      meals: { },
-    };
-
-    const recipesInProgress = (
-      JSON.parse(localStorage.getItem('inProgressRecipes'))
-    ) || INITIAL_STATE;
-
-    const updateLocalStorage = {
-      ...recipesInProgress,
-      cocktails: {
-        ...recipesInProgress.cocktails,
-        [id]: recipesInProgress
-          .cocktails[id] ? [...recipesInProgress.cocktails[id], name] : [name],
-      },
-    };
-
-    localStorage.setItem('inProgressRecipes', JSON.stringify(updateLocalStorage));
+    if (recipeType === 'foods') {
+      foodRecipeInProgress(id, name, inProgress, setInProgress);
+    } else {
+      drinkRecipeInProgress(id, name, inProgress, setInProgress);
+    }
   };
 
   return (
@@ -65,7 +57,7 @@ const RecipeInProgress = () => {
                 type="checkbox"
                 name={ ingredient }
                 id={ recipe.id }
-                onChange={ saveLocalStorageOnClick }
+                onClick={ saveLocalStorageOnClick }
                 checked={ inProgress.includes(ingredient) }
               />
               {ingredient}
