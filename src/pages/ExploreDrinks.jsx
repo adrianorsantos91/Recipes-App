@@ -15,8 +15,14 @@ export default function ExploreDrinks() {
           By Ingredient
         </Button>
       </Link>
-      {/* <Link to="/explore/drinks/nationalities">By Nationality</Link>
-      <Link to="/explore/drinks/surprise-me">Surprise me!</Link> */}
+      <Link to="/explore/drinks/surprise-me">
+        <Button
+          variant="outline-dark"
+          data-testid="explore-by-nationality"
+        >
+          Surprise me!
+        </Button>
+      </Link>
       <Footer />
     </div>
   );
