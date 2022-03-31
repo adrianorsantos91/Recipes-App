@@ -12,6 +12,7 @@ import ExploreIngredients from './ExploreIngredients';
 import ExploreDrinksIngredients from './ExploreDrinksIngredients';
 import DoneRecipes from './DoneRecipes';
 import FavoriteRecipes from './FavoritesRecipes';
+import RecipeInProgress from './RecipeInProgress';
 
 export {
   Login,
@@ -28,4 +29,5 @@ export {
   ExploreDrinksIngredients,
   DoneRecipes,
   FavoriteRecipes,
+  RecipeInProgress,
 };

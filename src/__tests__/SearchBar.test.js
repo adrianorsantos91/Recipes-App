@@ -177,8 +177,10 @@ describe('Testes do componente "SearchBar"', () => {
       userEvent.click(ingredientRadio);
       userEvent.click(buttonSearch);
 
+      const THREE_TIMES = 3;
+
       expect(fetch).toHaveBeenCalled();
-      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(fetch).toHaveBeenCalledTimes(THREE_TIMES);
       expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
     },
   );
