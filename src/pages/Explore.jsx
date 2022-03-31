@@ -8,10 +8,20 @@ export default function Explore() {
     <div>
       <Header title="Explore" />
       <Link to="/explore/foods">
-        <Button variant="outline-dark">Explore Foods</Button>
+        <Button
+          variant="outline-dark"
+          data-testid="explore-foods"
+        >
+          Explore Foods
+        </Button>
       </Link>
       <Link to="/explore/drinks">
-        <Button variant="outline-dark">Explore Drinks</Button>
+        <Button
+          variant="outline-dark"
+          data-testid="explore-drinks"
+        >
+          Explore Drinks
+        </Button>
       </Link>
       <Footer />
     </div>
