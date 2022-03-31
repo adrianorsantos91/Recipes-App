@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Card, Button } from 'react-bootstrap';
 import { Footer, Header } from '../components';
+<<<<<<< HEAD
 import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
 import './Foods.css';
+=======
+import { FIRST_TWELVE_RECIPES } from '../helpers';
+import '../styles/Foods.css';
+>>>>>>> 652184b42f77414127a997df1b5d2ba9c6e15b39
 import '../App.css';
 import { fetchDrinkThunk, fetchDrinksCategoryThunk,
   fetchDrinksPerCategoryThunk,

@@ -7,7 +7,7 @@ import { fetchFoodsThunk,
   fetchFoodsCategoryThunk, fetchFoodsPerCategoryThunk } from '../redux/actions';
 import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
 import '../App.css';
-import './Foods.css';
+import '../styles/Foods.css';
 
 export default function Foods() {
   const dispatch = useDispatch();

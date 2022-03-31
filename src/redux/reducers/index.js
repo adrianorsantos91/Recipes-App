@@ -6,6 +6,10 @@ import categoryFoodData from './foodCategoryAPIData';
 import foodsPerCategory from './foodsPerCategory';
 import categoryDrinkData from './drinkCategoryAPIData';
 import drinksPerCategory from './drinksPerCategory';
+import foodDataDetails from './foodDetailsAPIData';
+import drinkDataDetails from './drinkDetailsAPIData';
+import drinksRecommendation from './drinksRecommendationAPIData';
+import foodsRecommendation from './foodsRecommendationAPIData';
 
 const rootReducer = combineReducers({
   login,
@@ -15,6 +19,10 @@ const rootReducer = combineReducers({
   categoryDrinkData,
   drinksPerCategory,
   foodsPerCategory,
+  foodDataDetails,
+  drinkDataDetails,
+  drinksRecommendation,
+  foodsRecommendation,
 });
 
 export default rootReducer;
