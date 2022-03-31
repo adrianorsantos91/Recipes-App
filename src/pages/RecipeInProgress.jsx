@@ -21,6 +21,7 @@ const RecipeInProgress = () => {
   const [inProgress, setInProgress] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
@@ -49,6 +50,16 @@ const RecipeInProgress = () => {
   const favoriteRecipe = (currentRecipe) => {
     saveFavoriteRecipe(currentRecipe, recipeType, isFavorite, setIsFavorite);
   };
+
+  const verifyCheckbox = () => {
+    const allCheckbox = document.querySelectorAll('input[type=checkbox]');
+    const checkboxChecked = document.querySelectorAll('input:checked');
+    setIsDisabled(allCheckbox.length !== checkboxChecked.length);
+  };
+
+  useEffect(() => {
+    verifyCheckbox();
+  }, [inProgress]);
 
   return (
     <div>
@@ -102,7 +113,14 @@ const RecipeInProgress = () => {
       </ul>
       <p data-testid="recipe-category">{recipe.category}</p>
       <p data-testid="instructions">{recipe.instructions}</p>
-      <button data-testid="finish-recipe-btn" type="button">Finish Recipe</button>
+      <button
+        data-testid="finish-recipe-btn"
+        type="button"
+        disabled={ isDisabled }
+      >
+        Finish Recipe
+
+      </button>
     </div>
   );
 };
