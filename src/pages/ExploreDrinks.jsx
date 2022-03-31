@@ -18,7 +18,7 @@ export default function ExploreDrinks() {
       <Link to="/explore/drinks/surprise-me">
         <Button
           variant="outline-dark"
-          data-testid="explore-by-nationality"
+          data-testid="explore-surprise"
         >
           Surprise me!
         </Button>

@@ -26,7 +26,7 @@ export default function ExploreFoods() {
       <Link to="/explore/foods/surprise-me">
         <Button
           variant="outline-dark"
-          data-testid="explore-by-nationality"
+          data-testid="explore-surprise"
         >
           Surprise me!
         </Button>
