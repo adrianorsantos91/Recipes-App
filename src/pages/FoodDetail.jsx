@@ -12,6 +12,7 @@ const FoodDetail = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const idFood = history.location.pathname.split('/')[2];
+  console.log('idFood', idFood);
   // const id = 52771;
   useEffect(() => {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`)
@@ -22,7 +23,7 @@ const FoodDetail = () => {
         return meals;
       })
       .catch((error) => error);
-  }, [idFood, dispatch]);
+  }, []);
 
   useEffect(() => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
@@ -34,8 +35,6 @@ const FoodDetail = () => {
       .catch((error) => error);
   }, []);
 
-  console.log('details:', details);
-  console.log('drinksList:', drinksList);
   // APi Drinks: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=178319",
   const NUM3 = 3;
   const NUM4 = 4;
