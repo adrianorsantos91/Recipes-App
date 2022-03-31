@@ -15,13 +15,17 @@ import {
   ExploreDrinksIngredients,
   DoneRecipes,
   FavoriteRecipes,
+  FoodInProgress,
+  DrinkInProgress,
 } from './pages';
 
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={ Login } />
+    <Route path="/foods/:id/in-progress" component={ FoodInProgress } />
     <Route path="/foods/:id" component={ FoodDetail } />
     <Route path="/foods" component={ Foods } />
+    <Route path="/drinks/:id/in-progress" component={ DrinkInProgress } />
     <Route path="/drinks/:id" component={ DrinkDetail } />
     <Route path="/drinks" component={ Drinks } />
     <Route path="/explore/foods/nationalities" component={ ExploreNationalities } />
