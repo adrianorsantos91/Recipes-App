@@ -26,13 +26,16 @@ const RecipeInProgress = () => {
         {
           recipe.ingredients
           && recipe.ingredients.map((ingredient, index) => (
-            <li
+            <label
               data-testid={ `${index}-ingredient-step` }
               key={ ingredient }
+              htmlFor={ ingredient }
+              style={ { display: 'block' } }
             >
+              <input type="checkbox" name="" id={ ingredient } />
               {ingredient}
 
-            </li>
+            </label>
           ))
         }
       </ul>
