@@ -98,13 +98,12 @@ const RecipeInProgress = () => {
               key={ ingredient }
               htmlFor={ ingredient }
               style={ { display: 'block' } }
-              onClick={ saveLocalStorageOnClick }
-              aria-hidden="true"
             >
               <input
                 type="checkbox"
                 name={ ingredient }
                 id={ recipe.id }
+                onChange={ saveLocalStorageOnClick }
                 checked={ inProgress.includes(ingredient) }
               />
               {ingredient}
