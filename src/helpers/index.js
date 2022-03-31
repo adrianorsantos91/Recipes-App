@@ -52,6 +52,7 @@ export const requestFoodAPI = (setRecipe, idRecipe) => (
         instructions: meal.strInstructions,
         ingredients: ingredientsList,
         id: meal.idMeal,
+        nationality: meal.strArea,
       };
 
       setRecipe(objectRecipe);
@@ -80,9 +81,24 @@ export const requestDrinkAPI = (setRecipe, idRecipe) => (
         instructions: drink.strInstructions,
         ingredients: ingredientsList,
         id: drink.idDrink,
+        alcoholicOrNot: drink.strAlcoholic,
       };
 
       setRecipe(objectRecipe);
     })
     .catch((error) => error.message)
 );
+
+export const copyLinkRecipe = (setIsCopied) => {
+  const [recipeURL] = (window.location.href).split('/in-progress');
+  navigator.clipboard.writeText(recipeURL);
+  setIsCopied(true);
+};
+
+export const checkIfRecipeInProgressExists = (
+  setInProgress, recipeInProgress, idRecipe,
+) => {
+  if (recipeInProgress) {
+    setInProgress(recipeInProgress.meals[idRecipe]);
+  }
+};
