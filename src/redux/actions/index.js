@@ -1,5 +1,13 @@
 export const DRINK_DATA = 'DRINK_DATA';
 export const FOOD_DATA = 'FOOD_DATA';
+export const FOOD_CATEGORY_DATA = 'FOOD_CATEGORY_DATA';
+export const DRINKS_CATEGORY_DATA = 'DRINKS_CATEGORY_DATA';
+export const DRINKS_PER_CATEGORY_DATA = 'DRINKS_PER_CATEGORY_DATA';
+export const FOODS_PER_CATEGORY_DATA = 'FOODS_PER_CATEGORY_DATA';
+export const FOOD_DATA_DETAILS = 'FOOD_DATA_DETAILS';
+export const DRINK_DATA_DETAILS = 'DRINK_DATA_DETAILS';
+export const DRINK_RECOMMENDATION = 'DRINK_RECOMMENDATION';
+export const FOOD_RECOMMENDATION = 'FOOD_RECOMMENDATION';
 
 export const action = (type, payload) => ({
   type,
@@ -16,6 +24,26 @@ export const fetchFoodsThunk = () => (
       .catch((error) => error.message)
   ));
 
+export const fetchFoodsCategoryThunk = () => (
+  (dispatch) => (
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+      .then((response) => response.json())
+      .then(({ meals: strCategory }) => {
+        dispatch(action(FOOD_CATEGORY_DATA, strCategory));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchFoodsPerCategoryThunk = (category) => (
+  (dispatch) => (
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+      .then((response) => response.json())
+      .then(({ meals: strMeal }) => {
+        dispatch(action(FOODS_PER_CATEGORY_DATA, strMeal));
+      })
+      .catch((error) => error.message)
+  ));
+
 export const fetchDrinkThunk = () => (
   (dispatch) => (
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
@@ -26,6 +54,26 @@ export const fetchDrinkThunk = () => (
       .catch((error) => error.message)
   )
 );
+
+export const fetchDrinksCategoryThunk = () => (
+  (dispatch) => (
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+      .then((response) => response.json())
+      .then(({ drinks: strCategory }) => {
+        dispatch(action(DRINKS_CATEGORY_DATA, strCategory));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchDrinksPerCategoryThunk = (category) => (
+  (dispatch) => (
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
+      .then((response) => response.json())
+      .then(({ drinks: strDrink }) => {
+        dispatch(action(DRINKS_PER_CATEGORY_DATA, strDrink));
+      })
+      .catch((error) => error.message)
+  ));
 
 // const URL_NAME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 // const fetchName = async () => {
