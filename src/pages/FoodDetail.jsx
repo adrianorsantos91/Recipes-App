@@ -61,12 +61,17 @@ const FoodDetail = () => {
     }
   });
 
+  useEffect(() => {
+    const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    setIsFavorite(favoriteListOld.some(({ id }) => id === idFood));
+  }, [idFood]);
+
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    const { idMeal, strMealThumb, strCategory, strArea, strMeal } = details[0];
+    const { idMeal: id, strMealThumb, strCategory, strArea, strMeal } = details[0];
 
-    const favoriteList = {
-      id: idMeal,
+    const newFavoriteList = {
+      id,
       type: 'food',
       nationality: strArea,
       category: strCategory,
@@ -74,10 +79,14 @@ const FoodDetail = () => {
       name: strMeal,
       image: strMealThumb };
 
-    localStorage.setItem('favoriteRecipes',
-      JSON.stringify([...favoriteListOld, favoriteList] || []));
-
-    setIsFavorite(true);
+    if (favoriteListOld.length) {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([...favoriteListOld, newFavoriteList]));
+    } else {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([newFavoriteList]));
+    }
+    setIsFavorite(!isFavorite);
   };
 
   const NUM3 = 3;
@@ -86,8 +95,6 @@ const FoodDetail = () => {
   const NUM6 = 6;
   const NUM7 = 7;
   const MAX_DRINKS = 6;
-
-  // const isContinued = false;
 
   return (
     details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,
