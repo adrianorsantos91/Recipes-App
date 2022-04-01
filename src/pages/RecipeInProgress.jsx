@@ -47,6 +47,22 @@ const RecipeInProgress = () => {
     saveFavoriteRecipe(currentRecipe, recipeType, isFavorite, setIsFavorite);
   };
 
+  const finishRecipe = (currentRecipe) => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+    const dateNow = Date.now();
+    const dateOptions = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const doneDate = new Date(dateNow).toLocaleString('pt-br', dateOptions);
+    const tags = currentRecipe.tags.length ? currentRecipe.tags.split(',') : [];
+
+    const recipeObject = {
+      ...currentRecipe,
+      doneDate,
+      tags,
+    };
+
+    localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, recipeObject]));
+  };
+
   return (
     <div>
       <h1>Recipe in Progress...</h1>
@@ -107,6 +123,7 @@ const RecipeInProgress = () => {
           data-testid="finish-recipe-btn"
           type="button"
           disabled={ isDisabled }
+          onClick={ () => finishRecipe(recipe) }
         >
           Finish Recipe
 
