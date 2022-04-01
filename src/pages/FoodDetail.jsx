@@ -25,9 +25,7 @@ const FoodDetail = () => {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`)
       .then((response) => response.json())
       .then(({ meals }) => {
-        console.log('meals', meals);
         dispatch(action(FOOD_DATA_DETAILS, meals));
-        return meals;
       })
       .catch((error) => error);
   }, []);
@@ -42,29 +40,32 @@ const FoodDetail = () => {
       .catch((error) => error);
   }, []);
 
-  const NUM3 = 3;
-  const NUM4 = 4;
-  const NUM5 = 5;
-  const NUM6 = 6;
-  const NUM7 = 7;
-  const MAX_DRINKS = 6;
-
   useEffect(() => {
     const doneRecipesList = JSON.parse(localStorage.getItem('doneRecipes'));
     if (doneRecipesList) {
       setFinished(true);
     }
 
-    const { meals } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    const favorite = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    console.log('favId:', favorite);
+    setIsFavorite(favorite.some(({ id }) => id === idFood));
+  }, []);
 
+  useEffect(() => () => {
+    const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
+    const { meals } = progressRecipes;
+    console.log('ProgressiveMeals:', progressRecipes);
     if (meals[idFood]) {
       setContinued(true);
+    } else {
+      setContinued(false);
     }
   }, []);
 
   const saveFavoriteInLocalStorageOnClick = () => {
-    const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    const { idMeal, strMealThumb, strCategory, strArea, strMeal } = details;
+    const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const { idMeal, strMealThumb, strCategory, strArea, strMeal } = details[0];
+
     const favoriteList = {
       id: idMeal,
       type: 'food',
@@ -75,12 +76,19 @@ const FoodDetail = () => {
       image: strMealThumb };
 
     localStorage.setItem('favoriteRecipes',
-      JSON.stringify({ ...favoriteListOld, favoriteList } || []));
+      JSON.stringify([...favoriteListOld, favoriteList] || []));
 
-    // [{ id, type, nationality, category, alcoholicOrNot, name, image }]
-    console.log('save');
     setIsFavorite(true);
   };
+
+  const NUM3 = 3;
+  const NUM4 = 4;
+  const NUM5 = 5;
+  const NUM6 = 6;
+  const NUM7 = 7;
+  const MAX_DRINKS = 6;
+
+  // const isContinued = false;
 
   return (
     details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,

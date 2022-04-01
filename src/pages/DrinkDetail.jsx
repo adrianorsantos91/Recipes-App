@@ -10,24 +10,25 @@ import '../styles/DrinkDetails.css';
 
 const DrinkDetail = () => {
   const [isFinished, setFinished] = useState(false);
-  const [isContinued, setContinued] = useState(false);
+  // const [isContinued, setContinued] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const details = useSelector(({ drinkDataDetails }) => drinkDataDetails);
   const foodsList = useSelector(({ foodsRecommendation }) => foodsRecommendation);
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const idDrink = history.location.pathname.split('/')[2];
+  const ID_DRINK = history.location.pathname.split('/')[2];
 
   useEffect(() => {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${ID_DRINK}`)
       .then((response) => response.json())
       .then(({ drinks }) => {
         dispatch(action(DRINK_DATA_DETAILS, drinks));
       })
       .catch((error) => error);
-  }, [idDrink, dispatch]);
+  }, [ID_DRINK, dispatch]);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
@@ -44,16 +45,47 @@ const DrinkDetail = () => {
       setFinished(true);
     }
 
-    const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    console.log('drinks', cocktails);
-    if (cocktails[idDrink]) {
-      setContinued(true);
-    }
+    const favorite = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    console.log('favId:', favorite);
+    setIsFavorite(favorite.some(({ id }) => id === idDrink));
   }, []);
+
+  // useEffect(() => {
+  //   const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
+  //   const { cocktails } = progressRecipes;
+  //   console.log('ProgressiveDrink:', progressRecipes);
+  //   if (cocktails[idDrink]) {
+  //     setContinued(true);
+  //   } else {
+  //     setContinued(false);
+  //   }
+  // }, []);
+
+  const saveFavoriteInLocalStorageOnClick = () => {
+    const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const { idDrink, strDrinkThumb, strCategory, strAlcoholic, strArea,
+      strDrink } = details[0];
+
+    const favoriteList = {
+      id: idDrink,
+      type: 'drink',
+      nationality: strArea,
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic,
+      name: strDrink,
+      image: strDrinkThumb };
+
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify([...favoriteListOld, favoriteList] || []));
+
+    setIsFavorite(true);
+  };
 
   const NUM3 = 3;
   const NUM4 = 4;
   const MAX_FOODS = 6;
+
+  const isContinued = false;
 
   return (
     details.map(({ strDrinkThumb, strAlcoholic, strIngredient1, strIngredient2,
@@ -68,12 +100,15 @@ const DrinkDetail = () => {
         </div>
         <h2 data-testid="recipe-title">{ strDrink }</h2>
         <p data-testid="recipe-category">{ strAlcoholic }</p>
-        <button type="button">
+        <button
+          type="button"
+          onClick={ () => copyLinkRecipe(setIsCopied) }
+        >
           <img src={ shareIcon } alt="" data-testid="share-btn" />
         </button>
         <button
           type="button"
-          onClick={ () => copyLinkRecipe(setIsCopied) }
+          onClick={ () => saveFavoriteInLocalStorageOnClick() }
         >
           <img
             data-testid="favorite-btn"
@@ -130,7 +165,7 @@ const DrinkDetail = () => {
             data-testid="start-recipe-btn"
             className="start-recipe"
             hidden={ isFinished }
-            onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
+            onClick={ () => history.push(`/drinks/${ID_DRINK}/in-progress`) }
           >
             { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
           </button>
