@@ -28,37 +28,31 @@ const DoneRecipes = () => (
 
     <Card style={ { width: '18rem' } }>
       <Card.Img
-        data-testid={ `${index}-horizontal-image` }
+        // data-testid={ `${index}-horizontal-image` }
         variant="top"
-        src={ recipe.strMealThumb }
+        // src={ recipe.strMealThumb }
       />
       <Card.Body>
-        <p // <--------------Categoria
-          data-testid={ `${index}-horizontal-top-text` }
-        >
+        <p>
           Categoria
         </p>
-        <Card.Title // <-----Nome da Receita
-          data-testid={ `${index}-horizontal-name` }
-        >
-          {recipe.strMeal}
+        <Card.Title>
+          {/* {recipe.strMeal} */}
 
         </Card.Title>
-        <Card.Text // <-----Data da Receita
-          data-testid={ `${index}-horizontal-done-date` }
-        >
-          {recipe.strMeal}
+        <Card.Text>
+          {/* {recipe.strMeal} */}
 
         </Card.Text>
         <Button // <-----Botao Share
           variant="primary"
-          data-testid={ `${index}-horizontal-share-btn` }
+          // data-testid={ `${index}-horizontal-share-btn` }
         >
           Share
         </Button>
         <Card.Link
           href="#"
-          data-testid={ `${index}-${tagName}-horizontal-tag` }
+          // data-testid={ `${index}-${tagName}-horizontal-tag` }
         >
           Card Link
         </Card.Link>

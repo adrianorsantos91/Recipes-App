@@ -34,7 +34,6 @@ const FoodDetail = () => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
       .then((response) => response.json())
       .then(({ drinks }) => {
-        console.log('drinks', drinks);
         dispatch(action(DRINK_RECOMMENDATION, drinks));
       })
       .catch((error) => error);
@@ -47,7 +46,6 @@ const FoodDetail = () => {
     }
 
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    console.log('favId:', favorite);
     setIsFavorite(favorite.some(({ id }) => id === idFood));
   }, []);
 
@@ -55,7 +53,6 @@ const FoodDetail = () => {
     const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
     if (progressRecipes.meals) {
       const { meals } = progressRecipes;
-      console.log('meals', meals);
       if (meals[idFood]) {
         setContinued(true);
       } else {

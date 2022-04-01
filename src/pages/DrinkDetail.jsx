@@ -46,13 +46,11 @@ const DrinkDetail = () => {
     }
 
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    console.log('favId:', favorite);
     setIsFavorite(favorite.some(({ id }) => id === ID_DRINK));
   }, []);
 
   useEffect(() => {
     const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
-    console.log('ProgressiveDrink:', progressRecipes);
     if (progressRecipes.cocktails) {
       const { cocktails } = progressRecipes;
       if (cocktails[ID_DRINK]) {
