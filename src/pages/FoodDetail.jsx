@@ -83,7 +83,7 @@ const FoodDetail = () => {
       image: strMealThumb };
 
     localStorage.setItem('favoriteRecipes',
-      JSON.stringify([...favoriteListOld, favoriteList] || []));
+      JSON.stringify([...favoriteListOld, favoriteList]));
 
     setIsFavorite(true);
   };
@@ -94,8 +94,6 @@ const FoodDetail = () => {
   const NUM6 = 6;
   const NUM7 = 7;
   const MAX_DRINKS = 6;
-
-  // const isContinued = false;
 
   return (
     details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,
