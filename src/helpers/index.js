@@ -10,6 +10,11 @@ import {
   fetchDrinksName,
 } from './fetchDrinkAPI';
 
+import {
+  foodRecipeInProgress,
+  drinkRecipeInProgress,
+} from './recipesInProgress';
+
 export const minPasswordLength = 6;
 export const FIRST_TWELVE_RECIPES = 12;
 export const FIRST_FIVE_CATEGORIES = 5;
@@ -26,6 +31,15 @@ export const requestDrinkObject = {
   'name-search': (searchInput) => fetchDrinksName(searchInput),
   'first-letter-search': (searchInput) => fetchDrinksFirstLetter(searchInput),
   '': () => global.alert('Select any option'),
+};
+
+export const recipesInProgress = {
+  foods: (id, name, inProgress, setInProgress) => (
+    foodRecipeInProgress(id, name, inProgress, setInProgress)
+  ),
+  drinks: (id, name, inProgress, setInProgress) => (
+    drinkRecipeInProgress(id, name, inProgress, setInProgress)
+  ),
 };
 
 export const requestFoodAPI = (setRecipe, idRecipe) => (

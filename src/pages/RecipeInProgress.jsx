@@ -3,10 +3,10 @@ import { useLocation, Link } from 'react-router-dom';
 import {
   copyLinkRecipe,
   getRecipesLocalStorage,
-} from '../helpers';
-import {
   recipesInProgress,
-} from '../helpers/recipesInProgress';
+
+} from '../helpers';
+
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';

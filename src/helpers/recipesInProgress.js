@@ -75,12 +75,3 @@ export const foodRecipeInProgress = (id, name, inProgress, setInProgress) => {
   localStorage.setItem('inProgressRecipes', JSON.stringify(updateLocalStorage));
   setInProgress([...inProgress, name]);
 };
-
-export const recipesInProgress = {
-  foods: (id, name, inProgress, setInProgress) => (
-    foodRecipeInProgress(id, name, inProgress, setInProgress)
-  ),
-  drinks: (id, name, inProgress, setInProgress) => (
-    drinkRecipeInProgress(id, name, inProgress, setInProgress)
-  ),
-};
