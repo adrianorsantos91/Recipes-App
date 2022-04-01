@@ -10,8 +10,6 @@ import {
   fetchDrinksName,
 } from './fetchDrinkAPI';
 
-// import { fetchFoodsIngredientsThunk } from '../redux/actions';
-
 export const minPasswordLength = 6;
 export const FIRST_TWELVE_RECIPES = 12;
 export const FIRST_FIVE_CATEGORIES = 5;
@@ -95,10 +93,26 @@ export const copyLinkRecipe = (setIsCopied) => {
   setIsCopied(true);
 };
 
-export const checkIfRecipeInProgressExists = (
-  setInProgress, recipeInProgress, idRecipe,
+const checkIfRecipeInProgressExists = (
+  setInProgress, recipeInProgress, idRecipe, recipeType,
 ) => {
-  if (recipeInProgress) {
-    setInProgress(recipeInProgress.meals[idRecipe]);
+  if (recipeType === 'foods') {
+    if (recipeInProgress) {
+      setInProgress(recipeInProgress.meals[idRecipe]);
+    }
+  } else if (recipeInProgress) {
+    setInProgress(recipeInProgress.cocktails[idRecipe]);
   }
+};
+
+export const getRecipesLocalStorage = (
+  recipeType, setRecipe, idRecipe, setInProgress,
+) => {
+  const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  checkIfRecipeInProgressExists(
+    setInProgress, recipeInProgress, idRecipe, recipeType,
+  );
+  return recipeType === 'foods'
+    ? requestFoodAPI(setRecipe, idRecipe)
+    : requestDrinkAPI(setRecipe, idRecipe);
 };

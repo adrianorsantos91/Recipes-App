@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
-  requestDrinkAPI,
-  requestFoodAPI,
   copyLinkRecipe,
-  checkIfRecipeInProgressExists,
+  getRecipesLocalStorage,
 } from '../helpers';
 import {
   recipesInProgress,
@@ -32,17 +30,8 @@ const RecipeInProgress = () => {
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     setIsFavorite(favoriteRecipes.some(({ id }) => id === idRecipe));
-    if (recipeType === 'foods') {
-      requestFoodAPI(setRecipe, idRecipe);
-      const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      checkIfRecipeInProgressExists(setInProgress, recipeInProgress, idRecipe);
-    } else {
-      requestDrinkAPI(setRecipe, idRecipe);
-      const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      if (recipeInProgress) {
-        setInProgress(recipeInProgress.cocktails[idRecipe]);
-      }
-    }
+    getRecipesLocalStorage(recipeType, setRecipe, idRecipe, setInProgress);
+
     verifyCheckbox();
   }, [idRecipe, recipeType]);
 
