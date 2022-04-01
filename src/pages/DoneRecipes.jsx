@@ -42,12 +42,15 @@ const DoneRecipes = () => {
               data-testid={ `${index}-horizontal-image` }
               variant="top"
               src={ recipe.image }
+              style={ { width: '100px' } }
             />
             <Card.Body>
-              <p>
+              <p data-testid={ `${index}-horizontal-top-text` }>
                 {`Category: ${recipe.category}`}
               </p>
-              <Card.Title>
+              <Card.Title
+                data-testid={ `${index}-horizontal-name` }
+              >
                 {recipe.name}
 
               </Card.Title>
@@ -55,18 +58,31 @@ const DoneRecipes = () => {
                 {recipe.name}
 
               </Card.Text>
+              <p
+                data-testid={ `${index}-horizontal-done-date` }
+              >
+                {`Recipe Done: ${recipe.doneDate}`}
+
+              </p>
+              <ul>
+                {
+                  recipe.tags.map((tag) => (
+                    <li
+                      key={ Math.random() }
+                      data-testid={ `${index}-${tag}-horizontal-tag` }
+                    >
+                      {tag}
+
+                    </li>
+                  ))
+                }
+              </ul>
               <Button // <-----Botao Share
                 variant="primary"
                 data-testid={ `${index}-horizontal-share-btn` }
               >
                 Share
               </Button>
-              <Card.Link
-                href="#"
-                data-testid={ `${index}-${recipe.tags}-horizontal-tag` }
-              >
-                Card Link
-              </Card.Link>
             </Card.Body>
           </Card>
         ))
