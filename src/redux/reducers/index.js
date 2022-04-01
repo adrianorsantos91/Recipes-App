@@ -10,6 +10,8 @@ import foodDataDetails from './foodDetailsAPIData';
 import drinkDataDetails from './drinkDetailsAPIData';
 import drinksRecommendation from './drinksRecommendationAPIData';
 import foodsRecommendation from './foodsRecommendationAPIData';
+import randomFoodAPIData from './randomFoodAPIData';
+import randomDrinkAPIData from './randomDrinkAPIData';
 
 const rootReducer = combineReducers({
   login,
@@ -23,6 +25,8 @@ const rootReducer = combineReducers({
   drinkDataDetails,
   drinksRecommendation,
   foodsRecommendation,
+  randomFoodAPIData,
+  randomDrinkAPIData,
 });
 
 export default rootReducer;

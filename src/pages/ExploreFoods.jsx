@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Footer, Header } from '../components';
 
 export default function ExploreFoods() {
+  const randomFood = useSelector(({ randomFoodAPIData }) => randomFoodAPIData);
+  const [surprise, setSurprise] = useState('');
+  console.log(randomFood);
+
+  useEffect(() => {
+    setSurprise(randomFood);
+  }, [randomFood]);
+  console.log(surprise);
+
   return (
     <div>
       <Header title="Explore Foods" />
