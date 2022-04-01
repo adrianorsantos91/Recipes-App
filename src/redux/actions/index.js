@@ -8,6 +8,8 @@ export const FOOD_DATA_DETAILS = 'FOOD_DATA_DETAILS';
 export const DRINK_DATA_DETAILS = 'DRINK_DATA_DETAILS';
 export const DRINK_RECOMMENDATION = 'DRINK_RECOMMENDATION';
 export const FOOD_RECOMMENDATION = 'FOOD_RECOMMENDATION';
+export const FOOD_SURPRISE_ME = 'FOOD_SURPRISE_ME';
+export const DRINK_SURPRISE_ME = 'DRINK_SURPRISE_ME';
 
 export const action = (type, payload) => ({
   type,
@@ -71,6 +73,26 @@ export const fetchDrinksPerCategoryThunk = (category) => (
       .then((response) => response.json())
       .then(({ drinks: strDrink }) => {
         dispatch(action(DRINKS_PER_CATEGORY_DATA, strDrink));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchRandomFoodsThunk = () => (
+  (dispatch) => (
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then((response) => response.json())
+      .then(({ meals }) => {
+        dispatch(action(FOOD_SURPRISE_ME, meals));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchRandomDrinksThunk = () => (
+  (dispatch) => (
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+      .then((response) => response.json())
+      .then(({ drinks }) => {
+        dispatch(action(DRINK_SURPRISE_ME, drinks));
       })
       .catch((error) => error.message)
   ));
