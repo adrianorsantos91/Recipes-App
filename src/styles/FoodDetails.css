@@ -20,7 +20,7 @@
   width: 80px;
 }
 
-.food-thumb >img {
+.food-thumb > img {
   align-items: center;
   display: flex;
   height: 200px;
