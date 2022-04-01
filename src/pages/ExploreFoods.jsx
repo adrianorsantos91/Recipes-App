@@ -9,15 +9,30 @@ export default function ExploreFoods() {
   const dispatch = useDispatch();
   const randomFood = useSelector(({ randomFoodAPIData }) => randomFoodAPIData);
   const [surpriseMe, setSurpriseMe] = useState('');
+  const [id, setId] = useState('');
 
   useEffect(() => {
     dispatch(fetchRandomFoodsThunk());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setSurpriseMe(randomFood);
   }, [randomFood]);
+
+  useEffect(() => {
+    if (surpriseMe.length) {
+      setId(surpriseMe[0].idMeal);
+    }
+  }, [surpriseMe]);
+
   console.log(surpriseMe);
+  console.log(id);
+
+  /* const id = surpriseMe[0].idMeal;
+  console.log(id); */
+  // const { idMeal } = surpriseMe;
+  // console.log(surpriseMe[0].idMeal);
+  /* console.log(surpriseMe[meals][idMeal]); */
 
   return (
     <div>
@@ -38,10 +53,12 @@ export default function ExploreFoods() {
           By Nationality
         </Button>
       </Link>
-      <Link to="/explore/foods/surprise-me">
+      {/* <Link to="/foods/53021"> */}
+      <Link to={ `/foods/${id}` }>
         <Button
           variant="outline-dark"
           data-testid="explore-surprise"
+          /* onClick={ () => setSurpriseMe(randomFood) } */
         >
           Surprise me!
         </Button>
