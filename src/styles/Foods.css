@@ -5,11 +5,6 @@
   padding: 0;
 }
 
-html, body {
-  height: 640px;
-  width: 340px;
-}
-
 footer {
   align-items: center;
   bottom: 0;

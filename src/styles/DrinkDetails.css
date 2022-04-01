@@ -1,0 +1,41 @@
+.scrolling-wrapper-flexbox {
+  border: 1px solid #ddd;
+  display: flex;
+  flex-wrap: nowrap;
+  max-height: 160px;
+  overflow-x: auto;
+}
+
+.scrolling-wrapper-flexbox ::-webkit-scrollbar {
+  width: 0;
+}
+
+.scrolling-wrapper-flexbox .card {
+  background-color: #ddd;
+  flex: 0 0 auto;
+  height: 200px;
+  line-height: 110px;
+  margin-right: 2px;
+  text-align: center;
+  width: 175px;
+}
+
+.drink-thumb > img {
+  align-items: center;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  padding: 10px;
+  width: 280px;
+}
+
+.start-recipe {
+  background: none repeat scroll 0 0 #00ff80;
+  border: none;
+  bottom: 0;
+  display: block;
+  height: 50px;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+}
