@@ -7,8 +7,7 @@ import {
   checkIfRecipeInProgressExists,
 } from '../helpers';
 import {
-  drinkRecipeInProgress,
-  foodRecipeInProgress,
+  recipesInProgress,
 } from '../helpers/recipesInProgress';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -52,11 +51,7 @@ const RecipeInProgress = () => {
   }, [recipe, inProgress]);
 
   const saveLocalStorageOnClick = ({ target: { id, name } }) => {
-    if (recipeType === 'foods') {
-      foodRecipeInProgress(id, name, inProgress, setInProgress);
-    } else {
-      drinkRecipeInProgress(id, name, inProgress, setInProgress);
-    }
+    recipesInProgress[recipeType](id, name, inProgress, setInProgress);
   };
 
   const favoriteRecipe = (currentRecipe) => {
