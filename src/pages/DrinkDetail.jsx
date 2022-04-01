@@ -10,7 +10,7 @@ import '../styles/DrinkDetails.css';
 
 const DrinkDetail = () => {
   const [isFinished, setFinished] = useState(false);
-  // const [isContinued, setContinued] = useState(false);
+  const [isContinued, setContinued] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -47,19 +47,21 @@ const DrinkDetail = () => {
 
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     console.log('favId:', favorite);
-    setIsFavorite(favorite.some(({ id }) => id === idDrink));
+    setIsFavorite(favorite.some(({ id }) => id === ID_DRINK));
   }, []);
 
-  // useEffect(() => {
-  //   const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
-  //   const { cocktails } = progressRecipes;
-  //   console.log('ProgressiveDrink:', progressRecipes);
-  //   if (cocktails[idDrink]) {
-  //     setContinued(true);
-  //   } else {
-  //     setContinued(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
+    console.log('ProgressiveDrink:', progressRecipes);
+    if (progressRecipes.cocktails) {
+      const { cocktails } = progressRecipes;
+      if (cocktails[ID_DRINK]) {
+        setContinued(true);
+      } else {
+        setContinued(false);
+      }
+    }
+  });
 
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
@@ -84,8 +86,6 @@ const DrinkDetail = () => {
   const NUM3 = 3;
   const NUM4 = 4;
   const MAX_FOODS = 6;
-
-  const isContinued = false;
 
   return (
     details.map(({ strDrinkThumb, strAlcoholic, strIngredient1, strIngredient2,

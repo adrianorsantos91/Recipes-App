@@ -53,14 +53,16 @@ const FoodDetail = () => {
 
   useEffect(() => () => {
     const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
-    const { meals } = progressRecipes;
-    console.log('ProgressiveMeals:', progressRecipes);
-    if (meals[idFood]) {
-      setContinued(true);
-    } else {
-      setContinued(false);
+    if (progressRecipes.meals) {
+      const { meals } = progressRecipes;
+      console.log('meals', meals);
+      if (meals[idFood]) {
+        setContinued(true);
+      } else {
+        setContinued(false);
+      }
     }
-  }, []);
+  });
 
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
