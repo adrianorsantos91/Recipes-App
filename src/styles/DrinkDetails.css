@@ -32,9 +32,10 @@
 .start-recipe {
   background: none repeat scroll 0 0 #00ff80;
   border: none;
+  bottom: 0;
   display: block;
   height: 50px;
   justify-content: center;
-  position: sticky;
+  position: fixed;
   width: 100%;
 }

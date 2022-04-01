@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { action, DRINK_DATA_DETAILS, FOOD_RECOMMENDATION } from '../redux/actions';
@@ -7,18 +7,20 @@ import favorite from '../images/whiteHeartIcon.svg';
 import '../styles/DrinkDetails.css';
 
 const DrinkDetail = () => {
+  const [isFinished, setFinished] = useState(false);
+  const [isContinued, setContinued] = useState(false);
+
   const details = useSelector(({ drinkDataDetails }) => drinkDataDetails);
   const foodsList = useSelector(({ foodsRecommendation }) => foodsRecommendation);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const idDrink = history.location.pathname.split('/')[2];
-  // const id = 178319;
-  console.log(idDrink);
+
   useEffect(() => {
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
       .then((response) => response.json())
       .then(({ drinks }) => {
-        console.log('drinks', drinks);
         dispatch(action(DRINK_DATA_DETAILS, drinks));
       })
       .catch((error) => error);
@@ -28,20 +30,29 @@ const DrinkDetail = () => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
       .then((response) => response.json())
       .then(({ meals }) => {
-        console.log('drinks', meals);
         dispatch(action(FOOD_RECOMMENDATION, meals));
       })
       .catch((error) => error);
   }, []);
 
-  console.log('foodsList:', foodsList);
+  useEffect(() => {
+    const doneRecipesList = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (doneRecipesList) {
+      setFinished(true);
+    }
 
-  // APi Drinks: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=178319", Código null
-  // API Foods: `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idDrink}`
+    const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    console.log('drinks', cocktails);
+    if (cocktails[idDrink]) {
+      console.log('Estou aqui');
+      setContinued(true);
+    }
+  }, []);
 
   const NUM3 = 3;
   const NUM4 = 4;
   const MAX_FOODS = 6;
+  // const isContinued = false;
 
   return (
     details.map(({ strDrinkThumb, strAlcoholic, strIngredient1, strIngredient2,
@@ -91,7 +102,7 @@ const DrinkDetail = () => {
         <div className="scrolling-wrapper-flexbox">
           { foodsList.filter((_, index) => index < MAX_FOODS)
             .map(({ strMealThumb, strCategory, strMeal }, index) => (
-              <td
+              <div
                 key={ strMeal }
                 className="card"
                 data-testid={ `${index}-recomendation-card` }
@@ -99,18 +110,20 @@ const DrinkDetail = () => {
                 <img src={ strMealThumb } alt={ `food ${strMeal}` } />
                 <p>{ strCategory }</p>
                 <h3 data-testid={ `${index}-recomendation-title` }>{ strMeal }</h3>
-              </td>
+              </div>
             ))}
         </div>
-        <div>
+        <section className="section-button-start">
           <button
             type="button"
-            className="start-recipe"
             data-testid="start-recipe-btn"
+            className="start-recipe"
+            hidden={ isFinished }
+            onClick={ () => history.push(`/drinks/${idDrink}/in-progress`) }
           >
-            Start Recipe
+            { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
           </button>
-        </div>
+        </section>
       </div>
     ))
   );

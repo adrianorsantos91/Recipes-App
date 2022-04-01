@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { action, FOOD_DATA_DETAILS, DRINK_RECOMMENDATION } from '../redux/actions';
@@ -7,13 +7,16 @@ import favorite from '../images/whiteHeartIcon.svg';
 import '../styles/FoodDetails.css';
 
 const FoodDetail = () => {
+  const [isFinished, setFinished] = useState(false);
+  const [isContinued, setContinued] = useState(false);
+
   const details = useSelector(({ foodDataDetails }) => foodDataDetails);
   const drinksList = useSelector(({ drinksRecommendation }) => drinksRecommendation);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const idFood = history.location.pathname.split('/')[2];
-  console.log('idFood', idFood);
-  // const id = 52771;
+
   useEffect(() => {
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`)
       .then((response) => response.json())
@@ -35,7 +38,6 @@ const FoodDetail = () => {
       .catch((error) => error);
   }, []);
 
-  // APi Drinks: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=178319",
   const NUM3 = 3;
   const NUM4 = 4;
   const NUM5 = 5;
@@ -43,8 +45,18 @@ const FoodDetail = () => {
   const NUM7 = 7;
   const MAX_DRINKS = 6;
 
-  const isFinished = false;
-  const isStarted = false;
+  useEffect(() => {
+    const doneRecipesList = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (doneRecipesList) {
+      setFinished(true);
+    }
+
+    const { meals } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+
+    if (meals[idFood]) {
+      setContinued(true);
+    }
+  }, []);
 
   return (
     details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,
@@ -76,11 +88,21 @@ const FoodDetail = () => {
           <ul
             id="ingredients"
           >
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strIngredient1 }</li>
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strMeasure1 }</li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strIngredient2 }</li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strMeasure2 }</li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strIngredient3 }</li>
+            <li data-testid={ `${0}-ingredient-name-and-measure` }>
+              { strIngredient1 }
+            </li>
+            <li data-testid={ `${0}-ingredient-name-and-measure` }>
+              { strMeasure1 }
+            </li>
+            <li data-testid={ `${1}-ingredient-name-and-measure` }>
+              { strIngredient2 }
+            </li>
+            <li data-testid={ `${1}-ingredient-name-and-measure` }>
+              { strMeasure2 }
+            </li>
+            <li data-testid={ `${2}-ingredient-name-and-measure` }>
+              { strIngredient3 }
+            </li>
             <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strMeasure3 }</li>
             <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
               { strIngredient4 }
@@ -121,7 +143,7 @@ const FoodDetail = () => {
           <div>
             <iframe
               id="preview-frame"
-              src={ strYoutube }
+              src={ `https://www.youtube.com/embed/${strYoutube.split('=')[1]}` } // Necessário combinado o link com embed e o código da URL fornecida.
               name="preview-frame"
               frameBorder="0"
               noresize="noresize"
@@ -155,7 +177,7 @@ const FoodDetail = () => {
             hidden={ isFinished }
             onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
           >
-            { !isStarted ? 'Start Recipe' : 'Continue Recipe' }
+            { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
           </button>
         </section>
       </div>

@@ -31,9 +31,11 @@
 
 .start-recipe {
   background: none repeat scroll 0 0 #00ff80;
+  border: none;
   bottom: 0;
+  display: block;
   height: 50px;
   justify-content: center;
-  margin: 10%;
-  width: 280px;
+  position: fixed;
+  width: 100%;
 }
