@@ -52,7 +52,6 @@ const DrinkDetail = () => {
 
   useEffect(() => {
     const progressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
-    console.log('ProgressiveDrink:', progressRecipes);
     if (progressRecipes.cocktails) {
       const { cocktails } = progressRecipes;
       if (cocktails[ID_DRINK]) {
@@ -65,14 +64,13 @@ const DrinkDetail = () => {
 
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    const { idDrink, strDrinkThumb, strCategory, strAlcoholic, strArea,
-      strDrink } = details[0];
+    const { idDrink, strDrinkThumb, strAlcoholic, strDrink } = details[0];
 
     const favoriteList = {
       id: idDrink,
       type: 'drink',
-      nationality: strArea,
-      category: strCategory,
+      nationality: '',
+      category: 'Cocktail',
       alcoholicOrNot: strAlcoholic,
       name: strDrink,
       image: strDrinkThumb };

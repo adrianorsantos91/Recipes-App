@@ -66,10 +66,15 @@ const FoodDetail = () => {
 
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    const { idMeal, strMealThumb, strCategory, strArea, strMeal } = details[0];
+    const { idMeal: id, strMealThumb, strCategory, strArea, strMeal } = details[0];
+    favoriteListOld.forEach(({ idMeal }) => {
+      if (idMeal === idFood) {
+        setIsFavorite(false);
+      }
+    });
 
     const favoriteList = {
-      id: idMeal,
+      id,
       type: 'food',
       nationality: strArea,
       category: strCategory,
