@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { action, DRINK_DATA_DETAILS, FOOD_RECOMMENDATION } from '../redux/actions';
+import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
-import favorite from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../styles/DrinkDetails.css';
 
 const DrinkDetail = () => {
   const [isFinished, setFinished] = useState(false);
   const [isContinued, setContinued] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const details = useSelector(({ drinkDataDetails }) => drinkDataDetails);
   const foodsList = useSelector(({ foodsRecommendation }) => foodsRecommendation);
@@ -44,7 +47,6 @@ const DrinkDetail = () => {
     const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
     console.log('drinks', cocktails);
     if (cocktails[idDrink]) {
-      console.log('Estou aqui');
       setContinued(true);
     }
   }, []);
@@ -52,7 +54,6 @@ const DrinkDetail = () => {
   const NUM3 = 3;
   const NUM4 = 4;
   const MAX_FOODS = 6;
-  // const isContinued = false;
 
   return (
     details.map(({ strDrinkThumb, strAlcoholic, strIngredient1, strIngredient2,
@@ -70,9 +71,19 @@ const DrinkDetail = () => {
         <button type="button">
           <img src={ shareIcon } alt="" data-testid="share-btn" />
         </button>
-        <button type="button">
-          <img src={ favorite } alt="" data-testid="favorite-btn" />
+        <button
+          type="button"
+          onClick={ () => copyLinkRecipe(setIsCopied) }
+        >
+          <img
+            data-testid="favorite-btn"
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
+          />
         </button>
+        {
+          isCopied && <span>Link copied!</span>
+        }
         <h3>Ingredients</h3>
         <ul
           id="ingredients"

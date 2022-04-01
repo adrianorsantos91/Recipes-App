@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { action, FOOD_DATA_DETAILS, DRINK_RECOMMENDATION } from '../redux/actions';
+import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
-import favorite from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../styles/FoodDetails.css';
 
 const FoodDetail = () => {
   const [isFinished, setFinished] = useState(false);
   const [isContinued, setContinued] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const details = useSelector(({ foodDataDetails }) => foodDataDetails);
   const drinksList = useSelector(({ drinksRecommendation }) => drinksRecommendation);
@@ -58,6 +62,26 @@ const FoodDetail = () => {
     }
   }, []);
 
+  const saveFavoriteInLocalStorageOnClick = () => {
+    const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const { idMeal, strMealThumb, strCategory, strArea, strMeal } = details;
+    const favoriteList = {
+      id: idMeal,
+      type: 'food',
+      nationality: strArea,
+      category: strCategory,
+      alcoholicOrNot: '',
+      name: strMeal,
+      image: strMealThumb };
+
+    localStorage.setItem('favoriteRecipes',
+      JSON.stringify({ ...favoriteListOld, favoriteList } || []));
+
+    // [{ id, type, nationality, category, alcoholicOrNot, name, image }]
+    console.log('save');
+    setIsFavorite(true);
+  };
+
   return (
     details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,
       strIngredient3, strIngredient4, strIngredient5, strIngredient6,
@@ -76,12 +100,25 @@ const FoodDetail = () => {
         </div>
         <h2 data-testid="recipe-title">{ strMeal }</h2>
         <p data-testid="recipe-category">{ strCategory }</p>
-        <button type="button">
+        <button
+          type="button"
+          onClick={ () => copyLinkRecipe(setIsCopied) }
+        >
           <img src={ shareIcon } alt="" data-testid="share-btn" />
         </button>
-        <button type="button">
-          <img src={ favorite } alt="" data-testid="favorite-btn" />
+        <button
+          type="button"
+          onClick={ () => saveFavoriteInLocalStorageOnClick() }
+        >
+          <img
+            data-testid="favorite-btn"
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
+          />
         </button>
+        {
+          isCopied && <span>Link copied!</span>
+        }
         <section>
 
           <h3>Ingredients</h3>
@@ -103,7 +140,9 @@ const FoodDetail = () => {
             <li data-testid={ `${2}-ingredient-name-and-measure` }>
               { strIngredient3 }
             </li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strMeasure3 }</li>
+            <li data-testid={ `${2}-ingredient-name-and-measure` }>
+              { strMeasure3 }
+            </li>
             <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
               { strIngredient4 }
             </li>
