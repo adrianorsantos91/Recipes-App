@@ -61,12 +61,17 @@ const DrinkDetail = () => {
     }
   });
 
+  useEffect(() => {
+    const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    setIsFavorite(favoriteListOld.some(({ id }) => id === ID_DRINK));
+  }, [ID_DRINK]);
+
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    const { idDrink, strDrinkThumb, strAlcoholic, strDrink } = details[0];
+    const { idDrink: id, strDrinkThumb, strAlcoholic, strDrink } = details[0];
 
-    const favoriteList = {
-      id: idDrink,
+    const newFavoriteList = {
+      id,
       type: 'drink',
       nationality: '',
       category: 'Cocktail',
@@ -74,10 +79,15 @@ const DrinkDetail = () => {
       name: strDrink,
       image: strDrinkThumb };
 
-    localStorage.setItem('favoriteRecipes',
-      JSON.stringify([...favoriteListOld, favoriteList] || []));
+    if (favoriteListOld.length) {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([...favoriteListOld, newFavoriteList]));
+    } else {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([newFavoriteList]));
+    }
 
-    setIsFavorite(true);
+    setIsFavorite(!isFavorite);
   };
 
   const NUM3 = 3;

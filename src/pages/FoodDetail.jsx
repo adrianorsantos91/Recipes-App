@@ -61,16 +61,16 @@ const FoodDetail = () => {
     }
   });
 
+  useEffect(() => {
+    const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    setIsFavorite(favoriteListOld.some(({ id }) => id === idFood));
+  }, [idFood]);
+
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     const { idMeal: id, strMealThumb, strCategory, strArea, strMeal } = details[0];
-    favoriteListOld.forEach(({ idMeal }) => {
-      if (idMeal === idFood) {
-        setIsFavorite(false);
-      }
-    });
 
-    const favoriteList = {
+    const newFavoriteList = {
       id,
       type: 'food',
       nationality: strArea,
@@ -79,10 +79,14 @@ const FoodDetail = () => {
       name: strMeal,
       image: strMealThumb };
 
-    localStorage.setItem('favoriteRecipes',
-      JSON.stringify([...favoriteListOld, favoriteList]));
-
-    setIsFavorite(true);
+    if (favoriteListOld.length) {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([...favoriteListOld, newFavoriteList]));
+    } else {
+      localStorage.setItem('favoriteRecipes',
+        JSON.stringify([newFavoriteList]));
+    }
+    setIsFavorite(!isFavorite);
   };
 
   const NUM3 = 3;
