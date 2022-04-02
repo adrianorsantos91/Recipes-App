@@ -44,12 +44,10 @@ export default function ExploreFoods() {
           By Nationality
         </Button>
       </Link>
-      {/* <Link to="/foods/53021"> */}
       <Link to={ `/foods/${id}` }>
         <Button
           variant="outline-dark"
           data-testid="explore-surprise"
-          /* onClick={ () => setSurpriseMe(randomFood) } */
         >
           Surprise me!
         </Button>
