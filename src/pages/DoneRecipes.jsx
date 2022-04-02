@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Header } from '../components';
+import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
 
 const DoneRecipes = () => {
   const [recipes, setRecipes] = useState([]);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     const getRecipesDone = JSON.parse(localStorage.getItem('doneRecipes')) || [];
@@ -80,7 +82,7 @@ const DoneRecipes = () => {
               </ul>
               <Button // <-----Botao Share
                 variant="primary"
-
+                onClick={ () => copyLinkRecipe(setIsCopied, recipe) }
               >
                 <img
                   data-testid={ `${index}-horizontal-share-btn` }
@@ -88,6 +90,7 @@ const DoneRecipes = () => {
                   alt="button share"
                 />
               </Button>
+              {isCopied && <span>Link copied!</span>}
             </Card.Body>
           </Card>
         ))

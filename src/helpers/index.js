@@ -104,9 +104,18 @@ export const requestDrinkAPI = (setRecipe, idRecipe) => (
     .catch((error) => error.message)
 );
 
-export const copyLinkRecipe = (setIsCopied) => {
-  const [recipeURL] = (window.location.href).split('/in-progress');
-  navigator.clipboard.writeText(recipeURL);
+export const copyLinkRecipe = (setIsCopied, recipe = null) => {
+  if (recipe) {
+    const isDrinks = recipe.image.includes('thecocktaildb');
+    const originURL = (window.location.origin);
+    const endpoint = `${isDrinks ? `/drinks/${recipe.id}` : `/foods/${recipe.id}`}`;
+    const recipeURL = originURL + endpoint;
+    navigator.clipboard.writeText(recipeURL);
+  } else {
+    const [recipeURL] = (window.location.href).split('/in-progress');
+    navigator.clipboard.writeText(recipeURL);
+  }
+
   setIsCopied(true);
 };
 
