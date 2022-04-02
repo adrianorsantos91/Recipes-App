@@ -8,11 +8,24 @@ import shareIcon from '../images/shareIcon.svg';
 const DoneRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
+  const [filterFood, setFilterFood] = useState(false);
+  const [filterDrink, setFilterDrink] = useState(false);
 
   useEffect(() => {
     const getRecipesDone = JSON.parse(localStorage.getItem('doneRecipes')) || [];
     setRecipes(getRecipesDone);
   }, []);
+
+  const handleFilter = ({ target: { id } }) => {
+    if (id === 'foods') {
+      setFilterFood(!filterFood);
+    } else if (id === 'drinks') {
+      setFilterDrink(!filterDrink);
+    } else {
+      setFilterFood(false);
+      setFilterDrink(false);
+    }
+  };
 
   return (
 
@@ -22,25 +35,40 @@ const DoneRecipes = () => {
         <button // Botoes de Filtro
           type="button"
           data-testid="filter-by-all-btn"
+          onClick={ handleFilter }
         >
           All
         </button>
         <button
           type="button"
+          id="foods"
           data-testid="filter-by-food-btn"
+          onClick={ handleFilter }
         >
           Foods
         </button>
         <button
           type="button"
+          id="drinks"
           data-testid="filter-by-drink-btn"
+          onClick={ handleFilter }
         >
           Drinks
         </button>
       </div>
 
       {
-        recipes.map((recipe, index) => (
+        recipes.filter((recipe) => {
+          if (filterFood) {
+            return recipe.image.includes('themealdb');
+          }
+
+          if (filterDrink) {
+            return recipe.image.includes('thecocktaildb');
+          }
+
+          return true;
+        }).map((recipe, index) => (
           <Card key={ Math.random() } style={ { width: '18rem' } }>
 
             <Link
