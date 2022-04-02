@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { Header } from '../components';
 import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
@@ -41,22 +42,39 @@ const DoneRecipes = () => {
       {
         recipes.map((recipe, index) => (
           <Card key={ Math.random() } style={ { width: '18rem' } }>
-            <Card.Img
-              data-testid={ `${index}-horizontal-image` }
-              variant="top"
-              src={ recipe.image }
-              style={ { width: '100px' } }
-            />
+
+            <Link
+              to={
+                recipe.image.includes('thecocktaildb')
+                  ? `/drinks/${recipe.id}`
+                  : `/foods/${recipe.id}`
+              }
+            >
+              <Card.Img
+                data-testid={ `${index}-horizontal-image` }
+                variant="top"
+                src={ recipe.image }
+                style={ { width: '100px' } }
+              />
+            </Link>
             <Card.Body>
               <p data-testid={ `${index}-horizontal-top-text` }>
                 {`${recipe.nationality || recipe.alcoholicOrNot} - ${recipe.category}`}
               </p>
-              <Card.Title
-                data-testid={ `${index}-horizontal-name` }
+              <Link
+                to={
+                  recipe.image.includes('thecocktaildb')
+                    ? `/drinks/${recipe.id}`
+                    : `/foods/${recipe.id}`
+                }
               >
-                {recipe.name}
+                <Card.Title
+                  data-testid={ `${index}-horizontal-name` }
+                >
+                  {recipe.name}
 
-              </Card.Title>
+                </Card.Title>
+              </Link>
               <Card.Text>
                 {recipe.name}
 
