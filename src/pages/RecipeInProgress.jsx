@@ -53,11 +53,13 @@ const RecipeInProgress = () => {
     const dateOptions = { day: 'numeric', month: 'numeric', year: 'numeric' };
     const doneDate = new Date(dateNow).toLocaleString('pt-br', dateOptions);
     const tags = currentRecipe.tags.length ? currentRecipe.tags.split(',') : [];
+    const { nationality } = currentRecipe;
 
     const recipeObject = {
       ...currentRecipe,
       doneDate,
       tags,
+      nationality,
     };
 
     localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, recipeObject]));

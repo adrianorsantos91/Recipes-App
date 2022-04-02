@@ -64,7 +64,7 @@ export const requestFoodAPI = (setRecipe, idRecipe) => (
         instructions: meal.strInstructions,
         ingredients: ingredientsList,
         id: meal.idMeal,
-        nationality: meal.strArea,
+        nationality: meal.strArea || '',
         tags: meal.strTags || [],
       };
 
@@ -96,6 +96,7 @@ export const requestDrinkAPI = (setRecipe, idRecipe) => (
         id: drink.idDrink,
         alcoholicOrNot: drink.strAlcoholic,
         tags: drink.strTags || [],
+        nationality: drink.strArea || '',
       };
 
       setRecipe(objectRecipe);

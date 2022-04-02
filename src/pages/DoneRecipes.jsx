@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Header } from '../components';
+import shareIcon from '../images/shareIcon.svg';
 
 const DoneRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -46,7 +47,7 @@ const DoneRecipes = () => {
             />
             <Card.Body>
               <p data-testid={ `${index}-horizontal-top-text` }>
-                {`Category: ${recipe.category}`}
+                {`${recipe.nationality || recipe.alcoholicOrNot} - ${recipe.category}`}
               </p>
               <Card.Title
                 data-testid={ `${index}-horizontal-name` }
@@ -79,9 +80,13 @@ const DoneRecipes = () => {
               </ul>
               <Button // <-----Botao Share
                 variant="primary"
-                data-testid={ `${index}-horizontal-share-btn` }
+
               >
-                Share
+                <img
+                  data-testid={ `${index}-horizontal-share-btn` }
+                  src={ shareIcon }
+                  alt="button share"
+                />
               </Button>
             </Card.Body>
           </Card>

@@ -25,15 +25,6 @@ export default function ExploreFoods() {
     }
   }, [surpriseMe]);
 
-  console.log(surpriseMe);
-  console.log(id);
-
-  /* const id = surpriseMe[0].idMeal;
-  console.log(id); */
-  // const { idMeal } = surpriseMe;
-  // console.log(surpriseMe[0].idMeal);
-  /* console.log(surpriseMe[meals][idMeal]); */
-
   return (
     <div>
       <Header title="Explore Foods" />
