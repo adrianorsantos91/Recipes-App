@@ -99,12 +99,12 @@ const DoneRecipes = () => {
                 <Card.Title
                   data-testid={ `${index}-horizontal-name` }
                 >
-                  {recipe.title}
+                  {recipe.name}
 
                 </Card.Title>
               </Link>
               <Card.Text>
-                {recipe.title}
+                {recipe.name}
 
               </Card.Text>
               <p
