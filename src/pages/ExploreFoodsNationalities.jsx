@@ -12,7 +12,7 @@ export default function ExploreFoodsNationalities() {
   const dispatch = useDispatch();
   const nationalitiesList = useSelector(({ nationalities }) => nationalities);
   const history = useHistory();
-  const [currentNationality, setCurrentNationality] = useState('');
+  const [currentNationality, setCurrentNationality] = useState('American');
 
   useEffect(() => {
     dispatch(fetchNationalitiesThunk());
@@ -27,7 +27,6 @@ export default function ExploreFoodsNationalities() {
   return (
     <div>
       <Header title="Explore Nationalities" hasSearch />
-
       <select
         data-testid="explore-by-nationality-dropdown"
         onChange={ ({ target }) => setCurrentNationality(target.value) }
@@ -43,21 +42,25 @@ export default function ExploreFoodsNationalities() {
           </option>))}
       </select>
       {foodList
-      && foodList.filter((_, index) => index < FIRST_TWELVE_RECIPES).map((food) => (
-        <div
-          className="flex"
-          key={ food.strMeal }
-          aria-hidden="true"
-          onClick={ () => history.push(`../../foods/${food.idMeal}`) }
-        >
-          <Card style={ { width: '18rem' } }>
-            <Card.Img variant="top" src={ food.strMealThumb } />
-            <Card.Body>
-              <Card.Title>{food.strMeal}</Card.Title>
-            </Card.Body>
-          </Card>
-        </div>
-      ))}
+      && foodList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
+        .map((food, index) => (
+          <div
+            data-testid={ `${index}-recipe-card` }
+            key={ food.strMeal }
+            className="flex-container"
+          >
+            <Card style={ { width: '18rem' } }>
+              <Card.Img
+                variant="top"
+                src={ food.strMealThumb }
+                onClick={ () => history.push(`../../foods/${food.idMeal}`) }
+              />
+              <Card.Body>
+                <Card.Title>{food.strMeal}</Card.Title>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
 
       <Footer />
     </div>
