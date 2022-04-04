@@ -1,44 +1,64 @@
-import React, { useEffect } from 'react';
-/* import { Card } from 'react-bootstrap'; */
+import React, { useEffect, useState } from 'react';
+import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchNationalitiesThunk } from '../redux/actions';
+import { useHistory } from 'react-router-dom';
+import { fetchNationalitiesThunk,
+  fetchFoodsPerNationalitiesThunk } from '../redux/actions';
 import { Footer, Header } from '../components';
+import { FIRST_TWELVE_RECIPES } from '../helpers';
 import '../styles/Foods.css';
 
 export default function ExploreFoodsNationalities() {
   const dispatch = useDispatch();
   const nationalitiesList = useSelector(({ nationalities }) => nationalities);
+  const history = useHistory();
+  const [currentNationality, setCurrentNationality] = useState('');
 
   useEffect(() => {
     dispatch(fetchNationalitiesThunk());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchFoodsPerNationalitiesThunk(currentNationality));
+  }, [currentNationality]);
+
+  const foodList = useSelector(({ foodNationalities }) => foodNationalities);
+  console.log(foodList);
   return (
     <div>
       <Header title="Explore Nationalities" hasSearch />
-      <div className="flex">
-        <select data-testid="explore-by-nationality-dropdown">
-          {nationalitiesList.map((nationality) => (
-            <option
-              key={ nationality.strArea }
-              value={ nationality.strArea }
-              data-testid={ `${nationality.strArea}-option` }
-            >
-              {nationality.strArea}
-            </option>))}
-        </select>
 
-        {/* <Card style={ { width: '18rem' } }>
-          <Card.Img variant="top" src="holder.js/100px180" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              S
-            </Card.Text>
+      <select
+        data-testid="explore-by-nationality-dropdown"
+        onChange={ ({ target }) => setCurrentNationality(target.value) }
+        className="flex"
+      >
+        {nationalitiesList.map((nationality) => (
+          <option
+            key={ nationality.strArea }
+            value={ nationality.strArea }
+            data-testid={ `${nationality.strArea}-option` }
+          >
+            {nationality.strArea}
+          </option>))}
+      </select>
+      {foodList
+      && foodList.filter((_, index) => index < FIRST_TWELVE_RECIPES).map((food) => (
+        <div
+          className="flex"
+          key={ food.strMeal }
+          aria-hidden="true"
+          onClick={ () => history.push(`../../foods/${food.idMeal}`) }
+        >
+          <Card style={ { width: '18rem' } }>
+            <Card.Img variant="top" src={ food.strMealThumb } />
+            <Card.Body>
+              <Card.Title>{food.strMeal}</Card.Title>
+            </Card.Body>
+          </Card>
+        </div>
+      ))}
 
-          </Card.Body>
-        </Card> */}
-      </div>
       <Footer />
     </div>
   );

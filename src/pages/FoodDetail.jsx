@@ -51,85 +51,87 @@ const FoodDetail = () => {
       strMeasure7, strMeasure8,
     }) => (
       <div key={ strMeal }>
-        <h1>Food Detail</h1>
-        <img src={ strMealThumb } alt="" data-testid="recipe-photo" />
-        <h2 data-testid="recipe-title">{ strMeal }</h2>
-        <p data-testid="recipe-category">{ strCategory }</p>
-        <button type="button">
-          <img src={ shareIcon } alt="" data-testid="share-btn" />
-        </button>
-        <button type="button">
-          <img src={ favorite } alt="" data-testid="favorite-btn" />
-        </button>
-        <h3>Ingredients</h3>
-        <ul
-          id="ingredients"
-        >
-          <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strIngredient1 }</li>
-          <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strMeasure1 }</li>
-          <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strIngredient2 }</li>
-          <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strMeasure2 }</li>
-          <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strIngredient3 }</li>
-          <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strMeasure3 }</li>
-          <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-            { strIngredient4 }
-          </li>
-          <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-            { strMeasure4 }
-          </li>
-          <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-            { strIngredient5 }
-          </li>
-          <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-            { strMeasure5 }
-          </li>
-          <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-            { strIngredient6 }
-          </li>
-          <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-            { strMeasure6 }
-          </li>
-          <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-            { strIngredient7 }
-          </li>
-          <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-            { strMeasure7 }
-          </li>
-          <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-            { strIngredient8 }
-          </li>
-          <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-            { strMeasure8 }
-          </li>
-        </ul>
-        <h3>Intruções</h3>
-        <p id="ingredients" data-testid="instructions">{ strInstructions }</p>
-        <h3>Video</h3>
-        <div>
-          <iframe
-            id="preview-frame"
-            src={ strYoutube }
-            name="preview-frame"
-            frameBorder="0"
-            noresize="noresize"
-            title="preview-frame"
-            data-testid="video"
-          />
-        </div>
-        <h3>Recomendações</h3>
-        <div className="scrolling-wrapper-flexbox">
-          { drinksList.filter((_, index) => index < MAX_DRINKS)
-            .map(({ strDrinkThumb, strAlcoholic, strDrink }, index) => (
-              <div
-                key={ strDrink }
-                className="card"
-                data-testid={ `${index}-recomendation-card` }
-              >
-                <img src={ strDrinkThumb } alt={ `drink ${strDrink}` } />
-                <p>{ strAlcoholic }</p>
-                <h3 data-testid={ `${index}-recomendation-title` }>{ strDrink }</h3>
-              </div>
-            ))}
+        <div className="flex">
+          <h1>Food Detail</h1>
+          <img src={ strMealThumb } alt="" data-testid="recipe-photo" />
+          <h2 data-testid="recipe-title">{ strMeal }</h2>
+          <p data-testid="recipe-category">{ strCategory }</p>
+          <button type="button">
+            <img src={ shareIcon } alt="" data-testid="share-btn" />
+          </button>
+          <button type="button">
+            <img src={ favorite } alt="" data-testid="favorite-btn" />
+          </button>
+          <h3>Ingredients</h3>
+          <ul
+            id="ingredients"
+          >
+            <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strIngredient1 }</li>
+            <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strMeasure1 }</li>
+            <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strIngredient2 }</li>
+            <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strMeasure2 }</li>
+            <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strIngredient3 }</li>
+            <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strMeasure3 }</li>
+            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+              { strIngredient4 }
+            </li>
+            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+              { strMeasure4 }
+            </li>
+            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+              { strIngredient5 }
+            </li>
+            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+              { strMeasure5 }
+            </li>
+            <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+              { strIngredient6 }
+            </li>
+            <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+              { strMeasure6 }
+            </li>
+            <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+              { strIngredient7 }
+            </li>
+            <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+              { strMeasure7 }
+            </li>
+            <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+              { strIngredient8 }
+            </li>
+            <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+              { strMeasure8 }
+            </li>
+          </ul>
+          <h3>Intruções</h3>
+          <p id="ingredients" data-testid="instructions">{ strInstructions }</p>
+          <h3>Video</h3>
+          <div>
+            <iframe
+              id="preview-frame"
+              src={ strYoutube }
+              name="preview-frame"
+              frameBorder="0"
+              noresize="noresize"
+              title="preview-frame"
+              data-testid="video"
+            />
+          </div>
+          <h3>Recomendações</h3>
+          <div className="scrolling-wrapper-flexbox">
+            { drinksList.filter((_, index) => index < MAX_DRINKS)
+              .map(({ strDrinkThumb, strAlcoholic, strDrink }, index) => (
+                <div
+                  key={ strDrink }
+                  className="card"
+                  data-testid={ `${index}-recomendation-card` }
+                >
+                  <img src={ strDrinkThumb } alt={ `drink ${strDrink}` } />
+                  <p>{ strAlcoholic }</p>
+                  <h3 data-testid={ `${index}-recomendation-title` }>{ strDrink }</h3>
+                </div>
+              ))}
+          </div>
         </div>
         <div>
           <button

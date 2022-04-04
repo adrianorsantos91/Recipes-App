@@ -9,6 +9,7 @@ export const DRINK_DATA_DETAILS = 'DRINK_DATA_DETAILS';
 export const DRINK_RECOMMENDATION = 'DRINK_RECOMMENDATION';
 export const FOOD_RECOMMENDATION = 'FOOD_RECOMMENDATION';
 export const FETCH_NATIONALITIES = 'FETCH_NATIONALITIES';
+export const FETCH_FOOD_PER_NATIONALITIES = 'FETCH_FOOD_PER_NATIONALITIES';
 
 export const action = (type, payload) => ({
   type,
@@ -82,6 +83,16 @@ export const fetchNationalitiesThunk = () => (
       .then((response) => response.json())
       .then(({ meals: strArea }) => {
         dispatch(action(FETCH_NATIONALITIES, strArea));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchFoodsPerNationalitiesThunk = (nationality) => (
+  (dispatch) => (
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${nationality}`)
+      .then((response) => response.json())
+      .then(({ meals }) => {
+        dispatch(action(FETCH_FOOD_PER_NATIONALITIES, meals));
       })
       .catch((error) => error.message)
   ));
