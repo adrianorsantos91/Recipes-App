@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Header } from '../components';
 import shareIcon from '../images/shareIcon.svg';
 import { copyLinkRecipe } from '../helpers';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import saveFavoriteRecipe from '../helpers/favoriteRecipe';
 
@@ -17,6 +16,7 @@ const FavoriteRecipes = () => {
 
   useEffect(() => {
     const getFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    console.log(getFavoriteRecipes);
     setRecipes(getFavoriteRecipes);
   }, []);
 
@@ -95,20 +95,14 @@ const FavoriteRecipes = () => {
                 <Card.Title
                   data-testid={ `${index}-horizontal-name` }
                 >
-                  {recipe.title}
+                  {recipe.name}
 
                 </Card.Title>
               </Link>
               <Card.Text>
-                {recipe.title}
+                {recipe.name}
 
               </Card.Text>
-              <p
-                data-testid={ `${index}-horizontal-done-date` }
-              >
-                {`Recipe Done: ${recipe.doneDate}`}
-
-              </p>
               <Button // <-----Botao Share
                 variant="primary"
                 onClick={ () => copyLinkRecipe(setIsCopied, recipe) }
@@ -125,12 +119,8 @@ const FavoriteRecipes = () => {
               >
                 <img
                   data-testid={ `${index}-horizontal-favorite-btn` }
-                  src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-                  alt={
-                    isFavorite
-                      ? 'black heart favorite icon'
-                      : 'white heart favorite icon'
-                  }
+                  src={ blackHeartIcon }
+                  alt="black heart favorite icon"
                 />
 
               </button>
