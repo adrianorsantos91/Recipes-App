@@ -15,7 +15,6 @@ export default function ExploreIngredients() {
   const ingredientsList = useSelector(
     ({ ingredientsFoodList }) => ingredientsFoodList,
   );
-  console.log(ingredientsList);
 
   return (
     <div>
