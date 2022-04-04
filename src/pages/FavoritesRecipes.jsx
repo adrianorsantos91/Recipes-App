@@ -5,18 +5,15 @@ import { Header } from '../components';
 import shareIcon from '../images/shareIcon.svg';
 import { copyLinkRecipe } from '../helpers';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import saveFavoriteRecipe from '../helpers/favoriteRecipe';
 
 const FavoriteRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
   const [filterFood, setFilterFood] = useState(false);
   const [filterDrink, setFilterDrink] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const getFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    console.log(getFavoriteRecipes);
     setRecipes(getFavoriteRecipes);
   }, []);
 
@@ -32,7 +29,9 @@ const FavoriteRecipes = () => {
   };
 
   const favoriteRecipe = (currentRecipe) => {
-    saveFavoriteRecipe(currentRecipe, recipeType, isFavorite, setIsFavorite);
+    const newFavoriteRecipes = recipes.filter((recipe) => recipe.id !== currentRecipe.id);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
+    setRecipes(newFavoriteRecipes);
   };
 
   return (
