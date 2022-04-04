@@ -9,8 +9,6 @@ const saveFavoriteRecipe = (currentRecipe, recipeType, isFavorite, setIsFavorite
       alcoholicOrNot: recipeType === 'drinks' ? currentRecipe.alcoholicOrNot : '',
       name: currentRecipe.title,
       image: currentRecipe.image,
-      // doneDate: Date.now(),
-      // tags: [],
     }]));
   } else {
     localStorage.setItem('favoriteRecipes', JSON.stringify([{
@@ -21,8 +19,6 @@ const saveFavoriteRecipe = (currentRecipe, recipeType, isFavorite, setIsFavorite
       alcoholicOrNot: recipeType === 'drinks' ? currentRecipe.alcoholicOrNot : '',
       name: currentRecipe.title,
       image: currentRecipe.image,
-      // doneDate: Date.now(),
-      // tags: [],
     }]));
   }
   setIsFavorite(!isFavorite);
