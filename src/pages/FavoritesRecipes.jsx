@@ -63,7 +63,17 @@ const FavoriteRecipes = () => {
         </button>
       </div>
       {
-        recipes.map((recipe, index) => (
+        recipes.filter((recipe) => {
+          if (filterFood) {
+            return recipe.image.includes('themealdb');
+          }
+
+          if (filterDrink) {
+            return recipe.image.includes('thecocktaildb');
+          }
+
+          return true;
+        }).map((recipe, index) => (
           <Card key={ Math.random() } style={ { width: '18rem' } }>
 
             <Link
