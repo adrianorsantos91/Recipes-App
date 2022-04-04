@@ -111,7 +111,7 @@ export const fetchIngredientsFoodListThunk = () => (
 
 export const fetchIngredientsDrinkListThunk = () => (
   (dispatch) => (
-    fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
       .then((response) => response.json())
       .then(({ drinks }) => {
         dispatch(action(INGREDIENTS_DRINK_LIST, drinks));
