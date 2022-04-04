@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Card } from 'react-bootstrap';
 import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES } from '../helpers';
-import { fetchIngredientsListThunk } from '../redux/actions';
+import { fetchIngredientsFoodListThunk } from '../redux/actions';
 import '../styles/Foods.css';
 
 export default function ExploreIngredients() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchIngredientsListThunk());
+    dispatch(fetchIngredientsFoodListThunk());
   }, []);
 
   const ingredientsList = useSelector(

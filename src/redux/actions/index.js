@@ -11,6 +11,7 @@ export const FOOD_RECOMMENDATION = 'FOOD_RECOMMENDATION';
 export const FOOD_SURPRISE_ME = 'FOOD_SURPRISE_ME';
 export const DRINK_SURPRISE_ME = 'DRINK_SURPRISE_ME';
 export const INGREDIENTS_FOOD_LIST = 'INGREDIENTS_FOOD_LIST';
+export const INGREDIENTS_DRINK_LIST = 'INGREDIENTS_DRINK_LIST';
 
 export const action = (type, payload) => ({
   type,
@@ -98,12 +99,22 @@ export const fetchRandomDrinksThunk = () => (
       .catch((error) => error.message)
   ));
 
-export const fetchIngredientsListThunk = () => (
+export const fetchIngredientsFoodListThunk = () => (
   (dispatch) => (
     fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
       .then((response) => response.json())
       .then(({ meals }) => {
         dispatch(action(INGREDIENTS_FOOD_LIST, meals));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchIngredientsDrinkListThunk = () => (
+  (dispatch) => (
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json())
+      .then(({ drinks }) => {
+        dispatch(action(INGREDIENTS_DRINK_LIST, drinks));
       })
       .catch((error) => error.message)
   ));
