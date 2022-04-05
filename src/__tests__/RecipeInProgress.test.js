@@ -59,14 +59,14 @@ describe('Testes da página `RecipeInProgress`', () => {
 
     expect(finishRecipe).toBeInTheDocument();
 
-    const t = await screen.findAllByTestId(/ingredient-step/i);
-    t.forEach((element) => {
-      element.firstChild.click();
+    const labels = await screen.findAllByTestId(/ingredient-step/i);
+    labels.forEach((label) => {
+      label.firstChild.click();
     });
 
     userEvent.click(finishRecipe);
-    const a = await screen.findByText(/done recipes/i);
-    expect(a).toBeInTheDocument();
-    console.log(global.window.location);
+
+    const titleDoneRecipes = await screen.findByText(/done recipes/i);
+    expect(titleDoneRecipes).toBeInTheDocument();
   });
 });
