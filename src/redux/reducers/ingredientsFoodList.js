@@ -1,13 +1,13 @@
-import { FOODS_PER_CATEGORY_DATA } from '../actions';
+import { INGREDIENTS_FOOD_LIST } from '../actions';
 
 const INITIAL_STATE = [];
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case FOODS_PER_CATEGORY_DATA:
+  case INGREDIENTS_FOOD_LIST:
     return action.payload;
   default:
-    return [state];
+    return [...state];
   }
 };
 

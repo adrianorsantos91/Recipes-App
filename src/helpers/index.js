@@ -10,7 +10,10 @@ import {
   fetchDrinksName,
 } from './fetchDrinkAPI';
 
-// import { fetchFoodsIngredientsThunk } from '../redux/actions';
+import {
+  foodRecipeInProgress,
+  drinkRecipeInProgress,
+} from './recipesInProgress';
 
 export const minPasswordLength = 6;
 export const FIRST_TWELVE_RECIPES = 12;
@@ -28,6 +31,15 @@ export const requestDrinkObject = {
   'name-search': (searchInput) => fetchDrinksName(searchInput),
   'first-letter-search': (searchInput) => fetchDrinksFirstLetter(searchInput),
   '': () => global.alert('Select any option'),
+};
+
+export const recipesInProgress = {
+  foods: (id, name, inProgress, setInProgress) => (
+    foodRecipeInProgress(id, name, inProgress, setInProgress)
+  ),
+  drinks: (id, name, inProgress, setInProgress) => (
+    drinkRecipeInProgress(id, name, inProgress, setInProgress)
+  ),
 };
 
 export const requestFoodAPI = (setRecipe, idRecipe) => (
@@ -52,7 +64,8 @@ export const requestFoodAPI = (setRecipe, idRecipe) => (
         instructions: meal.strInstructions,
         ingredients: ingredientsList,
         id: meal.idMeal,
-        nationality: meal.strArea,
+        nationality: meal.strArea || '',
+        tags: meal.strTags || [],
       };
 
       setRecipe(objectRecipe);
@@ -82,6 +95,8 @@ export const requestDrinkAPI = (setRecipe, idRecipe) => (
         ingredients: ingredientsList,
         id: drink.idDrink,
         alcoholicOrNot: drink.strAlcoholic,
+        tags: drink.strTags || [],
+        nationality: drink.strArea || '',
       };
 
       setRecipe(objectRecipe);
@@ -89,16 +104,41 @@ export const requestDrinkAPI = (setRecipe, idRecipe) => (
     .catch((error) => error.message)
 );
 
-export const copyLinkRecipe = (setIsCopied) => {
-  const [recipeURL] = (window.location.href).split('/in-progress');
-  navigator.clipboard.writeText(recipeURL);
+export const copyLinkRecipe = (setIsCopied, recipe = null) => {
+  if (recipe) {
+    const isDrinks = recipe.image.includes('thecocktaildb');
+    const originURL = (window.location.origin);
+    const endpoint = `${isDrinks ? `/drinks/${recipe.id}` : `/foods/${recipe.id}`}`;
+    const recipeURL = originURL + endpoint;
+    navigator.clipboard.writeText(recipeURL);
+  } else {
+    const [recipeURL] = (window.location.href).split('/in-progress');
+    navigator.clipboard.writeText(recipeURL);
+  }
+
   setIsCopied(true);
 };
 
-export const checkIfRecipeInProgressExists = (
-  setInProgress, recipeInProgress, idRecipe,
+const checkIfRecipeInProgressExists = (
+  setInProgress, recipeInProgress, idRecipe, recipeType,
 ) => {
-  if (recipeInProgress) {
-    setInProgress(recipeInProgress.meals[idRecipe]);
+  if (recipeType === 'foods') {
+    if (recipeInProgress) {
+      setInProgress(recipeInProgress.meals[idRecipe]);
+    }
+  } else if (recipeInProgress) {
+    setInProgress(recipeInProgress.cocktails[idRecipe]);
   }
+};
+
+export const getRecipesLocalStorage = (
+  recipeType, setRecipe, idRecipe, setInProgress,
+) => {
+  const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  checkIfRecipeInProgressExists(
+    setInProgress, recipeInProgress, idRecipe, recipeType,
+  );
+  return recipeType === 'foods'
+    ? requestFoodAPI(setRecipe, idRecipe)
+    : requestDrinkAPI(setRecipe, idRecipe);
 };
