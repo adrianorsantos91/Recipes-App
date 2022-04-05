@@ -40,6 +40,13 @@ export default function ExploreFoodsNationalities() {
         onChange={ ({ target }) => setCurrentNationality(target.value) }
         className="flex"
       >
+        <option
+          value=""
+          data-testid="All-option"
+        >
+          All
+
+        </option>
         {nationalitiesList.map((nationality) => (
           <option
             key={ nationality.strArea }

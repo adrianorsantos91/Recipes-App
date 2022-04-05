@@ -18,6 +18,7 @@ import {
   RecipeInProgress,
 } from './pages';
 import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
+import NotFound from './pages/NotFound';
 
 const Routes = () => (
   <Switch>
@@ -31,6 +32,7 @@ const Routes = () => (
     <Route path="/drinks/:id" component={ DrinkDetail } />
     <Route path="/drinks" component={ Drinks } />
     <Route path="/explore/foods/nationalities" component={ ExploreFoodsNationalities } />
+    <Route path="/explore/drinks/nationalities" component={ NotFound } />
     <Route path="/explore/foods/ingredients" component={ ExploreIngredients } />
     <Route path="/explore/drinks/ingredients" component={ ExploreDrinksIngredients } />
     <Route path="/explore/foods" component={ ExploreFoods } />
