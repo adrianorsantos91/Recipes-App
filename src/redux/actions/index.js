@@ -98,6 +98,8 @@ export const fetchFoodsPerNationalitiesThunk = (nationality) => (
       .then((response) => response.json())
       .then(({ meals }) => {
         dispatch(action(FETCH_FOOD_PER_NATIONALITIES, meals));
+      })));
+
 export const fetchRandomFoodsThunk = () => (
   (dispatch) => (
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
