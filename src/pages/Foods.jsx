@@ -15,6 +15,7 @@ export default function Foods() {
 
   const recipes = useSelector(({ foodData }) => foodData);
   const categories = useSelector(({ categoryFoodData }) => categoryFoodData);
+  const { wasNotFetched } = useSelector((state) => state);
   const foodsUsingCategory = useSelector(({ foodsPerCategory }) => foodsPerCategory);
 
   const [filter, setFilter] = useState('');
@@ -29,7 +30,9 @@ export default function Foods() {
   }
 
   useEffect(() => {
-    dispatch(fetchFoodsThunk());
+    if (wasNotFetched) {
+      dispatch(fetchFoodsThunk());
+    }
     dispatch(fetchFoodsCategoryThunk());
     dispatch(fetchFoodsPerCategoryThunk(filter));
   }, [filter]);

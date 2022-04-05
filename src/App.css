@@ -21,6 +21,14 @@
   width: 100%;
 }
 
+.flex-container {
+  color: #464646;
+  display: flex;
+  font-family: sans-serif;
+  justify-content: center;
+  width: 100%;
+}
+
 .flex {
   color: #464646;
   display: flex;

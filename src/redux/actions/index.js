@@ -8,8 +8,13 @@ export const FOOD_DATA_DETAILS = 'FOOD_DATA_DETAILS';
 export const DRINK_DATA_DETAILS = 'DRINK_DATA_DETAILS';
 export const DRINK_RECOMMENDATION = 'DRINK_RECOMMENDATION';
 export const FOOD_RECOMMENDATION = 'FOOD_RECOMMENDATION';
+export const FETCH_NATIONALITIES = 'FETCH_NATIONALITIES';
+export const FETCH_FOOD_PER_NATIONALITIES = 'FETCH_FOOD_PER_NATIONALITIES';
 export const FOOD_SURPRISE_ME = 'FOOD_SURPRISE_ME';
 export const DRINK_SURPRISE_ME = 'DRINK_SURPRISE_ME';
+export const INGREDIENTS_FOOD_LIST = 'INGREDIENTS_FOOD_LIST';
+export const INGREDIENTS_DRINK_LIST = 'INGREDIENTS_DRINK_LIST';
+export const INGREDIENTS_FILTER = 'INGREDIENTS_FILTER';
 
 export const action = (type, payload) => ({
   type,
@@ -77,6 +82,24 @@ export const fetchDrinksPerCategoryThunk = (category) => (
       .catch((error) => error.message)
   ));
 
+export const fetchNationalitiesThunk = () => (
+  (dispatch) => (
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
+      .then((response) => response.json())
+      .then(({ meals: strArea }) => {
+        dispatch(action(FETCH_NATIONALITIES, strArea));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchFoodsPerNationalitiesThunk = (nationality) => (
+  (dispatch) => (
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${nationality}`)
+      .then((response) => response.json())
+      .then(({ meals }) => {
+        dispatch(action(FETCH_FOOD_PER_NATIONALITIES, meals));
+      })));
+
 export const fetchRandomFoodsThunk = () => (
   (dispatch) => (
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
@@ -93,6 +116,26 @@ export const fetchRandomDrinksThunk = () => (
       .then((response) => response.json())
       .then(({ drinks }) => {
         dispatch(action(DRINK_SURPRISE_ME, drinks));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchIngredientsFoodListThunk = () => (
+  (dispatch) => (
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json())
+      .then(({ meals }) => {
+        dispatch(action(INGREDIENTS_FOOD_LIST, meals));
+      })
+      .catch((error) => error.message)
+  ));
+
+export const fetchIngredientsDrinkListThunk = () => (
+  (dispatch) => (
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json())
+      .then(({ drinks }) => {
+        dispatch(action(INGREDIENTS_DRINK_LIST, drinks));
       })
       .catch((error) => error.message)
   ));
