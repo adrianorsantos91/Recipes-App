@@ -9,7 +9,7 @@ describe('Testes da página `DoneRecipes`', () => {
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
 
-  test('Verifica se a página de receitas finalizadas é renderizada', async () => {
+  test('Verifica se a página de receitas favoritas é renderizada', async () => {
     const mockClipboard = { writeText: jest.fn() };
     global.navigator.clipboard = mockClipboard;
 
@@ -65,6 +65,56 @@ describe('Testes da página `DoneRecipes`', () => {
     const newRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
     expect(newRecipes.length).not.toEqual(2);
+    expect(newRecipes.length).toEqual(1);
+  });
+
+  test('Verifica se adiciona novas receitas favoritas', async () => {
+    const favoritesRecipes = [
+      {
+        id: '52977',
+        type: 'food',
+        nationality: 'Turkish',
+        category: 'Side',
+        alcoholicOrNot: '',
+        name: 'Corba',
+        image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+      },
+      {
+        id: '53060',
+        type: 'food',
+        nationality: 'Croatian',
+        category: 'Side',
+        alcoholicOrNot: '',
+        name: 'Burek',
+        image: 'https://www.themealdb.com/images/media/meals/tkxquw1628771028.jpg',
+      },
+    ];
+    const THREE = 3;
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoritesRecipes));
+
+    const { history } = renderWithRedux(<App />);
+    history.push('/drinks/15997');
+
+    const buttonFavorite = await screen
+      .findByRole('img', { name: /white heart favorite icon/i });
+
+    userEvent.click(buttonFavorite);
+    const newRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+    expect(newRecipes.length).toEqual(THREE);
+  });
+
+  test('Verifica se adiciona novas receitas favoritas', async () => {
+    localStorage.clear();
+    const { history } = renderWithRedux(<App />);
+    history.push('/drinks/15997');
+
+    const buttonFavorite = await screen
+      .findByRole('img', { name: /white heart favorite icon/i });
+
+    userEvent.click(buttonFavorite);
+    const newRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
     expect(newRecipes.length).toEqual(1);
   });
 });

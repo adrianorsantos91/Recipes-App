@@ -70,3 +70,47 @@ describe('Testes da página `RecipeInProgress`', () => {
     expect(titleDoneRecipes).toBeInTheDocument();
   });
 });
+
+describe('Testa local storage', () => {
+  test('Verifica se remove checkbox da bebida', async () => {
+    const { history } = renderWithRedux(<App />);
+    history.push('/drinks/15997/in-progress');
+    localStorage.clear();
+    const labels = await screen.findAllByTestId(/ingredient-step/i);
+    labels.forEach((label, index) => {
+      if (index < 2) {
+        label.firstChild.click();
+      }
+    });
+
+    const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    expect(cocktails['15997'].length).toBe(2);
+
+    const checkbox = screen.getByTestId('0-ingredient-step');
+    userEvent.click(checkbox.firstChild);
+
+    const newLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    expect(newLocalStorage.cocktails['15997'].length).not.toBe(2);
+    expect(newLocalStorage.cocktails['15997'].length).toBe(1);
+  });
+
+  test('Verifica se remove checkbox da comida', async () => {
+    const { history } = renderWithRedux(<App />);
+    history.push('/foods/53026/in-progress');
+    localStorage.clear();
+    const labels = await screen.findAllByTestId(/ingredient-step/i);
+    labels.forEach((label, index) => {
+      if (index < 2) label.firstChild.click();
+    });
+
+    const { meals } = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    expect(meals['53026'].length).toBe(2);
+
+    const checkbox = screen.getByTestId('0-ingredient-step');
+    userEvent.click(checkbox.firstChild);
+
+    const newLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    expect(newLocalStorage.meals['53026'].length).not.toBe(2);
+    expect(newLocalStorage.meals['53026'].length).toBe(1);
+  });
+});
