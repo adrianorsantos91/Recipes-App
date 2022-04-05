@@ -1,0 +1,89 @@
+.login-page-content {
+  align-items: center;
+  background-color: orange;
+  background-image: url('/home/user/trybe-projetos/sd-018-a-project-recipes-app/src/images/waffle.jpg');
+  background-size: cover;
+  color: #464646;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.form-signin {
+  margin: auto;
+  max-width: 330px;
+  padding: 15px;
+  width: 100%;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+h1 {
+  color: aliceblue;
+  font-family: Lemon , cursive;
+  font-size: 40px;
+  text-align: center;
+}
+
+.login-logo {
+  max-width: 40vw;
+}
+
+.login-form {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 30px -2px #f0e5cf;
+  display: flex;
+  flex-direction: column;
+  padding: 64px;
+}
+
+.login-form input {
+  border: 1px solid black;
+  border-radius: 0;
+  margin-bottom: 16px;
+  outline: 0;
+  padding: 8px;
+}
+
+.login-form input:focus {
+  outline: 1px solid #4b6587;
+}
+
+.login-form button {
+  background-color: #4b6587;
+  border: 0;
+  color: white;
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.login-form button:hover {
+  opacity: 0.95;
+}
+
+.login-form button:disabled {
+  background-color: gray;
+}
+
+.login-configuration-btn {
+  background-color: white;
+  border: 0;
+  color: #4b6587;
+  font-weight: 900;
+  margin-top: 32px;
+  padding: 8px;
+}
+
+.login-configuration-btn:hover {
+  opacity: 0.95;
+}
