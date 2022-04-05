@@ -54,9 +54,19 @@ describe('Testes da página `RecipeInProgress`', () => {
     ).toBeInTheDocument();
   });
 
-  test('Verifica se há um botão para finalizar receita na tela', () => {
+  test('Verifica se há um botão para finalizar receita na tela', async () => {
     const finishRecipe = screen.getByRole('button', { name: /finish recipe/i });
 
     expect(finishRecipe).toBeInTheDocument();
+
+    const t = await screen.findAllByTestId(/ingredient-step/i);
+    t.forEach((element) => {
+      element.firstChild.click();
+    });
+
+    userEvent.click(finishRecipe);
+    const a = await screen.findByText(/done recipes/i);
+    expect(a).toBeInTheDocument();
+    console.log(global.window.location);
   });
 });
