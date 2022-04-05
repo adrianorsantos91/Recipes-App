@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
-  requestDrinkAPI,
-  requestFoodAPI,
   copyLinkRecipe,
-  checkIfRecipeInProgressExists,
+  getRecipesLocalStorage,
+  recipesInProgress,
+
 } from '../helpers';
-import {
-  drinkRecipeInProgress,
-  foodRecipeInProgress,
-} from '../helpers/recipesInProgress';
+
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
@@ -33,17 +30,8 @@ const RecipeInProgress = () => {
   useEffect(() => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     setIsFavorite(favoriteRecipes.some(({ id }) => id === idRecipe));
-    if (recipeType === 'foods') {
-      requestFoodAPI(setRecipe, idRecipe);
-      const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      checkIfRecipeInProgressExists(setInProgress, recipeInProgress, idRecipe);
-    } else {
-      requestDrinkAPI(setRecipe, idRecipe);
-      const recipeInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-      if (recipeInProgress) {
-        setInProgress(recipeInProgress.cocktails[idRecipe]);
-      }
-    }
+    getRecipesLocalStorage(recipeType, setRecipe, idRecipe, setInProgress);
+
     verifyCheckbox();
   }, [idRecipe, recipeType]);
 
@@ -52,15 +40,29 @@ const RecipeInProgress = () => {
   }, [recipe, inProgress]);
 
   const saveLocalStorageOnClick = ({ target: { id, name } }) => {
-    if (recipeType === 'foods') {
-      foodRecipeInProgress(id, name, inProgress, setInProgress);
-    } else {
-      drinkRecipeInProgress(id, name, inProgress, setInProgress);
-    }
+    recipesInProgress[recipeType](id, name, inProgress, setInProgress);
   };
 
   const favoriteRecipe = (currentRecipe) => {
     saveFavoriteRecipe(currentRecipe, recipeType, isFavorite, setIsFavorite);
+  };
+
+  const finishRecipe = (currentRecipe) => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+    const dateNow = Date.now();
+    const dateOptions = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    const doneDate = new Date(dateNow).toLocaleString('pt-br', dateOptions);
+    const tags = currentRecipe.tags.length ? currentRecipe.tags.split(',') : [];
+    const { nationality } = currentRecipe;
+
+    const recipeObject = {
+      ...currentRecipe,
+      doneDate,
+      tags,
+      nationality,
+    };
+
+    localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, recipeObject]));
   };
 
   return (
@@ -123,6 +125,7 @@ const RecipeInProgress = () => {
           data-testid="finish-recipe-btn"
           type="button"
           disabled={ isDisabled }
+          onClick={ () => finishRecipe(recipe) }
         >
           Finish Recipe
 
