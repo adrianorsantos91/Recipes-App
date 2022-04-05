@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap') ;
+
+
+/* .login-page-content {
+  align-items: center;
+} */
+
 .login-page-content {
   align-items: center;
-  background-color: orange;
   background-image: url('/home/user/trybe-projetos/sd-018-a-project-recipes-app/src/images/waffle.jpg');
   background-size: cover;
-  color: #464646;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
@@ -13,23 +18,23 @@
 }
 
 .recipes-app {
-  color: aliceblue;
-  font-family: Lemon , cursive;
+  color: #fea82f;
+  font-family: Ubuntu , Roboto , sans-serif;
   font-size: 40px;
   text-align: center;
 }
 
 h1 {
   color: #ff6701;
-  font-family: 'Gill Sans' , 'Gill Sans MT' , Calibri , 'Trebuchet MS' , sans-serif;
+  font-family: Ubuntu , Roboto , sans-serif;
   font-size: 40px;
   text-align: center;
 }
 
-.btn-primary {
-  background-color: #ff6701 ! important;
-  border-color: #ff6701 ! important;
-}
+/* .btn-primary {
+  background-color: #fea82f ! important;
+  border-color: #fea82f ! important;
+} */
 
 .login-form input:focus {
   outline: 1px solid #4b6587;

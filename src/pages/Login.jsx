@@ -52,7 +52,7 @@ function Login() {
           </Form.Group>
           <Button
             variant="primary"
-            class="btn btn-primary $orange-500"
+            class="btn btn-primary"
             size="lg"
             type="button"
             data-testid="login-submit-btn"

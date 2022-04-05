@@ -1,14 +1,6 @@
-/* .meals {
-  align-items: center;
-  background-color: orange;
-  background-image: url('/home/user/trybe-projetos/sd-018-a-project-recipes-app/src/images/frango.jpg');
-  color: #464646;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
-  width: 100%;
+/* .btn-primary {
+  background-color: #ff6701 ! important;
+  border-color: #ff6701 ! important;
 } */
 
 .container {
@@ -35,28 +27,6 @@
   animation: shake 1s infinite ease;
   max-height: 30vh;
 }
-
-/*
-#iceLeft {
-  animation: clink .8s infinite ease;
-  opacity: 0.6;
-  transform-origin: 36px 66px;
-}
-
-#iceRight {
-  animation: clink .8s .2s infinite ease;
-  opacity: 0.6;
-  transform-origin: 60px 78px;
-}
-*/
-
-/* .meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
-} */
 
 @keyframes shake {
 
