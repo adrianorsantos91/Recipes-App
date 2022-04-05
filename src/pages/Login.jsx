@@ -30,7 +30,6 @@ function Login() {
       <Form>
         <div className="d-grid gap-2">
           <Form.Group controlId="formBasicEmail">
-            {/* <Form.Label htmlFor="floatingInput">Email</Form.Label> */}
             <Form.Control
               data-testid="email-input"
               type="email"
@@ -41,7 +40,6 @@ function Login() {
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            {/* <Form.Label>Password</Form.Label> */}
             <Form.Control
               data-testid="password-input"
               type="password"
