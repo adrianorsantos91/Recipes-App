@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { fetchNationalitiesThunk,
-  fetchFoodsPerNationalitiesThunk } from '../redux/actions';
+import { fetchNationalitiesThunk } from '../redux/actions';
 import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES } from '../helpers';
 import '../styles/Foods.css';
@@ -12,18 +11,27 @@ export default function ExploreFoodsNationalities() {
   const dispatch = useDispatch();
   const nationalitiesList = useSelector(({ nationalities }) => nationalities);
   const history = useHistory();
-  const [currentNationality, setCurrentNationality] = useState('American');
+  const [currentNationality, setCurrentNationality] = useState('');
+  const [foodList, setFoodList] = useState([]);
 
   useEffect(() => {
     dispatch(fetchNationalitiesThunk());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchFoodsPerNationalitiesThunk(currentNationality));
+    if (currentNationality === '') {
+      fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+        .then((response) => response.json())
+        .then(({ meals }) => setFoodList(meals))
+        .catch((error) => error.message);
+    } else {
+      fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${currentNationality}`)
+        .then((response) => response.json())
+        .then(({ meals }) => setFoodList(meals))
+        .catch((error) => error.message);
+    }
   }, [currentNationality]);
 
-  const foodList = useSelector(({ foodNationalities }) => foodNationalities);
-  console.log(foodList);
   return (
     <div>
       <Header title="Explore Nationalities" hasSearch />
@@ -54,9 +62,15 @@ export default function ExploreFoodsNationalities() {
                 variant="top"
                 src={ food.strMealThumb }
                 onClick={ () => history.push(`../../foods/${food.idMeal}`) }
+                data-testid={ `${index}-card-img` }
               />
               <Card.Body>
-                <Card.Title>{food.strMeal}</Card.Title>
+                <Card.Title
+                  data-testid={ `${index}-card-name` }
+                >
+                  {food.strMeal}
+
+                </Card.Title>
               </Card.Body>
             </Card>
           </div>
