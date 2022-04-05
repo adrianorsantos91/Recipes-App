@@ -5,7 +5,7 @@ import { Footer, Header } from '../components';
 export default function Explore() {
   return (
     <div>
-      <Header title="" />
+      <Header title="not found" />
       <Link to="/explore/foods">Explore Foods</Link>
       <Link to="/explore/drinks">Explore Drinks</Link>
       <h1>Not Found</h1>
