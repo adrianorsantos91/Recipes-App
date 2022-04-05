@@ -12,59 +12,27 @@
   width: 100%;
 }
 
-.form-signin {
-  margin: auto;
-  max-width: 330px;
-  padding: 15px;
-  width: 100%;
-}
-
-.form-signin .checkbox {
-  font-weight: 400;
-}
-
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-h1 {
+.recipes-app {
   color: aliceblue;
   font-family: Lemon , cursive;
   font-size: 40px;
   text-align: center;
 }
 
-.login-logo {
-  max-width: 40vw;
+h1 {
+  color: #ff6701;
+  font-family: 'Gill Sans' , 'Gill Sans MT' , Calibri , 'Trebuchet MS' , sans-serif;
+  font-size: 40px;
+  text-align: center;
 }
 
-.login-form {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 30px -2px #f0e5cf;
-  display: flex;
-  flex-direction: column;
-  padding: 64px;
-}
-
-.login-form input {
-  border: 1px solid black;
-  border-radius: 0;
-  margin-bottom: 16px;
-  outline: 0;
-  padding: 8px;
+.btn-primary {
+  background-color: #ff6701 ! important;
+  border-color: #ff6701 ! important;
 }
 
 .login-form input:focus {
   outline: 1px solid #4b6587;
-}
-
-.login-form button {
-  background-color: #4b6587;
-  border: 0;
-  color: white;
-  margin-top: 8px;
-  padding: 8px;
 }
 
 .login-form button:hover {

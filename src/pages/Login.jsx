@@ -26,10 +26,10 @@ function Login() {
 
   return (
     <div className="login-page-content">
-      <div>
-        <h1>Recipes App</h1>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+      <h1 className="recipes-app">Recipes App</h1>
+      <Form>
+        <div className="d-grid gap-2">
+          <Form.Group controlId="formBasicEmail">
             {/* <Form.Label htmlFor="floatingInput">Email</Form.Label> */}
             <Form.Control
               data-testid="email-input"
@@ -40,7 +40,7 @@ function Login() {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group controlId="formBasicPassword">
             {/* <Form.Label>Password</Form.Label> */}
             <Form.Control
               data-testid="password-input"
@@ -52,6 +52,8 @@ function Login() {
           </Form.Group>
           <Button
             variant="primary"
+            class="btn btn-primary $orange-500"
+            size="lg"
             type="button"
             data-testid="login-submit-btn"
             disabled={ (password.length <= minPasswordLength) || !(validateEmail(email)) }
@@ -60,8 +62,8 @@ function Login() {
           >
             Login
           </Button>
-        </Form>
-      </div>
+        </div>
+      </Form>
     </div>
   );
 }
