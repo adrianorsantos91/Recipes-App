@@ -12,6 +12,7 @@ export const FOOD_SURPRISE_ME = 'FOOD_SURPRISE_ME';
 export const DRINK_SURPRISE_ME = 'DRINK_SURPRISE_ME';
 export const INGREDIENTS_FOOD_LIST = 'INGREDIENTS_FOOD_LIST';
 export const INGREDIENTS_DRINK_LIST = 'INGREDIENTS_DRINK_LIST';
+export const INGREDIENTS_FILTER = 'INGREDIENTS_FILTER';
 
 export const action = (type, payload) => ({
   type,
