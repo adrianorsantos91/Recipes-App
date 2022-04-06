@@ -6,7 +6,7 @@ import App from '../App';
 
 const URL_FOOD_ID = '/foods/52977';
 
-describe('Verifica se as requisições de comida por ID estão sendo feitas', () => {
+describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
   // https://github.com/nickcolley/jest-axe/issues/147
   const { getComputedStyle } = window;
   window.getComputedStyle = (elt) => getComputedStyle(elt);
@@ -23,30 +23,35 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
       expect(history.location.pathname).toBe(URL_FOOD_ID);
     });
 
-  test('Se após acessar os detalhes da receitas, as informações são renderizadas na tela',
+  test('Se na tela de detalhes tem uma imagem da receita na tela',
     async () => {
       const { history } = renderWithRedux(<App />);
-
       history.push(URL_FOOD_ID);
-
       const foodImg = await screen.findByRole('img', { name: /corba food/i });
-      const foodName = screen.getByRole('heading', { name: /corba/i });
-      const shareButton = screen.getByRole('img', { name: /share icon/i });
-      const favorite = screen.getByRole('img',
-        { name: /white heart favorite icon/i });
-
       expect(foodImg).toBeInTheDocument();
+    });
+
+  test('Se na tela de detalhes tem um titulo com o nome da receita na tela',
+    async () => {
+      const { history } = renderWithRedux(<App />);
+      history.push(URL_FOOD_ID);
+      const foodName = await screen.findByRole('heading', { name: /corba/i });
       expect(foodName).toBeInTheDocument();
+    });
+
+  test('Se na tela de detalhes tem o botão de compartilhar a receita na tela',
+    async () => {
+      const { history } = renderWithRedux(<App />);
+      history.push(URL_FOOD_ID);
+      const shareButton = await screen.findByRole('img', { name: /share icon/i });
+
       expect(shareButton).toBeInTheDocument();
-      expect(favorite).toBeInTheDocument();
     });
 
   test('Se ao clicar no botão de compartilhar mostra mensagem Link copied na tela',
     async () => {
       const { history } = renderWithRedux(<App />);
-
       history.push(URL_FOOD_ID);
-
       const shareButton = await screen.findByRole('img', { name: /share icon/i });
 
       expect(shareButton).toBeInTheDocument();
@@ -55,6 +60,23 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
 
       const messageLinkCopied = await screen.findByText(/link copied/i);
       expect(messageLinkCopied).toBeInTheDocument();
+    });
+
+  test('Se ao clicar no botão de favoritar altera o icone na tela',
+    async () => {
+      const { history } = renderWithRedux(<App />);
+      history.push(URL_FOOD_ID);
+
+      const favoriteButtonWhite = await screen.findByRole('img',
+        { name: /white heart favorite icon/i });
+
+      expect(favoriteButtonWhite).toBeInTheDocument();
+      userEvent.click(favoriteButtonWhite);
+      expect(screen.queryByRole('img',
+        { name: /white heart favorite icon/i })).toBeNull();
+      const favoriteButtonBlack = screen.getByRole('img',
+        { name: /black heart favorite icon/i });
+      expect(favoriteButtonBlack).toBeInTheDocument();
     });
 
   test('Se o video da receita é renderizado na tela', async () => {
@@ -81,9 +103,7 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
   test('Se ao clicar no botão Start Recipe direciona para o url /in-progress',
     async () => {
       const { history } = renderWithRedux(<App />);
-
       history.push(URL_FOOD_ID);
-
       const buttonStartRecipe = await screen
         .findByRole('button', { name: /start recipe/i });
 
@@ -147,9 +167,7 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
       localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
 
       const { history } = renderWithRedux(<App />);
-
       history.push(URL_FOOD_ID);
-
       const buttonRecipe = await screen.findByTestId('start-recipe-btn');
       expect(buttonRecipe).toHaveAttribute('hidden');
     });
@@ -168,13 +186,53 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
       };
 
       localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteRecipes]));
+      const { history } = renderWithRedux(<App />);
+      history.push(URL_FOOD_ID);
+      const favoriteIcon = await screen.findByRole('img', {
+        name: /black heart favorite icon/i });
+      expect(favoriteIcon).toBeInTheDocument();
+    });
+
+  test('Se com a receita iniciada a botão esta com texto /Continued Recipe/',
+    async () => {
+      localStorage.clear();
+      const inProgressRecipe = {
+        cocktails: {},
+        meals: {
+          52977: [
+            'Sea Salt',
+            'Water',
+            'Vegetable Stock',
+            'Red Pepper Flakes',
+          ],
+        },
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipe));
 
       const { history } = renderWithRedux(<App />);
 
       history.push(URL_FOOD_ID);
 
-      const favoriteIcon = await screen.findByRole('img', {
-        name: /black heart favorite icon/i });
-      expect(favoriteIcon).toBeInTheDocument();
+      const buttonRecipe = await screen.findByRole('button',
+        { name: /continue recipe/i });
+
+      expect(buttonRecipe).toBeInTheDocument();
+    });
+
+  test('Se a receita não for iniciada a botão deve estar com texto /Start Recipe/',
+    async () => {
+      localStorage.clear();
+      const inProgressRecipe = {
+        cocktails: {},
+        meals: {},
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipe));
+      const { history } = renderWithRedux(<App />);
+      history.push(URL_FOOD_ID);
+      const buttonRecipe = await screen.findByRole('button',
+        { name: /start recipe/i });
+      expect(buttonRecipe).toBeInTheDocument();
     });
 });
