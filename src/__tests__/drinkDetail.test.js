@@ -29,7 +29,7 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
     async () => {
       const { history } = renderWithRedux(<App />);
       history.push(URL_DRINK_ID);
-      const foodImg = await screen.findByRole('img', { name: /corba food/i });
+      const foodImg = await screen.findByRole('img', { name: /aquamarine drink/i });
       expect(foodImg).toBeInTheDocument();
     });
 
@@ -106,4 +106,45 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
       expect(history.location.pathname).toBe('/drinks/178319/in-progress');
     },
   );
+
+  test('aa', async () => {
+    localStorage.clear();
+    const doneRecipes = [{
+      title: 'Aquamarine',
+      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+      category: 'Cocktail',
+      instructions: 'Shake well in a shaker with ice.\r\nStrain in a martini glass.',
+      ingredients: [
+        'Hpnotiq',
+        'Pineapple Juice',
+        'Banana Liqueur',
+      ],
+      id: '178319',
+      alcoholicOrNot: 'Alcoholic',
+      tags: [],
+      nationality: '',
+      doneDate: '06/04/2022',
+    }];
+
+    const inProgressRecipes = {
+      cocktails: {
+        178319: [
+          'Banana Liqueur',
+          'Hpnotiq',
+          'Pineapple Juice',
+        ],
+      },
+      meals: {},
+    };
+
+    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+    const { history } = renderWithRedux(<App />);
+
+    history.push(URL_DRINK_ID);
+
+    const buttonStartRecipe = await screen.findByTestId('start-recipe-btn');
+
+    expect(buttonStartRecipe).toHaveAttribute('hidden');
+  });
 });
