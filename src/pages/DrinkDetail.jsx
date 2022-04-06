@@ -103,7 +103,11 @@ const DrinkDetail = () => {
       <div key={ strGlass }>
         <h1>Food Detail</h1>
         <div className="drink-thumb">
-          <img src={ strDrinkThumb } alt="" data-testid="recipe-photo" />
+          <img
+            src={ strDrinkThumb }
+            alt={ `${strDrink} drink` }
+            data-testid="recipe-photo"
+          />
         </div>
         <h2 data-testid="recipe-title">{ strDrink }</h2>
         <p data-testid="recipe-category">{ strAlcoholic }</p>
@@ -111,7 +115,7 @@ const DrinkDetail = () => {
           type="button"
           onClick={ () => copyLinkRecipe(setIsCopied) }
         >
-          <img src={ shareIcon } alt="" data-testid="share-btn" />
+          <img src={ shareIcon } alt="share icon" data-testid="share-btn" />
         </button>
         <button
           type="button"

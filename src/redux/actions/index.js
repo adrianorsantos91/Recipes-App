@@ -140,6 +140,22 @@ export const fetchIngredientsDrinkListThunk = () => (
       .catch((error) => error.message)
   ));
 
+export const fetchFoodByIdThunk = (idFood) => (
+  (dispatch) => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`)
+    .then((response) => response.json())
+    .then(({ meals }) => {
+      dispatch(action(FOOD_DATA_DETAILS, meals));
+    })
+    .catch((error) => error.message));
+
+export const fetchDrinkRecommendationThunk = () => (
+  (dispatch) => fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+    .then((response) => response.json())
+    .then(({ drinks }) => {
+      dispatch(action(DRINK_RECOMMENDATION, drinks));
+    })
+    .catch((error) => error.message));
+
 // const URL_NAME = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 // const fetchName = async () => {
 //   const { meals } = await fetch(URL_NAME).then((response) => response.json());
