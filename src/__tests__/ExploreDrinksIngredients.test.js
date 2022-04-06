@@ -5,7 +5,7 @@ import App from '../App';
 import ExploreIngredients from '../pages/ExploreIngredients';
 import renderWithRedux from '../helpers/renderWithRedux';
 
-describe('Testes da página `ExploreIngredients` - foods', () => {
+describe('Testes da página `ExploreIngredients` - drinks', () => {
   test('Verificando se os elementos da página são renderizados.', async () => {
     renderWithRedux(<ExploreIngredients />);
     const card = await screen.findByTestId('0-ingredient-card');
@@ -19,7 +19,7 @@ describe('Testes da página `ExploreIngredients` - foods', () => {
 
   test('Testa a função "filterByCategory"', async () => {
     const { history } = renderWithRedux(<App />);
-    history.push('/explore/foods/ingredients');
+    history.push('/explore/drinks/ingredients');
     const card = await screen.findByTestId('0-ingredient');
 
     userEvent.click(card);
@@ -29,10 +29,6 @@ describe('Testes da página `ExploreIngredients` - foods', () => {
     });
     expect(text).toBeInTheDocument();
     const { pathname } = history.location;
-    expect(pathname).toBe('/foods');
+    expect(pathname).toBe('/drinks');
   });
 });
-
-/*   "variant": "top",
-  "src": "https://www.themealdb.com/images/ingredients/Chicken-Small.png",
-  "data-testid": "0-card-img" */

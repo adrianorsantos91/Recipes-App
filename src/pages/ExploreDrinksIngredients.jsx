@@ -42,6 +42,7 @@ export default function ExploreDrinksIngredients() {
             type="button"
             key={ ingredient.strIngredient1 }
             className="container"
+            data-testid={ `${index}-ingredient` }
             onClick={ () => filterByIngredient(ingredient.strIngredient1) }
           >
             <Card
