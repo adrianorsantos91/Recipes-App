@@ -125,6 +125,7 @@ const FavoriteRecipes = () => {
               <button
                 type="button"
                 onClick={ () => favoriteRecipe(recipe) }
+                data-testid={ `${index}-button-remove-favorite` }
               >
                 <img
                   data-testid={ `${index}-horizontal-favorite-btn` }

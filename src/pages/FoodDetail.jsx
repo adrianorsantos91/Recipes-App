@@ -27,24 +27,6 @@ const FoodDetail = () => {
     dispatch(fetchDrinkRecommendationThunk());
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`)
-  //     .then((response) => response.json())
-  //     .then(({ meals }) => {
-  //       dispatch(action(FOOD_DATA_DETAILS, meals));
-  //     })
-  //     .catch((error) => error);
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-  //     .then((response) => response.json())
-  //     .then(({ drinks }) => {
-  //       dispatch(action(DRINK_RECOMMENDATION, drinks));
-  //     })
-  //     .catch((error) => error);
-  // }, []);
-
   useEffect(() => {
     const doneRecipesList = JSON.parse(localStorage.getItem('doneRecipes'));
     if (doneRecipesList) {
