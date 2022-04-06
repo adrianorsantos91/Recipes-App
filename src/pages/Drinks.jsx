@@ -74,8 +74,8 @@ export default function Drinks() {
         ))}
 
       {
-
-        filteredList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
+        filteredList
+        && filteredList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((drink, index) => (
             <div
               data-testid={ `${index}-recipe-card` }
