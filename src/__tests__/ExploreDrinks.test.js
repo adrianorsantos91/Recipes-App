@@ -23,7 +23,7 @@ describe('Testa casos de sucesso', () => {
       })
     ));
 
-    renderWithRedux(<ExploreFoods />);
+    renderWithRedux(<ExploreDrinks />);
     expect(fetch).toHaveBeenCalled();
   });
 
