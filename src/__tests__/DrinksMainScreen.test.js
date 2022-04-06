@@ -1,8 +1,10 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRedux from '../helpers/renderWithRedux';
 import App from '../App';
+
+afterEach(cleanup);
 
 describe('Testes da página drinks', () => {
   // https://github.com/nickcolley/jest-axe/issues/147

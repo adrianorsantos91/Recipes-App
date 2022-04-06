@@ -1,10 +1,10 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRedux from '../helpers/renderWithRedux';
 import App from '../App';
-// import responseDessertCategory from '../mocks/responseDessertCategory';
-// import responseCategories from '../mocks/responseCategories';
+
+afterEach(cleanup);
 
 describe('Testes da página foods', () => {
   // https://github.com/nickcolley/jest-axe/issues/147
