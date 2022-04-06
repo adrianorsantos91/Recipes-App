@@ -16,7 +16,7 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
     global.navigator.clipboard = mockClipboard;
   });
 
-  test('Se ao acessar os detalhes da receitas com a URL correta',
+  test('Se ao acessar os detalhes da drinks com a URL correta',
     () => {
       const { history } = renderWithRedux(<App />);
 
@@ -25,20 +25,22 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
       expect(history.location.pathname).toBe(URL_DRINK_ID);
     });
 
-  test('Se na tela de detalhes tem uma imagem da receita na tela',
+  test('Se na tela de detalhes tem uma imagem da drink na tela',
     async () => {
       const { history } = renderWithRedux(<App />);
       history.push(URL_DRINK_ID);
-      const foodImg = await screen.findByRole('img', { name: /corba food/i });
-      expect(foodImg).toBeInTheDocument();
+      const drinkImg = await screen.findByRole('img', {
+        name: /aquamarine drink/i });
+      expect(drinkImg).toBeInTheDocument();
     });
 
-  test('Se na tela de detalhes tem um titulo com o nome da receita na tela',
+  test('Se na tela de detalhes tem um titulo com o nome da drink na tela',
     async () => {
       const { history } = renderWithRedux(<App />);
       history.push(URL_DRINK_ID);
-      const foodName = await screen.findByRole('heading', { name: /corba/i });
-      expect(foodName).toBeInTheDocument();
+      const drinkName = await screen.findByRole('heading', {
+        name: /aquamarine/i });
+      expect(drinkName).toBeInTheDocument();
     });
 
   test('Se na tela de detalhes tem o botão de compartilhar a receita na tela',
@@ -92,18 +94,48 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
     expect(titleRecommendation).toBeInTheDocument();
   });
 
-  test(
-    'Se ao clicar no botão Start Recipe direciona para o url /in-progress', async () => {
+  test('Se ao clicar no botão Start Recipe direciona para o url /in-progress',
+    async () => {
       const { history } = renderWithRedux(<App />);
 
       history.push(URL_DRINK_ID);
 
-      const buttonStartRecipe = await screen
-        .findByRole('button', { name: /start recipe/i });
+      const buttonStartRecipe = await screen.findByRole('button',
+        { name: /start recipe/i });
 
       userEvent.click(buttonStartRecipe);
 
       expect(history.location.pathname).toBe('/drinks/178319/in-progress');
-    },
-  );
+    });
+
+  test('Se ao entrar no drink finalizado o botão de Start Recipe não esta na tela',
+    async () => {
+      localStorage.clear();
+      const doneRecipes = [
+        {
+          title: 'Aquamarine',
+          image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+          category: 'Cocktail',
+          instructions: `Shake well in a shaker with ice.
+          \r\nStrain in a martini glass.`,
+          ingredients: [
+            'Hpnotiq',
+            'Pineapple Juice',
+            'Banana Liqueur',
+          ],
+          id: '178319',
+          alcoholicOrNot: 'Alcoholic',
+          tags: [],
+          nationality: '',
+          doneDate: '06/04/2022',
+        },
+      ];
+
+      localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+
+      const { history } = renderWithRedux(<App />);
+      history.push(URL_DRINK_ID);
+      const buttonRecipe = await screen.findByTestId('start-recipe-btn');
+      expect(buttonRecipe).toHaveAttribute('hidden');
+    });
 });

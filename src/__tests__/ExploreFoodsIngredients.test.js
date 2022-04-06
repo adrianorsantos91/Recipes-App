@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import ExploreIngredients from '../pages/ExploreIngredients';
 import renderWithRedux from '../helpers/renderWithRedux';
-import { Foods } from '../pages';
 
 describe('Testes da página `ExploreIngredients` - foods', () => {
   test('Verificando se os elementos da página são renderizados.', async () => {
