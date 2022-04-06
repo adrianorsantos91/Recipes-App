@@ -16,7 +16,7 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
       expect(history.location.pathname).toBe(URL_DRINK_ID);
     });
 
-  test('Se após acessar os detalhes da receitas, as informações são renderizadas na tela',
+  test('Se após acessar os detalhes do drink, as informações são renderizadas na tela',
     () => {
       const { history } = renderWithRedux(<App />);
 

@@ -6,71 +6,91 @@ import App from '../App';
 
 const URL_FOOD_ID = '/foods/52977';
 
-describe('Verifica se as requisições de comida por ID estão sendo feitas', () => {
-  test('Se ao acessar os detalhes da receitas com a URL correta',
+describe('Verifica se as informações da comida estão sendo montadas na tela', () => {
+  // https://github.com/nickcolley/jest-axe/issues/147
+  const { getComputedStyle } = window;
+  window.getComputedStyle = (elt) => getComputedStyle(elt);
+
+  test('Se ao acessar a página de detalhes da receita a URL estará correta',
     () => {
       const { history } = renderWithRedux(<App />);
-
       history.push(URL_FOOD_ID);
-
       expect(history.location.pathname).toBe(URL_FOOD_ID);
     });
 
-  test('Se após acessar os detalhes da receitas, as informações são renderizadas na tela',
-    () => {
+  test('Se após acessar os detalhes da receita, as informações são renderizadas na tela',
+    async () => {
       const { history } = renderWithRedux(<App />);
 
       history.push(URL_FOOD_ID);
 
-      const foodImg = screen.getByRole('img', { name: /corba food/i });
-      const foodName = screen.getByRole('heading', { name: /corba/i });
-      const categoryFood = screen.getAllByText(/side/i);
-      const shareButton = screen.getByRole('img', { name: /share icon/i });
-      const favorite = screen.getByRole('img',
-        { name: /white heart favorite icon/i });
+      const foodImg = await screen.findByRole('img', { name: /corba food/i });
+      expect(foodImg.src).toBe('https://www.themealdb.com/images/media/meals/58oia61564916529.jpg');
+      expect(foodImg).toBeInTheDocument();
 
-      expect(foodImg).toBe('corba-food');
-      expect(foodName).toBe('corba');
-      expect(categoryFood).toBe('side');
-      expect(shareButton).toBe('/share icon/');
-      expect(favorite).toBe('white heart');
+      const foodName = screen.findByRole('heading',
+        { name: /corba/i });
+      expect(foodName).toBeInTheDocument();
+
+      const categoryFood = screen.findByText(/side/i);
+      expect(categoryFood).toBeInTheDocument();
+
+      const shareButton = screen.findByRole('img', { name: /share icon/i });
+      expect(shareButton).toBeInTheDocument();
+
+      const favorite = await screen.findByRole('img',
+        { name: /white heart favorite icon/i });
+      expect(favorite).toBeInTheDocument();
     });
 
-  test('Se o video da receita é renderizado na tela', () => {
-    const { history } = renderWithRedux(<App />);
+  test('Se o video da receita é renderizado na tela',
+    async () => {
+      const { history } = renderWithRedux(<App />);
 
-    history.push(URL_FOOD_ID);
+      history.push(URL_FOOD_ID);
 
-    const titleVideo = screen.getByRole('heading', { name: /video/i });
-    const preview = screen.getByText(/preview-frame/i);
+      const titleVideo = await screen.findByRole('heading', { name: /video/i });
+      const preview = screen.findByText(/preview-frame/i);
 
-    expect(titleVideo).toBe('/video/');
-    expect(titleVideo).toBeInTheDocument();
-    expect(preview).toBe('preview');
-  });
+      expect(titleVideo).toBeInTheDocument();
+      expect(preview).toBeInTheDocument();
+    });
 
-  test('Se os drinks recomendados estão sendo renderizados na tela', () => {
-    const { history } = renderWithRedux(<App />);
+  test('Se os drinks recomendados estão sendo renderizados na tela',
+    async () => {
+      const { history } = renderWithRedux(<App />);
 
-    history.push(URL_FOOD_ID);
+      history.push(URL_FOOD_ID);
 
-    const titleRecommentation = screen.getByRole('heading', { name: /recomendações/i });
+      const titleRecommentation = await screen.findByRole('heading',
+        { name: /recomendações/i });
 
-    expect(titleRecommentation).toBe('/recomendações/');
-    expect(titleRecommentation).toBeInTheDocument();
-  });
+      expect(titleRecommentation).toBeInTheDocument();
+    });
 
-  test('Se ao clicar no botão Start Recipe direciona para o url /in-progress', () => {
-    const { history } = renderWithRedux(<App />);
+  // teste('Se ao clicar no botão de favorito altera o icone para /black heart/',
+  //   () => {
 
-    history.push(URL_FOOD_ID);
+  //   });
 
-    const buttonStartRecipe = screen.getByRole('button', { name: /start recipe/i });
+  // teste('Se ao clicar no botão de favorito altera o icone para /black heart/',
+  //   () => {
 
-    userEvent.click(buttonStartRecipe);
+  //   });
 
-    expect(history.location.pathname).toBe('/foods/52977/in-progress');
-  });
+  test('Se ao clicar no botão Start Recipe direciona para o url /in-progress',
+    async () => {
+      const { history } = renderWithRedux(<App />);
+
+      history.push(URL_FOOD_ID);
+
+      const buttonStartRecipe = await screen.findByRole('button',
+        { name: /start recipe/i });
+
+      userEvent.click(buttonStartRecipe);
+
+      expect(history.location.pathname).toBe('/foods/52977/in-progress');
+    });
 });
 
 // test('Testa se a função fetchFoodByIdThunk com a url correta', async () => {
