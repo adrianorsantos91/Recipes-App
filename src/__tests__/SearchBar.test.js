@@ -6,6 +6,8 @@ import App from '../App';
 import responseIngredientAPI from '../mocks/responseIngredientSearch';
 import responseDrinkSearch from '../mocks/responseDrinkSearch';
 import responseUniqueDrink from '../mocks/responseUniqueDrink';
+import responseFoodFirstLetter from '../mocks/responseFoodFirstLetter';
+import responseDrinkIngredient from '../mocks/responseDrinkIngredient';
 
 const searchInput = 'search-input';
 const execSearchButton = 'exec-search-btn';
@@ -104,56 +106,6 @@ describe('Testes do componente "SearchBar"', () => {
     },
   );
 
-  // test(
-  //   'Testa se pesquisar por "Arrabiata" é redirecionado para a página de detalhe',
-  //   async () => {
-  // const alertMock = jest.spyOn(window, 'alert').mockImplementation();
-  // Object.defineProperty(window, 'window', {
-  //   value: {
-  //     alert: jest.fn(),
-  //   },
-  // });
-  // const alert = jest.spyOn(window, 'alert').mockImplementation();
-  // window.alert = jest.fn();
-  // window.alert.mockClear();
-
-  // global.alert = jest.fn();
-  // jest.spyOn(window, 'alert').mockImplementation(() => {});
-  // global.alert = jest.fn();
-  // global.fetch = jest.fn().mockResolvedValue({
-  //   json: jest.fn().mockResolvedValue({ drinks: null }),
-  // });
-
-  // const { history } = renderWithRedux(<App />);
-  // history.push('/drinks');
-
-  // const toggleSearch = screen.getByRole('img', { name: /search/i });
-  // userEvent.click(toggleSearch);
-
-  // const inputSearch = screen.queryByTestId('search-input');
-  // const firstRadio = screen.queryByText(/first/i);
-  // const buttonSearch = screen.queryByTestId(execSearchButton);
-
-  // userEvent.type(inputSearch, 'ab');
-  // userEvent.click(firstRadio);
-  // userEvent.click(buttonSearch);
-
-  // expect(global.alert)
-  //   .toHaveBeenCalledWith('Sorry, we haven\'t found any recipes for these filters.');
-
-  // const a = await screen.findByRole('alert');
-  // expect(a).toHaveBeenCalled();
-
-  // screen.logTestingPlaygroundURL();
-  // console.log(queryByRole('alert'));
-  // await waitForElement(() => {
-  //   Object.defineProperty(window, 'alert', alert);
-  //   expect(alert).toHaveBeenCalled();
-  //   expect(alertMock).toHaveBeenCalled();
-  // });
-  //   },
-  // );
-
   test(
     'Verifica se ao pesquisar a receita pelo ingrediente, faz uma requisição à API',
     () => {
@@ -177,10 +129,10 @@ describe('Testes do componente "SearchBar"', () => {
       userEvent.click(ingredientRadio);
       userEvent.click(buttonSearch);
 
-      const THREE_TIMES = 3;
+      const FOUR_TIMES = 4;
 
       expect(fetch).toHaveBeenCalled();
-      expect(fetch).toHaveBeenCalledTimes(THREE_TIMES);
+      expect(fetch).toHaveBeenCalledTimes(FOUR_TIMES);
       expect(global.fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken');
     },
   );
@@ -196,6 +148,7 @@ describe('Testes do componente "SearchBar"', () => {
 
       const { history } = renderWithRedux(<App />);
       history.push('/drinks');
+      const FOUR_TIMES = 4;
 
       const toggleSearch = screen.getByRole('img', { name: /search/i });
       userEvent.click(toggleSearch);
@@ -209,7 +162,7 @@ describe('Testes do componente "SearchBar"', () => {
       userEvent.click(buttonSearch);
 
       expect(fetch).toHaveBeenCalled();
-      expect(fetch).toHaveBeenCalledTimes(2);
+      expect(fetch).toHaveBeenCalledTimes(FOUR_TIMES);
       expect(global.fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=aquamarine');
     },
   );
@@ -235,10 +188,59 @@ describe('Testes do componente "SearchBar"', () => {
       userEvent.click(nameRadio);
       userEvent.click(buttonSearch);
 
-      const titleDrinkDetail = await screen.findByText(/drink detail/i);
+      const buttonFavorite = await screen
+        .findByRole('img', { name: /white heart favorite icon/i });
 
-      expect(titleDrinkDetail).toBeInTheDocument();
+      expect(buttonFavorite).toBeInTheDocument();
       expect(history.location.pathname).toBe('/drinks/178319');
     },
   );
+
+  test('Verifica procura pela primeira letra', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue(responseFoodFirstLetter),
+    });
+
+    const { history } = renderWithRedux(<App />);
+    history.push('/foods');
+
+    const toggleSearch = screen.getByRole('img', { name: /search/i });
+    userEvent.click(toggleSearch);
+
+    const inputSearch = screen.queryByTestId(searchInput);
+    const nameRadio = screen.queryByText(/first letter/i);
+    const buttonSearch = screen.queryByTestId(execSearchButton);
+
+    userEvent.type(inputSearch, 'c');
+    userEvent.click(nameRadio);
+    userEvent.click(buttonSearch);
+
+    const foodName = await screen.findByText(/Chocolate Gateau/i);
+
+    expect(foodName).toBeInTheDocument();
+  });
+
+  test('Verifica pelo ingrediente da bebida', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue(responseDrinkIngredient),
+    });
+
+    const { history } = renderWithRedux(<App />);
+    history.push('/drinks');
+
+    const toggleSearch = screen.getByRole('img', { name: /search/i });
+    userEvent.click(toggleSearch);
+
+    const inputSearch = screen.queryByTestId(searchInput);
+    const nameRadio = screen.queryByText(/ingredient/i);
+    const buttonSearch = screen.queryByTestId(execSearchButton);
+
+    userEvent.type(inputSearch, 'gin');
+    userEvent.click(nameRadio);
+    userEvent.click(buttonSearch);
+
+    const drink = await screen.findByText(/3-Mile Long Island Iced Tea/i);
+
+    expect(drink).toBeInTheDocument();
+  });
 });

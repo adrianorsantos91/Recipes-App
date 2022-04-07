@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
-import { action, FOOD_DATA_DETAILS, DRINK_RECOMMENDATION } from '../redux/actions';
+import { fetchFoodByIdThunk, fetchDrinkRecommendationThunk } from '../redux/actions';
+// import { action, FOOD_DATA_DETAILS, DRINK_RECOMMENDATION } from '../redux/actions';
 import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -22,21 +23,8 @@ const FoodDetail = () => {
   const idFood = history.location.pathname.split('/')[2];
 
   useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFood}`)
-      .then((response) => response.json())
-      .then(({ meals }) => {
-        dispatch(action(FOOD_DATA_DETAILS, meals));
-      })
-      .catch((error) => error);
-  }, []);
-
-  useEffect(() => {
-    fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-      .then((response) => response.json())
-      .then(({ drinks }) => {
-        dispatch(action(DRINK_RECOMMENDATION, drinks));
-      })
-      .catch((error) => error);
+    dispatch(fetchFoodByIdThunk(idFood));
+    dispatch(fetchDrinkRecommendationThunk());
   }, []);
 
   useEffect(() => {
@@ -98,17 +86,16 @@ const FoodDetail = () => {
 
   return (
     details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,
-      strIngredient3, strIngredient4, strIngredient5, strIngredient6,
-      strIngredient7, strIngredient8, strMeal, strYoutube, strInstructions,
-      strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5, strMeasure6,
-      strMeasure7, strMeasure8,
+      strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7,
+      strIngredient8, strMeal, strYoutube, strInstructions, strMeasure1, strMeasure2,
+      strMeasure3, strMeasure4, strMeasure5, strMeasure6, strMeasure7, strMeasure8,
     }) => (
       <div key={ strMeal }>
         <h1>Food Detail</h1>
         <div className="food-thumb">
           <img
             src={ strMealThumb }
-            alt=""
+            alt={ `${strMeal} food` }
             data-testid="recipe-photo"
           />
         </div>
@@ -118,7 +105,11 @@ const FoodDetail = () => {
           type="button"
           onClick={ () => copyLinkRecipe(setIsCopied) }
         >
-          <img src={ shareIcon } alt="" data-testid="share-btn" />
+          <img
+            src={ shareIcon }
+            alt="share icon"
+            data-testid="share-btn"
+          />
         </button>
         <button
           type="button"

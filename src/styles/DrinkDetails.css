@@ -2,6 +2,7 @@
   border: 1px solid #ddd;
   display: flex;
   flex-wrap: nowrap;
+  margin-bottom: 80px;
   max-height: 160px;
   overflow-x: auto;
 }

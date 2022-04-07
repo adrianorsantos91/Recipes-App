@@ -14,6 +14,7 @@ export default function Drinks() {
   const dispatch = useDispatch();
   const history = useHistory();
   const allDrinks = useSelector(({ drinkData }) => drinkData);
+  const { wasNotFetched } = useSelector((state) => state);
   const categories = useSelector(({ categoryDrinkData }) => categoryDrinkData);
   const drinksUsingCategory = useSelector(({ drinksPerCategory }) => drinksPerCategory);
 
@@ -29,7 +30,9 @@ export default function Drinks() {
   }
 
   useEffect(() => {
-    dispatch(fetchDrinkThunk());
+    if (wasNotFetched) {
+      dispatch(fetchDrinkThunk());
+    }
     dispatch(fetchDrinksCategoryThunk());
     dispatch(fetchDrinksPerCategoryThunk(filter));
   }, [filter]);
@@ -71,8 +74,8 @@ export default function Drinks() {
         ))}
 
       {
-
-        filteredList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
+        filteredList
+        && filteredList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((drink, index) => (
             <div
               data-testid={ `${index}-recipe-card` }
