@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { Card, Button } from 'react-bootstrap';
 import { Header, Footer } from '../components';
 import { fetchFoodsThunk,
   fetchFoodsCategoryThunk, fetchFoodsPerCategoryThunk } from '../redux/actions';
@@ -45,67 +44,63 @@ export default function Foods() {
   }, [recipes]);
 
   return (
-    <div>
+    <div className="content-container">
       <Header title="Foods" hasSearch />
-      <div className="flex">
+      <div className="grid-container">
         <button
           value=""
           onClick={ (value) => handleCategoryClick(value) }
           data-testid="All-category-filter"
           type="button"
+          className="grid-item"
         >
           All
         </button>
 
-      </div>
-      {categories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
-        .map((category) => (
-          <div className="flex" key={ category.strCategory }>
+        {categories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
+          .map((category) => (
+
             <button
+              key={ category.strCategory }
               data-testid={ `${category.strCategory}-category-filter` }
               value={ category.strCategory }
               onClick={ (value) => handleCategoryClick(value) }
               type="button"
+              className="grid-item"
             >
               {category.strCategory}
             </button>
-          </div>
-        ))}
-      {
-        filteredList
+
+          ))}
+      </div>
+      <div className="flex">
+        {
+          filteredList
         && filteredList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((recipe, index) => (
             <div
               data-testid={ `${index}-recipe-card` }
               key={ recipe.idMeal }
-              className="container"
+              className="image-container"
               onClick={ () => history.push(`./foods/${recipe.idMeal}`) }
               aria-hidden="true"
             >
-              <Card style={ { width: '18rem' } }>
-                <Card.Img
-                  data-testid={ `${index}-card-img` }
-                  variant="top"
-                  src={ recipe.strMealThumb }
-                />
-                <Card.Body>
-                  <Card.Title
-                    data-testid={ `${index}-card-name` }
-                  >
-                    {recipe.strMeal}
+              <img
+                src={ recipe.strMealThumb }
+                alt={ recipe.strMealThumb }
+                data-testid={ `${index}-card-img` }
+                className="card-image"
+              />
+              <span
+                data-testid={ `${index}-card-name` }
+              >
+                {recipe.strMeal}
+              </span>
 
-                  </Card.Title>
-                  <Button
-                    variant="primary"
-                  >
-                    See more
-
-                  </Button>
-                </Card.Body>
-              </Card>
             </div>
           ))
-      }
+        }
+      </div>
       <Footer />
     </div>
   );
