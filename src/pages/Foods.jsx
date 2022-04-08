@@ -6,7 +6,6 @@ import { Header, Footer } from '../components';
 import { fetchFoodsThunk,
   fetchFoodsCategoryThunk, fetchFoodsPerCategoryThunk } from '../redux/actions';
 import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
-import '../App.css';
 import '../styles/Foods.css';
 
 export default function Foods() {
@@ -49,27 +48,27 @@ export default function Foods() {
     <div>
       <Header title="Foods" hasSearch />
       <div className="flex">
-        <Button
-          variant="outline-dark"
+        <button
           value=""
           onClick={ (value) => handleCategoryClick(value) }
           data-testid="All-category-filter"
+          type="button"
         >
           All
-        </Button>
+        </button>
+
       </div>
       {categories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
         .map((category) => (
           <div className="flex" key={ category.strCategory }>
-            <Button
+            <button
               data-testid={ `${category.strCategory}-category-filter` }
-              variant="outline-dark"
               value={ category.strCategory }
               onClick={ (value) => handleCategoryClick(value) }
+              type="button"
             >
               {category.strCategory}
-
-            </Button>
+            </button>
           </div>
         ))}
       {
