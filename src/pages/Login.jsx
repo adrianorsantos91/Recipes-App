@@ -5,6 +5,7 @@ import { minPasswordLength } from '../helpers';
 // import '../index.css';
 import '../styles/Login.css';
 import '../App.css';
+import '../images/capncook.jpeg';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -25,10 +26,14 @@ function Login() {
   }
 
   return (
-    <div className="login-page-content">
-      <h1 className="recipes-app">Recipes App</h1>
+    <div className="bg-white">
+      <img
+        src={ `/home/user/trybe-projetos/sd-018-a-project-recipes-app/
+        src/images/capncook.jpeg` }
+        alt="Cap'n Cook"
+      />
       <Form>
-        <div className="d-grid gap-2">
+        <div className="login-page-content">
           <Form.Group controlId="formBasicEmail">
             <Form.Control
               data-testid="email-input"

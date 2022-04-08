@@ -1,13 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap') ;
-
-
-/* .login-page-content {
-  align-items: center;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
 
 .login-page-content {
   align-items: center;
-  background-image: url('/home/user/trybe-projetos/sd-018-a-project-recipes-app/src/images/waffle.jpg');
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -15,48 +9,4 @@
   height: 100vh;
   justify-content: center;
   width: 100%;
-}
-
-.recipes-app {
-  color: #fea82f;
-  font-family: Ubuntu , Roboto , sans-serif;
-  font-size: 40px;
-  text-align: center;
-}
-
-h1 {
-  color: #ff6701;
-  font-family: Ubuntu , Roboto , sans-serif;
-  font-size: 40px;
-  text-align: center;
-}
-
-/* .btn-primary {
-  background-color: #fea82f ! important;
-  border-color: #fea82f ! important;
-} */
-
-.login-form input:focus {
-  outline: 1px solid #4b6587;
-}
-
-.login-form button:hover {
-  opacity: 0.95;
-}
-
-.login-form button:disabled {
-  background-color: gray;
-}
-
-.login-configuration-btn {
-  background-color: white;
-  border: 0;
-  color: #4b6587;
-  font-weight: 900;
-  margin-top: 32px;
-  padding: 8px;
-}
-
-.login-configuration-btn:hover {
-  opacity: 0.95;
 }
