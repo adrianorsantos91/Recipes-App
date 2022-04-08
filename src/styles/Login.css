@@ -10,14 +10,16 @@
   font-family: sans-serif;
   height: 100vh;
   justify-content: center;
+  text-align: center;
   width: 100%;
 }
 
 .logo {
+  align-self: center;
   border-radius: 20px;
+  display: flex;
   height: 150px;
-  left: 101px;
-  position: absolute;
+  margin-top: 40px;
   top: 56px;
   width: 150px;
 }

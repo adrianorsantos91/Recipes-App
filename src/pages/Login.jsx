@@ -5,7 +5,7 @@ import { minPasswordLength } from '../helpers';
 // import '../index.css';
 import '../styles/Login.css';
 import '../App.css';
-/* import '../images/capncook.jpeg'; */
+import Logo from '../images/capncook.jpeg';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,13 +27,13 @@ function Login() {
 
   return (
     <div className="login">
-      <img
-        src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fsteemkr.com%2Fbreaking%2F%40saiyanzrage%2Fbreaking-bad-spin-off-called-cap-n-cook&psig=AOvVaw37YoEfsdF7CQgPg638HKBS&ust=1649516273889000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCMCuuY_dhPcCFQAAAAAdAAAAABAD"
-        alt="Cap'n Cook"
-        className="logo"
-      />
       <Form>
-        <div className="login-page-content">
+        <div className="container">
+          <img
+            src={ Logo }
+            alt="Cap'n Cook"
+            className="logo"
+          />
           <div className="container">
             <input
               data-testid="email-input"
