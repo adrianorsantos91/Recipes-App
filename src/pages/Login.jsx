@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { minPasswordLength } from '../helpers';
 // import '../index.css';
 import '../styles/Login.css';
 import '../App.css';
-import '../images/capncook.jpeg';
+/* import '../images/capncook.jpeg'; */
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -26,45 +26,44 @@ function Login() {
   }
 
   return (
-    <div className="bg-white">
+    <div className="login">
       <img
-        src={ `/home/user/trybe-projetos/sd-018-a-project-recipes-app/
-        src/images/capncook.jpeg` }
+        src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fsteemkr.com%2Fbreaking%2F%40saiyanzrage%2Fbreaking-bad-spin-off-called-cap-n-cook&psig=AOvVaw37YoEfsdF7CQgPg638HKBS&ust=1649516273889000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCMCuuY_dhPcCFQAAAAAdAAAAABAD"
         alt="Cap'n Cook"
+        className="logo"
       />
       <Form>
         <div className="login-page-content">
-          <Form.Group controlId="formBasicEmail">
-            <Form.Control
+          <div className="container">
+            <input
               data-testid="email-input"
               type="email"
-              placeholder="Enter email"
+              placeholder="Email"
               onChange={ (event) => setEmail(event.target.value) }
               value={ email }
             />
-          </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Control
+            <input
               data-testid="password-input"
               type="password"
               placeholder="Password"
               onChange={ (event) => setPassword(event.target.value) }
               value={ password }
             />
-          </Form.Group>
-          <Button
-            variant="primary"
-            class="btn btn-primary"
-            size="lg"
-            type="button"
-            data-testid="login-submit-btn"
-            disabled={ (password.length <= minPasswordLength) || !(validateEmail(email)) }
-            onClick={ () => handleClick() }
+            <button
+              variant="primary"
+              size="lg"
+              type="button"
+              data-testid="login-submit-btn"
+              disabled={ (
+                password.length <= minPasswordLength) || !(validateEmail(email)) }
+              onClick={ () => handleClick() }
 
-          >
-            Login
-          </Button>
+            >
+              Sign in
+            </button>
+          </div>
+          <p className="footer">© 2022</p>
         </div>
       </Form>
     </div>

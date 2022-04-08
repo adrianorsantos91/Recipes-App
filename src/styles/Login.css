@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
+.login {
+  background: radial-gradient(82.78% 41.25% at 50% 58.75%, #1e5128 10.23%, #0f0f0f 64.02%);
+}
 
 .login-page-content {
   align-items: center;
@@ -9,4 +11,54 @@
   height: 100vh;
   justify-content: center;
   width: 100%;
+}
+
+.logo {
+  border-radius: 20px;
+  height: 150px;
+  left: 101px;
+  position: absolute;
+  top: 56px;
+  width: 150px;
+}
+
+.container {
+  display: flex;
+}
+
+input {
+  background: #191a19;
+  border: 1px solid #1e5128;
+  border-radius: 10px;
+  display: flex;
+  height: 40px;
+  text-indent: 15px;
+  width: 241px;
+}
+
+button {
+  align-items: center;
+  background: #1e5128;
+  border: 1px solid #4e9f3d;
+  border-radius: 8px;
+  color: #f2f2f2;
+  display: flex;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
+  line-height: 19px;
+  width: 241px;
+}
+
+.footer {
+
+  /* identical to box height */
+  color: #f2f2f2;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  width: 44px;
 }
