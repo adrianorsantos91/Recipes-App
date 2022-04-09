@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { minPasswordLength } from '../helpers';
-import rockGlass from '../images/rockGlass.svg';
-import '../index.css';
+// import '../index.css';
+import '../styles/Login.css';
 import '../App.css';
+import Logo from '../images/capncook.jpeg';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -25,48 +26,45 @@ function Login() {
   }
 
   return (
-    <div className="meals">
-      <span className="logo">TRYBE</span>
-      <object
-        className="rocksGlass"
-        type="image/svg+xml"
-        data={ rockGlass }
-      >
-        Glass
-      </object>
-
+    <div className="login">
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            data-testid="email-input"
-            type="email"
-            placeholder="Enter email"
-            onChange={ (event) => setEmail(event.target.value) }
-            value={ email }
+        <div className="container">
+          <img
+            src={ Logo }
+            alt="Cap'n Cook"
+            className="logo"
           />
-        </Form.Group>
+          <div className="container">
+            <input
+              data-testid="email-input"
+              type="email"
+              placeholder="Email"
+              onChange={ (event) => setEmail(event.target.value) }
+              value={ email }
+            />
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            data-testid="password-input"
-            type="password"
-            placeholder="Password"
-            onChange={ (event) => setPassword(event.target.value) }
-            value={ password }
-          />
-        </Form.Group>
-        <Button
-          variant="primary"
-          type="button"
-          data-testid="login-submit-btn"
-          disabled={ (password.length <= minPasswordLength) || !(validateEmail(email)) }
-          onClick={ () => handleClick() }
+            <input
+              data-testid="password-input"
+              type="password"
+              placeholder="Password"
+              onChange={ (event) => setPassword(event.target.value) }
+              value={ password }
+            />
+            <button
+              variant="primary"
+              size="lg"
+              type="button"
+              data-testid="login-submit-btn"
+              disabled={ (
+                password.length <= minPasswordLength) || !(validateEmail(email)) }
+              onClick={ () => handleClick() }
 
-        >
-          Login
-        </Button>
+            >
+              Sign in
+            </button>
+          </div>
+          <p className="footer">© 2022</p>
+        </div>
       </Form>
     </div>
   );
