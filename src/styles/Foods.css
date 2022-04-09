@@ -6,46 +6,46 @@
 
 .content-container {
   background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
+  height: 100vh;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
-
   grid-gap: 15px;
+  grid-template-columns: auto auto auto;
   justify-content: center;
 }
 
 .grid-item {
   background-color: rgba(25, 26, 25, 0.5);
   border: none;
+  border-radius: 10px;
   color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  height: 45px;
+  line-height: 15px;
   text-align: center;
   width: 100px;
-  height: 45px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
 }
 
 .card-image {
   border-radius: 10px;
-  width: 150px;
   height: 141px;
+  width: 150px;
 }
 
 .image-container {
-  color: white;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
   background-color: rgba(15, 15, 15, 0.5);
-  width: 150px;
-  height: 180px;
-  margin: 22px;
   border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  height: 180px;
+  line-height: 15px;
+  margin: 22px;
+  text-align: center;
+  width: 150px;
 }
 
 .flex {
@@ -54,17 +54,17 @@
   flex-wrap: wrap;
 }
 
-footer {
+/* footer {
   align-items: center;
   bottom: 0;
   display: flex;
   flex: 1 1;
-  height: 100px;
+  height: 50px;
   justify-content: center;
   position: fixed;
   text-align: center;
   width: 100%;
-}
+} */
 
 footer button {
   align-items: center;
