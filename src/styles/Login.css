@@ -46,7 +46,7 @@ input {
   width: 241px;
 }
 
-button {
+.sign-in {
   align-items: center;
   background: #1e5128;
   border: 1px solid #4e9f3d;

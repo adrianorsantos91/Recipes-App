@@ -54,6 +54,7 @@ function Login() {
               variant="primary"
               size="lg"
               type="button"
+              className="sign-in"
               data-testid="login-submit-btn"
               disabled={ (
                 password.length <= minPasswordLength) || !(validateEmail(email)) }

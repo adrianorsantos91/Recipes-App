@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import SearchBar from './SearchBar';
+// import SearchBar from './SearchBar';
 import imageProfile from '../images/scientist.svg';
 import searchIcon from '../images/searchNewIcon.svg';
 import '../styles/Header.css';
@@ -43,9 +43,9 @@ const Header = ({ title, hasSearch }) => {
           </button>
         )
       }
-      {
+      {/* {
         isSearching && <SearchBar />
-      }
+      } */}
     </div>
   );
 };
