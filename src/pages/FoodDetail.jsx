@@ -13,12 +13,9 @@ const FoodDetail = () => {
   const [isContinued, setContinued] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-
   const details = useSelector(({ foodDataDetails }) => foodDataDetails);
   const drinksList = useSelector(({ drinksRecommendation }) => drinksRecommendation);
-
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const dispatch = useDispatch(); const history = useHistory();
   const idFood = history.location.pathname.split('/')[2];
 
   useEffect(() => {
@@ -28,10 +25,7 @@ const FoodDetail = () => {
 
   useEffect(() => {
     const doneRecipesList = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (doneRecipesList) {
-      setFinished(true);
-    }
-
+    if (doneRecipesList) setFinished(true);
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     setIsFavorite(favorite.some(({ id }) => id === idFood));
   }, []);
@@ -56,16 +50,13 @@ const FoodDetail = () => {
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     const { idMeal: id, strMealThumb, strCategory, strArea, strMeal } = details[0];
-
-    const newFavoriteList = {
-      id,
+    const newFavoriteList = { id,
       type: 'food',
       nationality: strArea,
       category: strCategory,
       alcoholicOrNot: '',
       name: strMeal,
       image: strMealThumb };
-
     if (favoriteListOld.length) {
       localStorage.setItem('favoriteRecipes',
         JSON.stringify([...favoriteListOld, newFavoriteList]));
@@ -76,30 +67,40 @@ const FoodDetail = () => {
     setIsFavorite(!isFavorite);
   };
 
-  const NUM3 = 3;
-  const NUM4 = 4;
-  const NUM5 = 5;
-  const NUM6 = 6;
-  const NUM7 = 7;
+  // const NUM3 = 3; const NUM4 = 4; const NUM5 = 5; const NUM6 = 6; const NUM7 = 7;
   const MAX_DRINKS = 6;
 
   return (
-    details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,
-      strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7,
-      strIngredient8, strMeal, strYoutube, strInstructions, strMeasure1, strMeasure2,
-      strMeasure3, strMeasure4, strMeasure5, strMeasure6, strMeasure7, strMeasure8,
-    }) => (
-      <div key={ strMeal }>
+    details.map(({ strMealThumb, strCategory, strMeal, strYoutube,strInstructions,
+      strMeasure1,
+    }, index) => (
+      <div
+        key={ strMeal }
+        className="relative bg-gradient-to-b from-green-900 via-gray-800 to-gray-900"
+        style={ { width: 360, height: 1483 } }
+      >
         <h1>Food Detail</h1>
         <div className="food-thumb">
           <img
             src={ strMealThumb }
             alt={ `${strMeal} food` }
             data-testid="recipe-photo"
+            className="w-96 h-64"
           />
         </div>
-        <h2 data-testid="recipe-title">{ strMeal }</h2>
-        <p data-testid="recipe-category">{ strCategory }</p>
+        <p
+          data-testid="recipe-title"
+          className="text-3xl font-semibold text-gray-100"
+        >
+          { strMeal }
+        </p>
+        <p
+          data-testid="recipe-category"
+          className="w-44 h-6 absolute text-base font-semibold text-yellow-200"
+          style={ { left: 24, top: 305 } }
+        >
+          { strCategory }
+        </p>
         <button
           type="button"
           onClick={ () => copyLinkRecipe(setIsCopied) }
@@ -120,62 +121,23 @@ const FoodDetail = () => {
             alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
           />
         </button>
-        {
-          isCopied && <span>Link copied!</span>
-        }
+        { isCopied && <span>Link copied!</span> }
         <section>
-
-          <h3>Ingredients</h3>
+          <h3 className="text-xl font-semibold text-white">Ingredients</h3>
           <ul
             id="ingredients"
           >
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>
-              { strIngredient1 }
+            <li
+              data-testid={ `${index}-ingredient-name-and-measure` }
+              className="w-80 h-48 text-xs font-semibold text-black"
+            >
+              { concat(`${strIngredient}${index}`) }
             </li>
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>
+            <li
+              data-testid={ `${index}-ingredient-name-and-measure` }
+              className="w-80 h-48 text-xs font-semibold text-black"
+            >
               { strMeasure1 }
-            </li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>
-              { strIngredient2 }
-            </li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>
-              { strMeasure2 }
-            </li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>
-              { strIngredient3 }
-            </li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>
-              { strMeasure3 }
-            </li>
-            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-              { strIngredient4 }
-            </li>
-            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-              { strMeasure4 }
-            </li>
-            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-              { strIngredient5 }
-            </li>
-            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-              { strMeasure5 }
-            </li>
-            <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-              { strIngredient6 }
-            </li>
-            <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-              { strMeasure6 }
-            </li>
-            <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-              { strIngredient7 }
-            </li>
-            <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-              { strMeasure7 }
-            </li>
-            <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-              { strIngredient8 }
-            </li>
-            <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-              { strMeasure8 }
             </li>
           </ul>
         </section>
@@ -227,5 +189,4 @@ const FoodDetail = () => {
     ))
   );
 };
-
 export default FoodDetail;
