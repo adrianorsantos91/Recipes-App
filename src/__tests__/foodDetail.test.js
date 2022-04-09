@@ -5,6 +5,7 @@ import renderWithRedux from '../helpers/renderWithRedux';
 import App from '../App';
 
 const URL_FOOD_ID = '/foods/52977';
+const URL_FOOD_IMAGE = 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg';
 
 describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
   // https://github.com/nickcolley/jest-axe/issues/147
@@ -44,7 +45,6 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
       const { history } = renderWithRedux(<App />);
       history.push(URL_FOOD_ID);
       const shareButton = await screen.findByRole('img', { name: /share icon/i });
-
       expect(shareButton).toBeInTheDocument();
     });
 
@@ -53,11 +53,9 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
       const { history } = renderWithRedux(<App />);
       history.push(URL_FOOD_ID);
       const shareButton = await screen.findByRole('img', { name: /share icon/i });
-
       expect(shareButton).toBeInTheDocument();
       userEvent.click(shareButton);
       expect(navigator.clipboard.writeText).toHaveBeenCalled();
-
       const messageLinkCopied = await screen.findByText(/link copied/i);
       expect(messageLinkCopied).toBeInTheDocument();
     });
@@ -66,10 +64,8 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
     async () => {
       const { history } = renderWithRedux(<App />);
       history.push(URL_FOOD_ID);
-
       const favoriteButtonWhite = await screen.findByRole('img',
         { name: /white heart favorite icon/i });
-
       expect(favoriteButtonWhite).toBeInTheDocument();
       userEvent.click(favoriteButtonWhite);
       expect(screen.queryByRole('img',
@@ -81,22 +77,16 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
 
   test('Se o video da receita é renderizado na tela', async () => {
     const { history } = renderWithRedux(<App />);
-
     history.push(URL_FOOD_ID);
-
     const titleVideo = await screen.findByRole('heading', { name: /video/i });
-
     expect(titleVideo).toBeInTheDocument();
   });
 
   test('Se os drinks recomendados estão sendo renderizados na tela', async () => {
     const { history } = renderWithRedux(<App />);
-
     history.push(URL_FOOD_ID);
-
     const titleRecommendation = await screen
       .findByRole('heading', { name: /recomendações/i });
-
     expect(titleRecommendation).toBeInTheDocument();
   });
 
@@ -106,9 +96,7 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
       history.push(URL_FOOD_ID);
       const buttonStartRecipe = await screen
         .findByRole('button', { name: /start recipe/i });
-
       userEvent.click(buttonStartRecipe);
-
       expect(history.location.pathname).toBe('/foods/52977/in-progress');
     });
 
@@ -118,7 +106,7 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
       const doneRecipes = [
         {
           title: 'Corba',
-          image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+          image: URL_FOOD_IMAGE,
           category: 'Side',
           instructions: `Pick through your lentils for any foreign debris,rinse t
           hem 2 or 3 times, drain, and set aside. Fair warning, this will probably
@@ -163,9 +151,7 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
           doneDate: '06/04/2022',
         },
       ];
-
       localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
-
       const { history } = renderWithRedux(<App />);
       history.push(URL_FOOD_ID);
       const buttonRecipe = await screen.findByTestId('start-recipe-btn');
@@ -182,9 +168,8 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
         category: 'Side',
         alcoholicOrNot: '',
         name: 'Corba',
-        image: 'https://www.themealdb.com/images/media/meals/58oia61564916529.jpg',
+        image: URL_FOOD_IMAGE,
       };
-
       localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteRecipes]));
       const { history } = renderWithRedux(<App />);
       history.push(URL_FOOD_ID);
@@ -207,16 +192,11 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
           ],
         },
       };
-
       localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipe));
-
       const { history } = renderWithRedux(<App />);
-
       history.push(URL_FOOD_ID);
-
       const buttonRecipe = await screen.findByRole('button',
         { name: /continue recipe/i });
-
       expect(buttonRecipe).toBeInTheDocument();
     });
 
@@ -227,7 +207,6 @@ describe('Verifica se a tela renderiza a receita de acordo com a URL', () => {
         cocktails: {},
         meals: {},
       };
-
       localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipe));
       const { history } = renderWithRedux(<App />);
       history.push(URL_FOOD_ID);

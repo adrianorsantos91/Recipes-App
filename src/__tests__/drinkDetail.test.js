@@ -163,4 +163,24 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
 
       expect(buttonRecipe).toBeInTheDocument();
     });
+
+  test('Se com o drink não for iniciada a botão esta com texto /Start Recipe/',
+    async () => {
+      localStorage.clear();
+      const inProgressRecipe = {
+        cocktails: {},
+        meals: {},
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipe));
+
+      const { history } = renderWithRedux(<App />);
+
+      history.push(URL_DRINK_ID);
+
+      const buttonRecipe = await screen.findByRole('button',
+        { name: /start recipe/i });
+
+      expect(buttonRecipe).toBeInTheDocument();
+    });
 });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
-import { action, DRINK_DATA_DETAILS, FOOD_RECOMMENDATION } from '../redux/actions';
+import { fetchDrinkByIdThunk, fetchFoodRecommendationThunk } from '../redux/actions';
 import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -22,21 +22,8 @@ const DrinkDetail = () => {
   const ID_DRINK = history.location.pathname.split('/')[2];
 
   useEffect(() => {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${ID_DRINK}`)
-      .then((response) => response.json())
-      .then(({ drinks }) => {
-        dispatch(action(DRINK_DATA_DETAILS, drinks));
-      })
-      .catch((error) => error);
-  }, [ID_DRINK, dispatch]);
-
-  useEffect(() => {
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-      .then((response) => response.json())
-      .then(({ meals }) => {
-        dispatch(action(FOOD_RECOMMENDATION, meals));
-      })
-      .catch((error) => error);
+    dispatch(fetchDrinkByIdThunk(ID_DRINK));
+    dispatch(fetchFoodRecommendationThunk());
   }, []);
 
   useEffect(() => {

@@ -98,7 +98,9 @@ export const fetchFoodsPerNationalitiesThunk = (nationality) => (
       .then((response) => response.json())
       .then(({ meals }) => {
         dispatch(action(FETCH_FOOD_PER_NATIONALITIES, meals));
-      })));
+      })
+      .catch((error) => error.message)
+  ));
 
 export const fetchRandomFoodsThunk = () => (
   (dispatch) => (
@@ -153,6 +155,22 @@ export const fetchDrinkRecommendationThunk = () => (
     .then((response) => response.json())
     .then(({ drinks }) => {
       dispatch(action(DRINK_RECOMMENDATION, drinks));
+    })
+    .catch((error) => error.message));
+
+export const fetchDrinkByIdThunk = (idDrink) => (
+  (dispatch) => fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`)
+    .then((response) => response.json())
+    .then(({ drinks }) => {
+      dispatch(action(DRINK_DATA_DETAILS, drinks));
+    })
+    .catch((error) => error.message));
+
+export const fetchFoodRecommendationThunk = () => (
+  (dispatch) => fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+    .then((response) => response.json())
+    .then(({ meals }) => {
+      dispatch(action(FOOD_RECOMMENDATION, meals));
     })
     .catch((error) => error.message));
 

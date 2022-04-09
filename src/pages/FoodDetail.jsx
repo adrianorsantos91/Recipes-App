@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFoodByIdThunk, fetchDrinkRecommendationThunk } from '../redux/actions';
-// import { action, FOOD_DATA_DETAILS, DRINK_RECOMMENDATION } from '../redux/actions';
 import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
