@@ -25,20 +25,28 @@
 }
 
 .container {
+  align-items: center;
+  color: #464646;
   display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
 }
 
 input {
   background: #191a19;
   border: 1px solid #1e5128;
   border-radius: 10px;
+  color: #f2f2f2;
   display: flex;
   height: 40px;
   text-indent: 15px;
   width: 241px;
 }
 
-button {
+.sign-in {
   align-items: center;
   background: #1e5128;
   border: 1px solid #4e9f3d;
@@ -63,4 +71,21 @@ button {
   font-weight: 400;
   line-height: 15px;
   width: 44px;
+}
+
+.flex-container {
+  color: #464646;
+  display: flex;
+  font-family: sans-serif;
+  justify-content: center;
+  width: 100%;
+}
+
+.flex {
+  color: #464646;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  justify-content: center;
+  width: 100%;
 }
