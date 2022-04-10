@@ -45,6 +45,7 @@ export default function Foods() {
 
   return (
     <div className="content-container">
+
       <Header title="Foods" hasSearch />
       <div className="grid-container">
         <button
