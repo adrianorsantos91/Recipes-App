@@ -6,12 +6,14 @@
   height: 19px;
   line-height: 19px;
   margin: auto;
-  padding-top: 15px;
   width: 48px;
 }
 
 .header {
+  align-items: center;
   background-color: #1e5128;
+  display: flex;
+  flex-direction: row;
   height: 47px;
 }
 
@@ -23,12 +25,25 @@
   width: 30px;
 }
 
-.search {
+/* .search {
+  align-self: center;
+  background: #1e5128;
+  border: 1px solid seagreen;
   display: flex;
   height: 25px;
-  margin-left: auto;
-  position: absolute;
   top: 11px;
   width: 25px;
 }
+ */
 
+.search {
+  align-self: center;
+  background: #1e5128;
+  border: none;
+  color: seagreen;
+  font-size: 17px;
+  font-style: italic;
+  padding: 10px;
+  padding-left: 12px;
+  padding-right: 14px;
+}

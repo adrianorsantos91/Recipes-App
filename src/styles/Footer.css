@@ -8,8 +8,6 @@ button {
 
 footer {
   align-items: center;
-
-  /* filter: blur(8px); */
   backdrop-filter: blur(5px);
   background: rgba(25, 26, 25, 0.5);
   bottom: 0;

@@ -53,24 +53,3 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-/* footer {
-  align-items: center;
-  bottom: 0;
-  display: flex;
-  flex: 1 1;
-  height: 50px;
-  justify-content: center;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-} */
-
-footer button {
-  align-items: center;
-  background-color: white;
-  border: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 5px;
-}
