@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import imageProfile from '../images/scientist.svg';
 import searchIcon from '../images/searchNewIcon.svg';
 import '../styles/Header.css';
+import SearchBar from './SearchBar';
 
 const Header = ({ title, hasSearch }) => {
   const [isSearching, setIsSearching] = useState(false);
@@ -43,9 +44,9 @@ const Header = ({ title, hasSearch }) => {
           </button>
         )
       }
-      {/* {
+      {
         isSearching && <SearchBar />
-      } */}
+      }
     </div>
   );
 };

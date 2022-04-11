@@ -6,7 +6,8 @@
   height: 19px;
   line-height: 19px;
   margin: auto;
-  width: 48px;
+  text-align: center;
+  width: 250px;
 }
 
 .header {
@@ -37,13 +38,20 @@
  */
 
 .search {
-  align-self: center;
+  align-items: center;
   background: #1e5128;
   border: none;
-  color: seagreen;
-  font-size: 17px;
-  font-style: italic;
+
+  /* display: flex; */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  height: 45px;
+
+  /* justify-content: center; */
+  line-height: 19px;
   padding: 10px;
-  padding-left: 12px;
-  padding-right: 14px;
+  position: absolute;
+  right: 5px;
+  top: 1px;
 }

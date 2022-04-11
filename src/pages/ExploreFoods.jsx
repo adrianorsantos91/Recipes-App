@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Footer, Header } from '../components';
 import { fetchRandomFoodsThunk } from '../redux/actions';
+import '../App.css';
+import '../styles/ExploreFoods.css';
 
 export default function ExploreFoods() {
   const dispatch = useDispatch();
@@ -26,32 +27,40 @@ export default function ExploreFoods() {
   }, [surpriseMe]);
 
   return (
-    <div>
+    <div className="background">
       <Header title="Explore Foods" />
-      <Link to="/explore/foods/ingredients">
-        <Button
-          variant="outline-dark"
-          data-testid="explore-by-ingredient"
-        >
-          By Ingredient
-        </Button>
-      </Link>
-      <Link to="/explore/foods/nationalities">
-        <Button
-          variant="outline-dark"
-          data-testid="explore-by-nationality"
-        >
-          By Nationality
-        </Button>
-      </Link>
-      <Link to={ `/foods/${id}` }>
-        <Button
-          variant="outline-dark"
-          data-testid="explore-surprise"
-        >
-          Surprise me!
-        </Button>
-      </Link>
+      <div className="container-explore-foods">
+        <Link to="/explore/foods/ingredients">
+          <button
+            type="button"
+            variant="outline-dark"
+            data-testid="explore-by-ingredient"
+            className="button"
+          >
+            By Ingredient
+          </button>
+        </Link>
+        <Link to="/explore/foods/nationalities">
+          <button
+            type="button"
+            variant="outline-dark"
+            data-testid="explore-by-nationality"
+            className="button"
+          >
+            By Nationality
+          </button>
+        </Link>
+        <Link to={ `/foods/${id}` }>
+          <button
+            type="button"
+            variant="outline-dark"
+            data-testid="explore-surprise"
+            className="button"
+          >
+            Surprise me!
+          </button>
+        </Link>
+      </div>
       <Footer />
     </div>
   );
