@@ -1,199 +1,199 @@
 .container-grid {
   background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
   height: 95em;
-  width: 360px;
   right: 0px;
+  width: 360px;
 }
 
 .picture-food {
+  height: 250px;
   position: absolute;
   width: 360px;
-  height: 250px;
 }
 
 .food-title {
-  position: absolute;
-  width: 200px;
+  color: #F2F2F2;
+  font-family: 'Work Sans';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700px;
   height: 23px;
   left: 24px;
-  top: 264px;
-  font-family: 'Work Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 23px;
   letter-spacing: -0.02em;
-  color: #F2F2F2;
+  line-height: 23px;
+  position: absolute;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 264px;
+  width: 200px;
 }
 
 .category-title {
-  position: absolute;
-  width: 171px;
+  color: #D8E9A8;
+  font-family: 'Inter';
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600px;
   height: 26px;
   left: 24px;
-  top: 305px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 15px;
   line-height: 18px;
-  color: #D8E9A8;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 305px;
+  position: absolute;
+  width: 171px;
 }
 
 .ingredients-title {
-  position: absolute;
-  width: 110px;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600px;
   height: 24px;
   left: 24px;
-  top: 343px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
   line-height: 24px;
-  color: #FFFFFF;
+  position: absolute;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 343px;
+  width: 110px;
 }
 
 .container-ingredients {
-  position: absolute;
-  width: 312px;
+  background: rgba(25, 26, 25, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 206px;
   left: 24px;
+  position: absolute;
   top: 380px;
-  background: rgba(25, 26, 25, 0.5);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  width: 312px;
 }
 
 .ingredients-list {
-  position: absolute;
-  width: 312px;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600px;
   height: 194px;
   left: 38px;
-  top: 10px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 10px;
   line-height: 12px;
-  color: #FFFFFF;
+  position: absolute;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 10px;
+  width: 312px;
 }
 
 .instructions-title {
-  position: absolute;
-  width: 117px;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600px;
   height: 24px;
   left: 24px;
-  top: 605px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
   line-height: 24px;
-  color: #FFFFFF;
+  position: absolute;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 605px;
+  width: 117px;
 }
 
 .container-instructions {
-  position: absolute;
-  width: 312px;
+  background: rgba(25, 26, 25, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 249px;
   left: 24px;
+  position: absolute;
   top: 642px;
-  background: rgba(25, 26, 25, 0.5);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  width: 312px;
 }
 
 .instructions {
-  position: absolute;
-  width: 296px;
-  height: 216px;
-  right: 8px;
-  top: 22px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 9.5px;
-  line-height: 12px;
-  display: flex;
   align-items: center;
-  text-align: center;
   color: #FFFFFF;
+  display: flex;
+  font-family: 'Inter';
+  font-size: 9.5px;
+  font-style: normal;
+  font-weight: 600px;
+  height: 216px;
+  line-height: 12px;
+  position: absolute;
+  right: 8px;
+  text-align: center;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 22px;
+  width: 296px;
 }
 
 .video-title {
-  position: absolute;
-  width: 57px;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600px;
   height: 24px;
   left: 24px;
-  top: 904px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
   line-height: 24px;
-  color: #FFFFFF;
+  position: absolute;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 904px;
+  width: 57px;
 }
 
 .container-video {
-  position: absolute;
-  width: 312px;
+  background: rgba(25, 26, 25, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 153px;
   left: 24px;
+  position: absolute;
   top: 941px;
-  background: rgba(25, 26, 25, 0.5);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  width: 312px;
 }
 
 .frame-video {
-  position: absolute;
-  left: 5px;
-  width: 300px;
-  height: 143px;
-  top: 6px;
   border-radius: 10px;
+  height: 143px;
+  left: 5px;
+  position: absolute;
+  top: 6px;
+  width: 300px;
 }
 
 .recommendation-title {
-  position: absolute;
-  width: 146px;
+  color: #FFFFFF;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600px;
   height: 24px;
   left: 31px;
-  top: 1107px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
   line-height: 24px;
-  color: #FFFFFF;
+  position: absolute;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 1107px;
+  width: 146px;
 }
 
 .grid-item {
-  width: 150px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   height: 138.14px;
   left: 19px;
   top: 1144px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 10px;
+  width: 150px;
 }
 
 .items-wrapper {
-  position: absolute;
-  top: 320vw;
-  left: 10px;
   display: flex;
   flex-wrap: nowrap;
+  left: 10px;
   margin-bottom: 80px;
+  position: absolute;
   overflow-x: auto;
+  top: 320vw;
 }
 
 .items {
@@ -202,15 +202,15 @@
 }
 
 .items ::-webkit-scrollbar {
-  width: 0;
   display: none;
+  width: 0;
 }
 
 .card-item {
   flex: 0 0 auto;
-  width: 150px;
   height: 200px;
-  margin: 10px; 
+  margin: 10px;
+  width: 150px;
 }
 
 .container-recommendation {
@@ -218,45 +218,45 @@
 }
 
 .drink-type {
-  width: 100px;
+  color: #D8E9A8;
+  font-family: 'Inter';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400px;
   height: 10px;
   left: 31px;
-  margin-top: 5px;
-  top: 1299px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
   line-height: 15px;
-  color: #D8E9A8;
+  margin-top: 5px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 1299px;
+  width: 100px;
 }
 
 .drink-title {
-  width: 71px;
+  color: #F2F2F2;
+  font-family: 'Inter';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700px;
   height: 26px;
   left: 31px;
-  top: 1306px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
   line-height: 24px;
-  color: #F2F2F2;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  top: 1306px;
+  width: 71px;
 }
 
 .btn-start-recipe {
+  background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
+  border: 1px solid #191A19;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
   position: absolute;
-  width: 339px;
   height: 76px;
   left: 11px;
   top: 1420px;
-  background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
-  border: 1px solid #191A19;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
+  width: 339px;
 }
 
 .start-recipe {
