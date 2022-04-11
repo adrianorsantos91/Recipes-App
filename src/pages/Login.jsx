@@ -29,12 +29,14 @@ function Login() {
     <div className="login">
       <Form>
         <div className="container">
-          <img
-            src={ Logo }
-            alt="Cap'n Cook"
-            className="logo"
-          />
-          <div className="container">
+          <div className="container-logo">
+            <img
+              src={ Logo }
+              alt="Cap'n Cook"
+              className="logo"
+            />
+          </div>
+          <div className="container-input">
             <input
               data-testid="email-input"
               type="email"
@@ -42,7 +44,6 @@ function Login() {
               onChange={ (event) => setEmail(event.target.value) }
               value={ email }
             />
-
             <input
               data-testid="password-input"
               type="password"
@@ -59,12 +60,13 @@ function Login() {
               disabled={ (
                 password.length <= minPasswordLength) || !(validateEmail(email)) }
               onClick={ () => handleClick() }
-
             >
               Sign in
             </button>
           </div>
-          <p className="footer">© 2022</p>
+          <div className="container-footer">
+            <p className="footer">© 2022</p>
+          </div>
         </div>
       </Form>
     </div>

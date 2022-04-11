@@ -19,8 +19,6 @@
   border-radius: 20px;
   display: flex;
   height: 150px;
-  margin-top: 40px;
-  top: 56px;
   width: 150px;
 }
 
@@ -30,9 +28,36 @@
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  height: 100vh;
   justify-content: center;
   width: 100%;
+}
+
+.container-logo {
+  align-items: center;
+  color: #464646;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-family: sans-serif;
+  justify-content: center;
+  width: 100%;
+}
+
+.container-input {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.25;
+  font-family: sans-serif;
+  height: 150px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.container-footer {
+  display: flex;
+  flex-grow: 0;
+  height: 215px;
 }
 
 input {
@@ -63,9 +88,9 @@ input {
 }
 
 .footer {
-
-  /* identical to box height */
+  align-self: flex-end;
   color: #f2f2f2;
+  display: flex;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
