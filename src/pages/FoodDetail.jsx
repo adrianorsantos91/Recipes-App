@@ -67,37 +67,36 @@ const FoodDetail = () => {
     setIsFavorite(!isFavorite);
   };
 
-  // const NUM3 = 3; const NUM4 = 4; const NUM5 = 5; const NUM6 = 6; const NUM7 = 7;
+  const NUM3 = 3; const NUM4 = 4; const NUM5 = 5; const NUM6 = 6; const NUM7 = 7;
   const MAX_DRINKS = 6;
 
   return (
-    details.map(({ strMealThumb, strCategory, strMeal, strYoutube,strInstructions,
-      strMeasure1,
-    }, index) => (
+    details.map(({ strMealThumb, strCategory, strMeal, strYoutube, strInstructions,
+      strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5, strMeasure6,
+      strMeasure7, strMeasure8, strIngredient1, strIngredient2, strIngredient3,
+      strIngredient4, strIngredient5, strIngredient6, strIngredient7, strIngredient8,
+    }) => (
       <div
         key={ strMeal }
-        className="relative bg-gradient-to-b from-green-900 via-gray-800 to-gray-900"
-        style={ { width: 360, height: 1483 } }
+        className="container-grid"
       >
-        <h1>Food Detail</h1>
-        <div className="food-thumb">
+        <div>
           <img
             src={ strMealThumb }
             alt={ `${strMeal} food` }
             data-testid="recipe-photo"
-            className="w-96 h-64"
+            className="picture-food"
           />
         </div>
         <p
           data-testid="recipe-title"
-          className="text-3xl font-semibold text-gray-100"
+          className="food-title"
         >
           { strMeal }
         </p>
         <p
           data-testid="recipe-category"
-          className="w-44 h-6 absolute text-base font-semibold text-yellow-200"
-          style={ { left: 24, top: 305 } }
+          className="category-title"
         >
           { strCategory }
         </p>
@@ -123,42 +122,84 @@ const FoodDetail = () => {
         </button>
         { isCopied && <span>Link copied!</span> }
         <section>
-          <h3 className="text-xl font-semibold text-white">Ingredients</h3>
-          <ul
-            id="ingredients"
-          >
-            <li
-              data-testid={ `${index}-ingredient-name-and-measure` }
-              className="w-80 h-48 text-xs font-semibold text-black"
-            >
-              { concat(`${strIngredient}${index}`) }
-            </li>
-            <li
-              data-testid={ `${index}-ingredient-name-and-measure` }
-              className="w-80 h-48 text-xs font-semibold text-black"
-            >
-              { strMeasure1 }
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>Intruções</h3>
-          <p id="ingredients" data-testid="instructions">{ strInstructions }</p>
-          <h3>Video</h3>
-          <div>
-            <iframe
-              id="preview-frame"
-              src={ `https://www.youtube.com/embed/${strYoutube.split('=')[1]}` } // Necessário combinado o link com embed e o código da URL fornecida.
-              name="preview-frame"
-              frameBorder="0"
-              noresize="noresize"
-              title="preview-frame"
-              data-testid="video"
-            />
+          <h3 className="ingredients-title">Ingredients</h3>
+          <div className="container-ingredients ">
+            <ul className="ingredients-list">
+              <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strIngredient1 }
+              </li>
+              <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strMeasure1 }
+              </li>
+              <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strIngredient2 }
+              </li>
+              <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strMeasure2 }
+              </li>
+              <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strIngredient3 }
+              </li>
+              <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strMeasure3 }
+              </li>
+              <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strIngredient4 }
+              </li>
+              <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strMeasure4 }
+              </li>
+              <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strIngredient5 }
+              </li>
+              <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strMeasure5 }
+              </li>
+              <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+                { strIngredient6 }
+              </li>
+              <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+                { strMeasure6 }
+              </li>
+              <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+                { strIngredient7 }
+              </li>
+              <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+                { strMeasure7 }
+              </li>
+              <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+                { strIngredient8 }
+              </li>
+              <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+                { strMeasure8 }
+              </li>
+            </ul>
           </div>
         </section>
-        <section>
-          <h3>Recomendações</h3>
+        <h3 className="instructions-title">Intruções</h3>
+        <div className="container-instructions">
+          <p
+            className="instructions"
+            data-testid="instructions"
+          >
+            { strInstructions }
+          </p>
+        </div>
+        <h3 className="video-title">Video</h3>
+        <div className="container-video">
+          <iframe
+            id="preview-frame"
+            src={ `https://www.youtube.com/embed/${strYoutube.split('=')[1]}` } // Necessário combinado o link com embed e o código da URL fornecida.
+            name="preview-frame"
+            frameBorder="0"
+            noresize="noresize"
+            title="preview-frame"
+            data-testid="video"
+            className="frame-video"
+          />
+        </div>
+        <h3 className="recommendation-title">Recomendações</h3>
+        <section className="container-recommendation">
           <div className="scrolling-wrapper-flexbox">
             { drinksList.filter((_, index) => index < MAX_DRINKS)
               .map(({ strDrinkThumb, strAlcoholic, strDrink }, index) => (
@@ -167,9 +208,18 @@ const FoodDetail = () => {
                   className="card"
                   data-testid={ `${index}-recomendation-card` }
                 >
-                  <img src={ strDrinkThumb } alt={ `drink ${strDrink}` } />
-                  <p>{ strAlcoholic }</p>
-                  <h3 data-testid={ `${index}-recomendation-title` }>{ strDrink }</h3>
+                  <img
+                    className="grid-item"
+                    src={ strDrinkThumb }
+                    alt={ `drink ${strDrink}` }
+                  />
+                  <p className="drink-type">{ strAlcoholic }</p>
+                  <h3
+                    className="drink-title"
+                    data-testid={ `${index}-recomendation-title` }
+                  >
+                    { strDrink }
+                  </h3>
                 </div>
               ))}
           </div>
@@ -178,7 +228,7 @@ const FoodDetail = () => {
           <button
             type="button"
             data-testid="start-recipe-btn"
-            className="start-recipe"
+            className="btn-start-recipe"
             hidden={ isFinished }
             onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
           >
