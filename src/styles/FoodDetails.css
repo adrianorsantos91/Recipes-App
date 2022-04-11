@@ -1,16 +1,8 @@
-.food-thumb > img {
-  align-items: center;
-  display: flex;
-  /* height: 200px; */
-  justify-content: center;
-  padding: 10px;
-  /* width: 280px; */
-}
-
 .container-grid {
   background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
-  height: 100em;
-  /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+  height: 95em;
+  width: 360px;
+  right: 0px;
 }
 
 .picture-food {
@@ -186,7 +178,6 @@
 }
 
 .grid-item {
-  position: absolute;
   width: 150px;
   height: 138.14px;
   left: 19px;
@@ -195,40 +186,43 @@
   border-radius: 10px;
 }
 
-/* .scrolling-wrapper-flexbox {
-  border: 1px solid #ddd;
+.items-wrapper {
+  position: absolute;
+  top: 320vw;
+  left: 10px;
   display: flex;
   flex-wrap: nowrap;
   margin-bottom: 80px;
-  max-height: 80px;
-  overflow-x: 10px;
-} */
+  overflow-x: auto;
+}
 
-/* .scrolling-wrapper-flexbox ::-webkit-scrollbar {
+.items {
+  display: flex;
+  width: 340px;
+}
+
+.items ::-webkit-scrollbar {
   width: 0;
-} */
+  display: none;
+}
 
-/* .scrolling-wrapper-flexbox .card {
-  background-color: #ddd;
+.card-item {
   flex: 0 0 auto;
+  width: 150px;
   height: 200px;
-  line-height: 110px;
-  margin-right: 2px;
-  text-align: center;
-  width: 80px;
-} */
+  margin: 10px; 
+}
 
 .container-recommendation {
-  position: relative;
   top: 1150px;
 }
 
 .drink-type {
-  position: absolute;
-  width: 71px;
-  height: 26px;
+  width: 100px;
+  height: 10px;
   left: 31px;
-  top: 1293px;
+  margin-top: 5px;
+  top: 1299px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -238,8 +232,7 @@
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.drink-title { 
-  position: absolute;
+.drink-title {
   width: 71px;
   height: 26px;
   left: 31px;
@@ -258,7 +251,7 @@
   width: 339px;
   height: 76px;
   left: 11px;
-  top: 1383px;
+  top: 1420px;
   background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
   border: 1px solid #191A19;
   box-sizing: border-box;

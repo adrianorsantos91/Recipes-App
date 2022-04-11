@@ -1,8 +1,8 @@
-.scrolling-wrapper-flexbox {
+/* .scrolling-wrapper-flexbox {
   border: 1px solid #ddd;
   display: flex;
   flex-wrap: nowrap;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
   max-height: 160px;
   overflow-x: auto;
 }
@@ -19,7 +19,7 @@
   margin-right: 2px;
   text-align: center;
   width: 175px;
-}
+} */
 
 .drink-thumb > img {
   align-items: center;

@@ -199,13 +199,13 @@ const FoodDetail = () => {
           />
         </div>
         <h3 className="recommendation-title">Recomendações</h3>
-        <section className="container-recommendation">
-          <div className="scrolling-wrapper-flexbox">
+        <div className="items-wrapper">
+          <div className="items">
             { drinksList.filter((_, index) => index < MAX_DRINKS)
               .map(({ strDrinkThumb, strAlcoholic, strDrink }, index) => (
                 <div
                   key={ strDrink }
-                  className="card"
+                  className="card-item"
                   data-testid={ `${index}-recomendation-card` }
                 >
                   <img
@@ -223,7 +223,7 @@ const FoodDetail = () => {
                 </div>
               ))}
           </div>
-        </section>
+        </div>
         <section className="section-button-start">
           <button
             type="button"
