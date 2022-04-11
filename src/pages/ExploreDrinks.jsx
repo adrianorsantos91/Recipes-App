@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Footer, Header } from '../components';
 import { fetchRandomDrinksThunk } from '../redux/actions';
+import '../App.css';
+import '../styles/Explore.css';
 
 export default function ExploreDrinks() {
   const dispatch = useDispatch();
@@ -26,24 +27,30 @@ export default function ExploreDrinks() {
   }, [surpriseMe]);
 
   return (
-    <div>
+    <div className="background">
       <Header title="Explore Drinks" />
-      <Link to="/explore/drinks/ingredients">
-        <Button
-          variant="outline-dark"
-          data-testid="explore-by-ingredient"
-        >
-          By Ingredient
-        </Button>
-      </Link>
-      <Link to={ `/drinks/${id}` }>
-        <Button
-          variant="outline-dark"
-          data-testid="explore-surprise"
-        >
-          Surprise me!
-        </Button>
-      </Link>
+      <div className="container-explore">
+        <Link to="/explore/drinks/ingredients">
+          <button
+            type="button"
+            variant="outline-dark"
+            data-testid="explore-by-ingredient"
+            className="button"
+          >
+            By Ingredient
+          </button>
+        </Link>
+        <Link to={ `/drinks/${id}` }>
+          <button
+            type="button"
+            variant="outline-dark"
+            data-testid="explore-surprise"
+            className="button"
+          >
+            Surprise me!
+          </button>
+        </Link>
+      </div>
       <Footer />
     </div>
   );
