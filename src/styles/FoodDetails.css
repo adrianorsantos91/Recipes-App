@@ -1,4 +1,4 @@
-@media screen and (min-width : 0px), (max-width : 360px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media only screen and (min-width : 0px), (max-width : 360px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
   .container-grid {
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
@@ -276,7 +276,7 @@
     font-style: normal;
     font-weight: 700px;
     height: 20px;
-    left: 31px;
+    left: 0px;
     line-height: 24px;
     margin-left: 10px;
     margin-top: 0px;
@@ -286,14 +286,20 @@
   }
   
   .btn-start-recipe {
+    color: #F2F2F2;
     background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
     border: 1px solid #191A19;
     border-radius: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    position: absolute;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
     height: 76px;
     left: 11px;
+    line-height: 30px;
+    position: absolute;
     top: 1410px;
     width: 339px;
   }
@@ -571,7 +577,7 @@
     font-style: normal;
     font-weight: 400px;
     height: 10px;
-    left: 31px;
+    left: 0px;
     line-height: 15px;
     margin-left: 10px;
     margin-top: 5px;
@@ -601,9 +607,15 @@
     border-radius: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    position: absolute;
+    color: #F2F2F2;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
     height: 76px;
     left: 11px;
+    line-height: 30px;
+    position: absolute;
     top: 1410px;
     width: 339px;
   }
@@ -897,7 +909,7 @@
     font-style: normal;
     font-weight: 700px;
     height: 20px;
-    left: 31px;
+    left: 0px;
     line-height: 24px;
     margin-left: 10px;
     margin-top: 0px;
@@ -911,9 +923,15 @@
     border-radius: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    position: absolute;
+    color: #F2F2F2;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
     height: 76px;
     left: 11px;
+    line-height: 30px;
+    position: absolute;
     top: 1410px;
     width: 339px;
   }
@@ -1222,9 +1240,15 @@
     border-radius: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    position: absolute;
+    color: #F2F2F2;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
     height: 76px;
     left: 11px;
+    line-height: 30px;
+    position: absolute;
     top: 1410px;
     width: 339px;
   }
@@ -1533,9 +1557,15 @@
     border-radius: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    position: absolute;
+    color: #F2F2F2;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
     height: 76px;
     left: 11px;
+    line-height: 30px;
+    position: absolute;
     top: 1410px;
     width: 339px;
   }
@@ -1830,7 +1860,7 @@
     font-style: normal;
     font-weight: 700px;
     height: 20px;
-    left: 31px;
+    left: 0px;
     line-height: 24px;
     margin-left: 10px;
     margin-top: 0px;
@@ -1844,9 +1874,15 @@
     border-radius: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    position: absolute;
+    color: #F2F2F2;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
     height: 76px;
     left: 11px;
+    line-height: 30px;
+    position: absolute;
     top: 1410px;
     width: 339px;
   }
