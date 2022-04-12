@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFoodByIdThunk, fetchDrinkRecommendationThunk } from '../redux/actions';
 import { copyLinkRecipe } from '../helpers';
 import newShareIcon from '../images/newShareIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import redHeartIcon from '../images/redHeartIcon.svg';
 import newWhiteHeartIcon from '../images/newWhiteHeartIcon.svg';
 import '../styles/FoodDetails.css';
 
@@ -88,12 +89,12 @@ const FoodDetail = () => {
             className="picture-food"
           />
         </div>
-        <p
+        <h2
           data-testid="recipe-title"
           className="food-title"
         >
           { strMeal }
-        </p>
+        </h2>
         <p
           data-testid="recipe-category"
           className="category-title"
@@ -103,26 +104,26 @@ const FoodDetail = () => {
         <button
           type="button"
           onClick={ () => copyLinkRecipe(setIsCopied) }
-          className="share-btn"
         >
           <img
             src={ newShareIcon }
             alt="share icon"
             data-testid="share-btn"
+            className="share-btn"
           />
         </button>
         <button
           type="button"
           onClick={ () => saveFavoriteInLocalStorageOnClick() }
-          className="favorite-btn"
         >
           <img
             data-testid="favorite-btn"
-            src={ isFavorite ? blackHeartIcon : newWhiteHeartIcon }
+            src={ isFavorite ? redHeartIcon : newWhiteHeartIcon }
             alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
+            className="favorite-btn"
           />
         </button>
-        { isCopied && <span>Link copied!</span> }
+        { isCopied && <span className="link-copied">Link copied!</span> }
         <section>
           <h3 className="ingredients-title">Ingredients</h3>
           <div className="container-ingredients ">
@@ -157,33 +158,36 @@ const FoodDetail = () => {
               <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
                 { strMeasure5 }
               </li>
-              <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-                { strIngredient6 }
-              </li>
-              <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-                { strMeasure6 }
-              </li>
-              <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-                { strIngredient7 }
-              </li>
-              <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-                { strMeasure7 }
-              </li>
-              <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-                { strIngredient8 }
-              </li>
-              <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-                { strMeasure8 }
-              </li>
+              { strIngredient6
+                && <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+                  { strIngredient6 }
+                </li>}
+              { strMeasure6
+                && <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+                  { strMeasure6 }
+                </li>}
+              { strIngredient7
+                && <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+                  { strIngredient7 }
+                </li>}
+              { strMeasure7
+                && <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+                  { strMeasure7 }
+                </li>}
+              {strIngredient8
+                && <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+                  { strIngredient8 }
+                </li>}
+              { strMeasure8
+                && <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+                  { strMeasure8 }
+                </li>}
             </ul>
           </div>
         </section>
         <h3 className="instructions-title">Intruções</h3>
         <div className="container-instructions">
-          <p
-            className="instructions"
-            data-testid="instructions"
-          >
+          <p className="instructions" data-testid="instructions">
             { strInstructions }
           </p>
         </div>
@@ -228,19 +232,18 @@ const FoodDetail = () => {
               ))}
           </div>
         </div>
-        <section className="section-button-start">
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="btn-start-recipe"
-            hidden={ isFinished }
-            onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
-          >
-            { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
-          </button>
-        </section>
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="btn-start-recipe"
+          hidden={ isFinished }
+          onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
+        >
+          { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
+        </button>
       </div>
     ))
   );
 };
+
 export default FoodDetail;
