@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
@@ -89,14 +90,14 @@ const DrinkDetail = () => {
     }) => (
       <div
         key={ strGlass }
-        className="container-grid-drink"
+        className="drink-container-grid"
       >
         <div>
           <img
             src={ strDrinkThumb }
             alt={ `${strDrink} drink` }
             data-testid="recipe-photo"
-            className="picture-drink"
+            className="drink-picture"
           />
         </div>
         <h2
@@ -107,7 +108,7 @@ const DrinkDetail = () => {
         </h2>
         <p
           data-testid="recipe-category"
-          className="category-title-drink"
+          className="drink-category-title"
         >
           { strAlcoholic }
         </p>
@@ -119,7 +120,7 @@ const DrinkDetail = () => {
             src={ newShareIcon }
             alt="share icon"
             data-testid="share-btn"
-            className="share-btn-drink"
+            className="drink-share-btn"
           />
         </button>
         <button
@@ -130,63 +131,85 @@ const DrinkDetail = () => {
             data-testid="favorite-btn"
             src={ isFavorite ? redHeartIcon : newWhiteHeartIcon }
             alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
-            className="favorite-btn-drink"
+            className="drink-favorite-btn"
           />
         </button>
         {
-          isCopied && <span className="link-copied-drink">Link copied!</span>
+          isCopied && <span className="drink-link-copied">Link copiado!</span>
         }
-        <h3 className="ingredients-title-drink">Ingredients</h3>
-        <div className="container-ingredients-drink ">
-          <ul className="ingredients-list-drink">
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strIngredient1 }</li>
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strMeasure1 }</li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strIngredient2 }</li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strMeasure2 }</li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strIngredient3 }</li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strMeasure3 }</li>
-            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-              { strIngredient4 }
-            </li>
-            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-              { strMeasure4 }
-            </li>
-            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-              { strIngredient5 }
-            </li>
-            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-              { strMeasure5 }
-            </li>
+        <h3 className="drink-ingredients-title">Ingredientes</h3>
+        <div className="drink-container-ingredients">
+          <ul className="drink-ingredients-list">
+            { strIngredient1
+              && <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strIngredient1 }
+              </li>}
+            { strMeasure1
+              && <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strMeasure1 }
+              </li>}
+            { strIngredient2
+              && <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strIngredient2 }
+              </li>}
+            { strMeasure2
+              && <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strMeasure2 }
+              </li>}
+            { strIngredient3
+              && <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strIngredient3 }
+              </li>}
+            { strIngredient4
+              && <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strMeasure3 }
+              </li>}
+            { strIngredient4
+              && <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strIngredient4 }
+              </li>}
+            { strMeasure4
+              && <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strMeasure4 }
+              </li> }
+            { strMeasure5
+              && <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strIngredient5 }
+              </li>}
+            { strMeasure5
+              && <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strMeasure5 }
+              </li>}
           </ul>
         </div>
-        <h3 className="instructions-title-drink">Intruções</h3>
-        <div className="container-instructions-drink">
+        <h3 className="drink-instructions-title">Instruções</h3>
+        <div className="drink-container-instructions">
           <p
-            className="instructions-drink"
+            className="drink-instructions"
             data-testid="instructions"
           >
             { strInstructions }
           </p>
         </div>
-        <h3 className="recommendation-title-drink">Recomendações</h3>
-        <div className="items-wrapper-drink">
-          <div className="items-drink">
+        <h3 className="drink-recommendation-title">Recomendações</h3>
+        <div className="drink-items-wrapper">
+          <div className="drink-items">
             { foodsList.filter((_, index) => index < MAX_FOODS)
               .map(({ idMeal, strMealThumb, strCategory, strMeal }, index) => (
                 <div
                   key={ strMeal }
-                  className="card-item-drink"
+                  className="drink-card-item"
                   data-testid={ `${index}-recomendation-card` }
                 >
                   <Link to={ `/foods/${idMeal}` }>
                     <img
-                      className="grid-item-drink"
+                      className="drink-grid-item"
                       src={ strMealThumb }
                       alt={ `food ${strMeal}` }
                     />
                     <p className="food-type">{ strCategory }</p>
                     <h3
-                      className="food-title"
+                      id="food-title"
                       data-testid={ `${index}-recomendation-title` }
                     >
                       { strMeal }
@@ -199,7 +222,7 @@ const DrinkDetail = () => {
         <button
           type="button"
           data-testid="start-recipe-btn"
-          className="btn-start-recipe-drink"
+          className="drink-btn-start-recipe"
           hidden={ isFinished }
           onClick={ () => history.push(`/drinks/${ID_DRINK}/in-progress`) }
         >

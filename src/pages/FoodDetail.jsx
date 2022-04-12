@@ -123,9 +123,9 @@ const FoodDetail = () => {
             className="favorite-btn"
           />
         </button>
-        { isCopied && <span className="link-copied">Link copied!</span> }
+        { isCopied && <span className="link-copied">Link copiado!</span> }
         <section>
-          <h3 className="ingredients-title">Ingredients</h3>
+          <h3 className="ingredients-title">Ingredientes</h3>
           <div className="container-ingredients ">
             <ul className="ingredients-list">
               <li data-testid={ `${0}-ingredient-name-and-measure` }>
@@ -185,7 +185,7 @@ const FoodDetail = () => {
             </ul>
           </div>
         </section>
-        <h3 className="instructions-title">Intruções</h3>
+        <h3 className="instructions-title">Instruções</h3>
         <div className="container-instructions">
           <p className="instructions" data-testid="instructions">
             { strInstructions }
@@ -209,12 +209,11 @@ const FoodDetail = () => {
           <div className="items">
             { drinksList.filter((_, index) => index < MAX_DRINKS)
               .map(({ idDrink, strDrinkThumb, strAlcoholic, strDrink }, index) => (
-                <div
-                  key={ strDrink }
-                  className="card-item"
-                  data-testid={ `${index}-recomendation-card` }
-                >
-                  <Link to={ `/drinks/${idDrink}` }>
+                <Link key={ strDrink } to={ `/drinks/${idDrink}` }>
+                  <div
+                    className="card-item"
+                    data-testid={ `${index}-recomendation-card` }
+                  >
                     <img
                       className="grid-item"
                       src={ strDrinkThumb }
@@ -222,13 +221,13 @@ const FoodDetail = () => {
                     />
                     <p className="drink-type">{ strAlcoholic }</p>
                     <h3
-                      className="drink-title"
+                      id="drink-title"
                       data-testid={ `${index}-recomendation-title` }
                     >
                       { strDrink }
                     </h3>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               ))}
           </div>
         </div>
