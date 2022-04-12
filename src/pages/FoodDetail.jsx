@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom/';
+import { Link, useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFoodByIdThunk, fetchDrinkRecommendationThunk } from '../redux/actions';
 import { copyLinkRecipe } from '../helpers';
-import shareIcon from '../images/shareIcon.svg';
+import newShareIcon from '../images/newShareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import newWhiteHeartIcon from '../images/newWhiteHeartIcon.svg';
 import '../styles/FoodDetails.css';
 
 const FoodDetail = () => {
@@ -103,9 +103,10 @@ const FoodDetail = () => {
         <button
           type="button"
           onClick={ () => copyLinkRecipe(setIsCopied) }
+          className="share-btn"
         >
           <img
-            src={ shareIcon }
+            src={ newShareIcon }
             alt="share icon"
             data-testid="share-btn"
           />
@@ -113,10 +114,11 @@ const FoodDetail = () => {
         <button
           type="button"
           onClick={ () => saveFavoriteInLocalStorageOnClick() }
+          className="favorite-btn"
         >
           <img
             data-testid="favorite-btn"
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            src={ isFavorite ? blackHeartIcon : newWhiteHeartIcon }
             alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
           />
         </button>
@@ -202,24 +204,26 @@ const FoodDetail = () => {
         <div className="items-wrapper">
           <div className="items">
             { drinksList.filter((_, index) => index < MAX_DRINKS)
-              .map(({ strDrinkThumb, strAlcoholic, strDrink }, index) => (
+              .map(({ idDrink, strDrinkThumb, strAlcoholic, strDrink }, index) => (
                 <div
                   key={ strDrink }
                   className="card-item"
                   data-testid={ `${index}-recomendation-card` }
                 >
-                  <img
-                    className="grid-item"
-                    src={ strDrinkThumb }
-                    alt={ `drink ${strDrink}` }
-                  />
-                  <p className="drink-type">{ strAlcoholic }</p>
-                  <h3
-                    className="drink-title"
-                    data-testid={ `${index}-recomendation-title` }
-                  >
-                    { strDrink }
-                  </h3>
+                  <Link to={ `/drinks/${idDrink}` }>
+                    <img
+                      className="grid-item"
+                      src={ strDrinkThumb }
+                      alt={ `drink ${strDrink}` }
+                    />
+                    <p className="drink-type">{ strAlcoholic }</p>
+                    <h3
+                      className="drink-title"
+                      data-testid={ `${index}-recomendation-title` }
+                    >
+                      { strDrink }
+                    </h3>
+                  </Link>
                 </div>
               ))}
           </div>
