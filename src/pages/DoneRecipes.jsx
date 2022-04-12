@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Header } from '../components';
 import { copyLinkRecipe } from '../helpers';
 import shareIcon from '../images/shareIcon.svg';
+import '../App.css';
+import '../styles/DoneRecipes.css';
 
 const DoneRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -29,13 +30,14 @@ const DoneRecipes = () => {
 
   return (
 
-    <>
+    <div className="background">
       <Header title="Done Recipes" />
-      <div>
+      <div className="container-done-recipes">
         <button // Botoes de Filtro
           type="button"
           data-testid="filter-by-all-btn"
           onClick={ handleFilter }
+          className="recipes"
         >
           All
         </button>
@@ -44,6 +46,7 @@ const DoneRecipes = () => {
           id="foods"
           data-testid="filter-by-food-btn"
           onClick={ handleFilter }
+          className="recipes"
         >
           Foods
         </button>
@@ -52,6 +55,7 @@ const DoneRecipes = () => {
           id="drinks"
           data-testid="filter-by-drink-btn"
           onClick={ handleFilter }
+          className="recipes"
         >
           Drinks
         </button>
@@ -69,7 +73,7 @@ const DoneRecipes = () => {
 
           return true;
         }).map((recipe, index) => (
-          <Card key={ Math.random() } style={ { width: '18rem' } }>
+          <div key={ Math.random() } className="card">
 
             <Link
               to={
@@ -78,15 +82,19 @@ const DoneRecipes = () => {
                   : `/foods/${recipe.id}`
               }
             >
-              <Card.Img
+              <img
                 data-testid={ `${index}-horizontal-image` }
+                className="card-image"
                 variant="top"
                 src={ recipe.image }
-                style={ { width: '100px' } }
+                alt="Receita"
               />
             </Link>
-            <Card.Body>
-              <p data-testid={ `${index}-horizontal-top-text` }>
+            <div className="card-body">
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+                className="category"
+              >
                 {`${recipe.nationality || recipe.alcoholicOrNot} - ${recipe.category}`}
               </p>
               <Link
@@ -96,19 +104,21 @@ const DoneRecipes = () => {
                     : `/foods/${recipe.id}`
                 }
               >
-                <Card.Title
+                <p
                   data-testid={ `${index}-horizontal-name` }
+                  className="recipe-title"
                 >
                   {recipe.name}
 
-                </Card.Title>
+                </p>
               </Link>
-              <Card.Text>
+              <p>
                 {recipe.name}
 
-              </Card.Text>
+              </p>
               <p
                 data-testid={ `${index}-horizontal-done-date` }
+                className="recipe-date"
               >
                 {`Recipe Done: ${recipe.doneDate}`}
 
@@ -126,23 +136,24 @@ const DoneRecipes = () => {
                   ))
                 }
               </ul>
-              <Button // <-----Botao Share
-                variant="primary"
+              <button // <-----Botao Share
+                type="button"
                 onClick={ () => copyLinkRecipe(setIsCopied, recipe) }
+                className="share-button"
               >
                 <img
                   data-testid={ `${index}-horizontal-share-btn` }
                   src={ shareIcon }
                   alt="button share"
                 />
-              </Button>
+              </button>
               {isCopied && <span>Link copied!</span>}
-            </Card.Body>
-          </Card>
+            </div>
+          </div>
         ))
       }
 
-    </>
+    </div>
   );
 };
 
