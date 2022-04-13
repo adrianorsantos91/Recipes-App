@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Header } from '../components';
 import { copyLinkRecipe } from '../helpers';
-import shareIcon from '../images/shareIcon.svg';
+import shareIcon from '../images/newShareIcon.svg';
 import '../App.css';
 import '../styles/DoneRecipes.css';
 
@@ -74,7 +74,6 @@ const DoneRecipes = () => {
           return true;
         }).map((recipe, index) => (
           <div key={ Math.random() } className="card">
-
             <Link
               to={
                 recipe.image.includes('thecocktaildb')
@@ -82,13 +81,15 @@ const DoneRecipes = () => {
                   : `/foods/${recipe.id}`
               }
             >
-              <img
-                data-testid={ `${index}-horizontal-image` }
-                className="card-image-done-recipes"
-                variant="top"
-                src={ recipe.image }
-                alt="Receita"
-              />
+              <div>
+                <img
+                  data-testid={ `${index}-horizontal-image` }
+                  className="card-image-done-recipes"
+                  variant="top"
+                  src={ recipe.image }
+                  alt="Receita"
+                />
+              </div>
             </Link>
             <div className="card-body">
               <p
@@ -112,42 +113,39 @@ const DoneRecipes = () => {
 
                 </p>
               </Link>
-              <p>
+              {/* <p>
                 {recipe.name}
-
-              </p>
+              </p> */}
               <p
                 data-testid={ `${index}-horizontal-done-date` }
                 className="recipe-date"
               >
                 {`Recipe Done: ${recipe.doneDate}`}
-
               </p>
-              <ul>
-                {
-                  recipe.tags.map((tag) => (
-                    <li
+              <div className="recipe-tag">
+                <ul>
+                  { recipe.tags.map((tag) => (
+                    <div
                       key={ Math.random() }
                       data-testid={ `${index}-${tag}-horizontal-tag` }
                     >
                       {tag}
-
-                    </li>
-                  ))
-                }
-              </ul>
+                    </div>
+                  ))}
+                </ul>
+              </div>
               <button // <-----Botao Share
                 type="button"
                 onClick={ () => copyLinkRecipe(setIsCopied, recipe) }
-                className="share-button"
               >
                 <img
                   data-testid={ `${index}-horizontal-share-btn` }
                   src={ shareIcon }
                   alt="button share"
+                  className="share-button"
                 />
               </button>
-              {isCopied && <span>Link copied!</span>}
+              {isCopied && <span className="link-copied-done-recipes">Link copied!</span>}
             </div>
           </div>
         ))

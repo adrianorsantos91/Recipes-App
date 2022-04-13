@@ -21,34 +21,75 @@
   color: #f2f2f2;
   display: flex;
   flex-direction: row;
+  height: 130px;
   margin-left: 16px;
   margin-right: 16px;
+  margin-bottom: 10px;
   width: auto;
 }
 
 .card-image-done-recipes {
   border-radius: 10px;
-  flex-direction: row;
-  height: 100%;
+  /* flex-direction: row; */
+  height: 126px;
+  margin-bottom: 0px;
+  width: 150px;
 }
 
 .share-button {
-  background-color: #d8e9a8;
-  border: none;
-  border-radius: 3px;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  height: 30px;
+  left: 290px;
+  position: absolute;
+  top: 5px;
+  width: 30px;
 }
 
 .recipe-date {
   color: #d8e9a8;
   font-size: 12px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400px;
   line-height: 15px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  position: absolute;
+  top: 90px;
 }
 
 .category {
   color: #d8e9a8;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 400px;
   line-height: 19px;
+  margin-left: -10px;
+  margin-bottom: 0px;
+  position: absolute;
+  top: 5px;
+  width: 120px;
+}
+
+.recipe-title {
+  margin-top: 10px;
+  position: absolute;
+  top: 100px;
+}
+
+.card-body {
+  top: 80px;
+  margin-right: 80px;
+  margin-bottom: 0px;
+}
+
+.link-copied-done-recipes {
+  color: #fff;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 50px;
+  height: 30px;
+  left: 240px;
+  position: absolute;
+  top: 40px;
+  width: 100px;
 }
