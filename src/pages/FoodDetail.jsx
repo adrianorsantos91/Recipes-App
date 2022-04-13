@@ -212,7 +212,7 @@ const FoodDetail = () => {
               .map(({ idDrink, strDrinkThumb, strAlcoholic, strDrink }, index) => (
                 <Link key={ strDrink } to={ `/drinks/${idDrink}` }>
                   <div
-                    className="card-item"
+                    className="card-item-food-detail"
                     data-testid={ `${index}-recomendation-card` }
                   >
                     <img
