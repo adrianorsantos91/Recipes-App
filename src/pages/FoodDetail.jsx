@@ -153,9 +153,10 @@ const FoodDetail = () => {
               <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
                 { strMeasure4 }
               </li>
-              <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-                { strIngredient5 }
-              </li>
+              { strMeasure5
+                && <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                  { strIngredient5 }
+                </li>}
               <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
                 { strMeasure5 }
               </li>
