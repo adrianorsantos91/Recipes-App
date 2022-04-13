@@ -9,7 +9,6 @@ import {
   FOOD_DATA,
   INGREDIENTS_FILTER,
 } from '../redux/actions';
-import '../styles/Foods.css';
 import '../styles/Explore Ingredients.css';
 import { fetchFoodsIngredients } from '../helpers/fetchFoodAPI';
 

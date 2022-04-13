@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { fetchNationalitiesThunk } from '../redux/actions';
 import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES } from '../helpers';
-import '../styles/Foods.css';
+import '../styles/ExploreNationalities.css';
 
 export default function ExploreFoodsNationalities() {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export default function ExploreFoodsNationalities() {
   }, [currentNationality]);
 
   return (
-    <div>
+    <div className="background">
       <Header title="Explore Nationalities" hasSearch />
       <select
         data-testid="explore-by-nationality-dropdown"
@@ -56,32 +56,35 @@ export default function ExploreFoodsNationalities() {
             {nationality.strArea}
           </option>))}
       </select>
-      {foodList
-      && foodList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
-        .map((food, index) => (
-          <div
-            data-testid={ `${index}-recipe-card` }
-            key={ food.strMeal }
-            className="flex-container"
-          >
-            <Card style={ { width: '18rem' } }>
-              <Card.Img
-                variant="top"
-                src={ food.strMealThumb }
-                onClick={ () => history.push(`../../foods/${food.idMeal}`) }
-                data-testid={ `${index}-card-img` }
-              />
-              <Card.Body>
-                <Card.Title
-                  data-testid={ `${index}-card-name` }
-                >
-                  {food.strMeal}
+      <div className="grid-item-explore-nationalities">
+        {foodList
+        && foodList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
+          .map((food, index) => (
+            <div
+              data-testid={ `${index}-recipe-card` }
+              key={ food.strMeal }
+              className="card-image-explore-nationalities"
+            >
+              <div style={ { width: '18rem' } }>
+                <Card.Img
+                  src={ food.strMealThumb }
+                  alt="Recipe"
+                  onClick={ () => history.push(`../../foods/${food.idMeal}`) }
+                  data-testid={ `${index}-card-img` }
+                  className="image-container-explore-nationalities"
+                />
+                <div>
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    {food.strMeal}
 
-                </Card.Title>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
 
       <Footer />
     </div>
