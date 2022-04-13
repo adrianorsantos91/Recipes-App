@@ -1,12 +1,12 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom/';
+import { Link, useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFoodByIdThunk, fetchDrinkRecommendationThunk } from '../redux/actions';
-// import { action, FOOD_DATA_DETAILS, DRINK_RECOMMENDATION } from '../redux/actions';
 import { copyLinkRecipe } from '../helpers';
-import shareIcon from '../images/shareIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import newShareIcon from '../images/newShareIcon.svg';
+import redHeartIcon from '../images/redHeartIcon.svg';
+import newWhiteHeartIcon from '../images/newWhiteHeartIcon.svg';
 import '../styles/FoodDetails.css';
 
 const FoodDetail = () => {
@@ -14,12 +14,9 @@ const FoodDetail = () => {
   const [isContinued, setContinued] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-
   const details = useSelector(({ foodDataDetails }) => foodDataDetails);
   const drinksList = useSelector(({ drinksRecommendation }) => drinksRecommendation);
-
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const dispatch = useDispatch(); const history = useHistory();
   const idFood = history.location.pathname.split('/')[2];
 
   useEffect(() => {
@@ -29,10 +26,7 @@ const FoodDetail = () => {
 
   useEffect(() => {
     const doneRecipesList = JSON.parse(localStorage.getItem('doneRecipes'));
-    if (doneRecipesList) {
-      setFinished(true);
-    }
-
+    if (doneRecipesList) setFinished(true);
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     setIsFavorite(favorite.some(({ id }) => id === idFood));
   }, []);
@@ -57,16 +51,13 @@ const FoodDetail = () => {
   const saveFavoriteInLocalStorageOnClick = () => {
     const favoriteListOld = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     const { idMeal: id, strMealThumb, strCategory, strArea, strMeal } = details[0];
-
-    const newFavoriteList = {
-      id,
+    const newFavoriteList = { id,
       type: 'food',
       nationality: strArea,
       category: strCategory,
       alcoholicOrNot: '',
       name: strMeal,
       image: strMealThumb };
-
     if (favoriteListOld.length) {
       localStorage.setItem('favoriteRecipes',
         JSON.stringify([...favoriteListOld, newFavoriteList]));
@@ -77,38 +68,48 @@ const FoodDetail = () => {
     setIsFavorite(!isFavorite);
   };
 
-  const NUM3 = 3;
-  const NUM4 = 4;
-  const NUM5 = 5;
-  const NUM6 = 6;
-  const NUM7 = 7;
+  const NUM3 = 3; const NUM4 = 4; const NUM5 = 5; const NUM6 = 6; const NUM7 = 7;
   const MAX_DRINKS = 6;
 
   return (
-    details.map(({ strMealThumb, strCategory, strIngredient1, strIngredient2,
-      strIngredient3, strIngredient4, strIngredient5, strIngredient6, strIngredient7,
-      strIngredient8, strMeal, strYoutube, strInstructions, strMeasure1, strMeasure2,
-      strMeasure3, strMeasure4, strMeasure5, strMeasure6, strMeasure7, strMeasure8,
+    details.map(({ strMealThumb, strCategory, strMeal, strYoutube, strInstructions,
+      strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5, strMeasure6,
+      strMeasure7, strMeasure8, strIngredient1, strIngredient2, strIngredient3,
+      strIngredient4, strIngredient5, strIngredient6, strIngredient7, strIngredient8,
     }) => (
-      <div key={ strMeal }>
-        <h1>Food Detail</h1>
-        <div className="food-thumb">
+      <div
+        key={ strMeal }
+        className="container-grid"
+      >
+        <div>
           <img
             src={ strMealThumb }
             alt={ `${strMeal} food` }
             data-testid="recipe-photo"
+            className="picture-food"
           />
         </div>
-        <h2 data-testid="recipe-title">{ strMeal }</h2>
-        <p data-testid="recipe-category">{ strCategory }</p>
+        <h2
+          data-testid="recipe-title"
+          className="food-title"
+        >
+          { strMeal }
+        </h2>
+        <p
+          data-testid="recipe-category"
+          className="category-title"
+        >
+          { strCategory }
+        </p>
         <button
           type="button"
           onClick={ () => copyLinkRecipe(setIsCopied) }
         >
           <img
-            src={ shareIcon }
+            src={ newShareIcon }
             alt="share icon"
             data-testid="share-btn"
+            className="share-btn"
           />
         </button>
         <button
@@ -117,113 +118,128 @@ const FoodDetail = () => {
         >
           <img
             data-testid="favorite-btn"
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            src={ isFavorite ? redHeartIcon : newWhiteHeartIcon }
             alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
+            className="favorite-btn"
           />
         </button>
-        {
-          isCopied && <span>Link copied!</span>
-        }
+        { isCopied && <span className="link-copied">Link copiado!</span> }
         <section>
-
-          <h3>Ingredients</h3>
-          <ul
-            id="ingredients"
-          >
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>
-              { strIngredient1 }
-            </li>
-            <li data-testid={ `${0}-ingredient-name-and-measure` }>
-              { strMeasure1 }
-            </li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>
-              { strIngredient2 }
-            </li>
-            <li data-testid={ `${1}-ingredient-name-and-measure` }>
-              { strMeasure2 }
-            </li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>
-              { strIngredient3 }
-            </li>
-            <li data-testid={ `${2}-ingredient-name-and-measure` }>
-              { strMeasure3 }
-            </li>
-            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-              { strIngredient4 }
-            </li>
-            <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-              { strMeasure4 }
-            </li>
-            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-              { strIngredient5 }
-            </li>
-            <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-              { strMeasure5 }
-            </li>
-            <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-              { strIngredient6 }
-            </li>
-            <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
-              { strMeasure6 }
-            </li>
-            <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-              { strIngredient7 }
-            </li>
-            <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
-              { strMeasure7 }
-            </li>
-            <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-              { strIngredient8 }
-            </li>
-            <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
-              { strMeasure8 }
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h3>Intruções</h3>
-          <p id="ingredients" data-testid="instructions">{ strInstructions }</p>
-          <h3>Video</h3>
-          <div>
-            <iframe
-              id="preview-frame"
-              src={ `https://www.youtube.com/embed/${strYoutube.split('=')[1]}` } // Necessário combinado o link com embed e o código da URL fornecida.
-              name="preview-frame"
-              frameBorder="0"
-              noresize="noresize"
-              title="preview-frame"
-              data-testid="video"
-            />
+          <h3 className="ingredients-title">Ingredientes</h3>
+          <div className="container-ingredients ">
+            <ul className="ingredients-list">
+              <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strIngredient1 }
+              </li>
+              <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strMeasure1 }
+              </li>
+              <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strIngredient2 }
+              </li>
+              <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strMeasure2 }
+              </li>
+              <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strIngredient3 }
+              </li>
+              <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strMeasure3 }
+              </li>
+              <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strIngredient4 }
+              </li>
+              <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strMeasure4 }
+              </li>
+              <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strIngredient5 }
+              </li>
+              <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strMeasure5 }
+              </li>
+              { strIngredient6
+                && <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+                  { strIngredient6 }
+                </li>}
+              { strMeasure6
+                && <li data-testid={ `${NUM5}-ingredient-name-and-measure` }>
+                  { strMeasure6 }
+                </li>}
+              { strIngredient7
+                && <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+                  { strIngredient7 }
+                </li>}
+              { strMeasure7
+                && <li data-testid={ `${NUM6}-ingredient-name-and-measure` }>
+                  { strMeasure7 }
+                </li>}
+              {strIngredient8
+                && <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+                  { strIngredient8 }
+                </li>}
+              { strMeasure8
+                && <li data-testid={ `${NUM7}-ingredient-name-and-measure` }>
+                  { strMeasure8 }
+                </li>}
+            </ul>
           </div>
         </section>
-        <section>
-          <h3>Recomendações</h3>
-          <div className="scrolling-wrapper-flexbox">
+        <h3 className="instructions-title">Instruções</h3>
+        <div className="container-instructions">
+          <p className="instructions" data-testid="instructions">
+            { strInstructions }
+          </p>
+        </div>
+        <h3 className="video-title">Video</h3>
+        <div className="container-video">
+          <iframe
+            id="preview-frame"
+            src={ `https://www.youtube.com/embed/${strYoutube.split('=')[1]}` } // Necessário combinado o link com embed e o código da URL fornecida.
+            name="preview-frame"
+            frameBorder="0"
+            noresize="noresize"
+            title="preview-frame"
+            data-testid="video"
+            className="frame-video"
+          />
+        </div>
+        <h3 className="recommendation-title">Recomendações</h3>
+        <div className="items-wrapper">
+          <div className="items">
             { drinksList.filter((_, index) => index < MAX_DRINKS)
-              .map(({ strDrinkThumb, strAlcoholic, strDrink }, index) => (
-                <div
-                  key={ strDrink }
-                  className="card"
-                  data-testid={ `${index}-recomendation-card` }
-                >
-                  <img src={ strDrinkThumb } alt={ `drink ${strDrink}` } />
-                  <p>{ strAlcoholic }</p>
-                  <h3 data-testid={ `${index}-recomendation-title` }>{ strDrink }</h3>
-                </div>
+              .map(({ idDrink, strDrinkThumb, strAlcoholic, strDrink }, index) => (
+                <Link key={ strDrink } to={ `/drinks/${idDrink}` }>
+                  <div
+                    className="card-item"
+                    data-testid={ `${index}-recomendation-card` }
+                  >
+                    <img
+                      className="grid-item"
+                      src={ strDrinkThumb }
+                      alt={ `drink ${strDrink}` }
+                    />
+                    <p className="drink-type">{ strAlcoholic }</p>
+                    <h3
+                      id="drink-title"
+                      data-testid={ `${index}-recomendation-title` }
+                    >
+                      { strDrink }
+                    </h3>
+                  </div>
+                </Link>
               ))}
           </div>
-        </section>
-        <section className="section-button-start">
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="start-recipe"
-            hidden={ isFinished }
-            onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
-          >
-            { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
-          </button>
-        </section>
+        </div>
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="btn-start-recipe"
+          hidden={ isFinished }
+          onClick={ () => history.push(`/foods/${idFood}/in-progress`) }
+        >
+          { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
+        </button>
       </div>
     ))
   );

@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom/';
+import { Link, useHistory } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
-import { action, DRINK_DATA_DETAILS, FOOD_RECOMMENDATION } from '../redux/actions';
+import { fetchDrinkByIdThunk, fetchFoodRecommendationThunk } from '../redux/actions';
 import { copyLinkRecipe } from '../helpers';
-import shareIcon from '../images/shareIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import newShareIcon from '../images/newShareIcon.svg';
+import redHeartIcon from '../images/redHeartIcon.svg';
+import newWhiteHeartIcon from '../images/newWhiteHeartIcon.svg';
 import '../styles/DrinkDetails.css';
 
 const DrinkDetail = () => {
@@ -22,21 +23,8 @@ const DrinkDetail = () => {
   const ID_DRINK = history.location.pathname.split('/')[2];
 
   useEffect(() => {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${ID_DRINK}`)
-      .then((response) => response.json())
-      .then(({ drinks }) => {
-        dispatch(action(DRINK_DATA_DETAILS, drinks));
-      })
-      .catch((error) => error);
-  }, [ID_DRINK, dispatch]);
-
-  useEffect(() => {
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-      .then((response) => response.json())
-      .then(({ meals }) => {
-        dispatch(action(FOOD_RECOMMENDATION, meals));
-      })
-      .catch((error) => error);
+    dispatch(fetchDrinkByIdThunk(ID_DRINK));
+    dispatch(fetchFoodRecommendationThunk());
   }, []);
 
   useEffect(() => {
@@ -100,22 +88,40 @@ const DrinkDetail = () => {
       strDrink, strInstructions, strMeasure1, strMeasure2, strMeasure3,
       strMeasure4, strMeasure5,
     }) => (
-      <div key={ strGlass }>
-        <h1>Food Detail</h1>
-        <div className="drink-thumb">
+      <div
+        key={ strGlass }
+        className="drink-container-grid"
+      >
+        <div>
           <img
             src={ strDrinkThumb }
             alt={ `${strDrink} drink` }
             data-testid="recipe-photo"
+            className="drink-picture"
           />
         </div>
-        <h2 data-testid="recipe-title">{ strDrink }</h2>
-        <p data-testid="recipe-category">{ strAlcoholic }</p>
+        <h2
+          data-testid="recipe-title"
+          className="drink-title"
+        >
+          { strDrink }
+        </h2>
+        <p
+          data-testid="recipe-category"
+          className="drink-category-title"
+        >
+          { strAlcoholic }
+        </p>
         <button
           type="button"
           onClick={ () => copyLinkRecipe(setIsCopied) }
         >
-          <img src={ shareIcon } alt="share icon" data-testid="share-btn" />
+          <img
+            src={ newShareIcon }
+            alt="share icon"
+            data-testid="share-btn"
+            className="drink-share-btn"
+          />
         </button>
         <button
           type="button"
@@ -123,64 +129,105 @@ const DrinkDetail = () => {
         >
           <img
             data-testid="favorite-btn"
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            src={ isFavorite ? redHeartIcon : newWhiteHeartIcon }
             alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
+            className="drink-favorite-btn"
           />
         </button>
         {
-          isCopied && <span>Link copied!</span>
+          isCopied && <span className="drink-link-copied">Link copiado!</span>
         }
-        <h3>Ingredients</h3>
-        <ul
-          id="ingredients"
-        >
-          <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strIngredient1 }</li>
-          <li data-testid={ `${0}-ingredient-name-and-measure` }>{ strMeasure1 }</li>
-          <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strIngredient2 }</li>
-          <li data-testid={ `${1}-ingredient-name-and-measure` }>{ strMeasure2 }</li>
-          <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strIngredient3 }</li>
-          <li data-testid={ `${2}-ingredient-name-and-measure` }>{ strMeasure3 }</li>
-          <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-            { strIngredient4 }
-          </li>
-          <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
-            { strMeasure4 }
-          </li>
-          <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-            { strIngredient5 }
-          </li>
-          <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-            { strMeasure5 }
-          </li>
-        </ul>
-        <h3>Intruções</h3>
-        <p id="ingredients" data-testid="instructions">{ strInstructions }</p>
-        <h3>Recomendações</h3>
-        <div className="scrolling-wrapper-flexbox">
-          { foodsList.filter((_, index) => index < MAX_FOODS)
-            .map(({ strMealThumb, strCategory, strMeal }, index) => (
-              <div
-                key={ strMeal }
-                className="card"
-                data-testid={ `${index}-recomendation-card` }
-              >
-                <img src={ strMealThumb } alt={ `food ${strMeal}` } />
-                <p>{ strCategory }</p>
-                <h3 data-testid={ `${index}-recomendation-title` }>{ strMeal }</h3>
-              </div>
-            ))}
+        <h3 className="drink-ingredients-title">Ingredientes</h3>
+        <div className="drink-container-ingredients">
+          <ul className="drink-ingredients-list">
+            { strIngredient1
+              && <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strIngredient1 }
+              </li>}
+            { strMeasure1
+              && <li data-testid={ `${0}-ingredient-name-and-measure` }>
+                { strMeasure1 }
+              </li>}
+            { strIngredient2
+              && <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strIngredient2 }
+              </li>}
+            { strMeasure2
+              && <li data-testid={ `${1}-ingredient-name-and-measure` }>
+                { strMeasure2 }
+              </li>}
+            { strIngredient3
+              && <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strIngredient3 }
+              </li>}
+            { strIngredient4
+              && <li data-testid={ `${2}-ingredient-name-and-measure` }>
+                { strMeasure3 }
+              </li>}
+            { strIngredient4
+              && <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strIngredient4 }
+              </li>}
+            { strMeasure4
+              && <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
+                { strMeasure4 }
+              </li> }
+            { strMeasure5
+              && <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strIngredient5 }
+              </li>}
+            { strMeasure5
+              && <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                { strMeasure5 }
+              </li>}
+          </ul>
         </div>
-        <section className="section-button-start">
-          <button
-            type="button"
-            data-testid="start-recipe-btn"
-            className="start-recipe"
-            hidden={ isFinished }
-            onClick={ () => history.push(`/drinks/${ID_DRINK}/in-progress`) }
+        <h3 className="drink-instructions-title">Instruções</h3>
+        <div className="drink-container-instructions">
+          <p
+            className="drink-instructions"
+            data-testid="instructions"
           >
-            { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
-          </button>
-        </section>
+            { strInstructions }
+          </p>
+        </div>
+        <h3 className="drink-recommendation-title">Recomendações</h3>
+        <div className="drink-items-wrapper">
+          <div className="drink-items">
+            { foodsList.filter((_, index) => index < MAX_FOODS)
+              .map(({ idMeal, strMealThumb, strCategory, strMeal }, index) => (
+                <div
+                  key={ strMeal }
+                  className="drink-card-item"
+                  data-testid={ `${index}-recomendation-card` }
+                >
+                  <Link to={ `/foods/${idMeal}` }>
+                    <img
+                      className="drink-grid-item"
+                      src={ strMealThumb }
+                      alt={ `food ${strMeal}` }
+                    />
+                    <p className="food-type">{ strCategory }</p>
+                    <h3
+                      id="food-title"
+                      data-testid={ `${index}-recomendation-title` }
+                    >
+                      { strMeal }
+                    </h3>
+                  </Link>
+                </div>
+              ))}
+          </div>
+        </div>
+        <button
+          type="button"
+          data-testid="start-recipe-btn"
+          className="drink-btn-start-recipe"
+          hidden={ isFinished }
+          onClick={ () => history.push(`/drinks/${ID_DRINK}/in-progress`) }
+        >
+          { !isContinued ? 'Start Recipe' : 'Continue Recipe' }
+        </button>
       </div>
     ))
   );

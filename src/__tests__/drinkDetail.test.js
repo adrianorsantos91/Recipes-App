@@ -138,4 +138,49 @@ describe('Verifica se as requisições de comida por ID estão sendo feitas', ()
       const buttonRecipe = await screen.findByTestId('start-recipe-btn');
       expect(buttonRecipe).toHaveAttribute('hidden');
     });
+
+  test('Se com o drink iniciada a botão esta com texto /Continued Recipe/',
+    async () => {
+      localStorage.clear();
+      const inProgressRecipe = {
+        cocktails: {
+          178319: [
+            'Hpnotiq',
+            'Pineapple Juice',
+          ],
+        },
+        meals: {},
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipe));
+
+      const { history } = renderWithRedux(<App />);
+
+      history.push(URL_DRINK_ID);
+
+      const buttonRecipe = await screen.findByRole('button',
+        { name: /continue recipe/i });
+
+      expect(buttonRecipe).toBeInTheDocument();
+    });
+
+  test('Se com o drink não for iniciada a botão esta com texto /Start Recipe/',
+    async () => {
+      localStorage.clear();
+      const inProgressRecipe = {
+        cocktails: {},
+        meals: {},
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipe));
+
+      const { history } = renderWithRedux(<App />);
+
+      history.push(URL_DRINK_ID);
+
+      const buttonRecipe = await screen.findByRole('button',
+        { name: /start recipe/i });
+
+      expect(buttonRecipe).toBeInTheDocument();
+    });
 });
