@@ -8,6 +8,7 @@ import newShareIcon from '../images/newShareIcon.svg';
 import redHeartIcon from '../images/redHeartIcon.svg';
 import newWhiteHeartIcon from '../images/newWhiteHeartIcon.svg';
 import '../styles/FoodDetails.css';
+import '../App.css';
 
 const FoodDetail = () => {
   const [isFinished, setFinished] = useState(false);
@@ -79,7 +80,7 @@ const FoodDetail = () => {
     }) => (
       <div
         key={ strMeal }
-        className="container-grid"
+        className="container-grid-food-detail"
       >
         <div>
           <img
@@ -91,13 +92,13 @@ const FoodDetail = () => {
         </div>
         <h2
           data-testid="recipe-title"
-          className="food-title"
+          className="food-title-food-detail"
         >
           { strMeal }
         </h2>
         <p
           data-testid="recipe-category"
-          className="category-title"
+          className="category-title-food-detail"
         >
           { strCategory }
         </p>
@@ -109,7 +110,7 @@ const FoodDetail = () => {
             src={ newShareIcon }
             alt="share icon"
             data-testid="share-btn"
-            className="share-btn"
+            className="share-btn-food-detail"
           />
         </button>
         <button
@@ -215,7 +216,7 @@ const FoodDetail = () => {
                     data-testid={ `${index}-recomendation-card` }
                   >
                     <img
-                      className="grid-item"
+                      className="grid-item-food-detail"
                       src={ strDrinkThumb }
                       alt={ `drink ${strDrink}` }
                     />

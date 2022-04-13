@@ -1,51 +1,50 @@
-@media only screen and (min-width : 0px), (max-width : 360px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-  .container-grid {
+@media only screen and ( min-width : 0 ), ( max-width : 360px ) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+
+  .container-grid-food-detail {
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
     max-width: 360px;
-    right: 0px;
+    right: 0;
   }
-  
+
   .picture-food {
     height: 250px;
     position: absolute;
     width: 360px;
   }
-  
-  .food-title {
-    color: #F2F2F2;
-    font-family: 'Work Sans';
-    font-size: 15px;
+
+  .food-title-food-detail {
+    color: #f2f2f2;
+    font-size: 25px;
     font-style: normal;
     font-weight: 700px;
     height: 23px;
     left: 24px;
-    margin: auto;
     letter-spacing: -0.02em;
     line-height: 23px;
+    margin: auto;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 264px;
     width: 400px;
   }
-  
-  .category-title {
-    color: #D8E9A8;
-    font-family: 'Inter';
+
+  .category-title-food-detail {
+    color: #d8e9a8;
     font-size: 15px;
     font-style: normal;
     font-weight: 600px;
     height: 26px;
     left: 24px;
     line-height: 18px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    top: 305px;
     position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 305px;
     width: 171px;
   }
 
-  .share-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  .share-btn-food-detail {
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 259px;
     position: absolute;
@@ -54,7 +53,7 @@
   }
 
   .favorite-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 307px;
     position: absolute;
@@ -63,8 +62,8 @@
   }
 
   .link-copied {
-    color: #FFFFFF;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #fff;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 10px;
     font-style: normal;
     font-weight: 100px;
@@ -74,10 +73,9 @@
     top: 300px;
     width: 100px;
   }
-  
+
   .ingredients-title {
-    color: #FFFFFF;
-    font-family: 'Inter';
+    color: #fff;
     font-size: 20px;
     font-style: normal;
     font-weight: 600px;
@@ -85,25 +83,24 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 343px;
     width: 110px;
   }
-  
+
   .container-ingredients {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 206px;
     left: 24px;
     position: absolute;
     top: 380px;
     width: 312px;
   }
-  
+
   .ingredients-list {
-    color: #FFFFFF;
-    font-family: 'Inter';
+    color: #fff;
     font-size: 10px;
     font-style: normal;
     font-weight: 600px;
@@ -111,14 +108,13 @@
     left: 38px;
     line-height: 12px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 10px;
     width: 312px;
   }
-  
+
   .instructions-title {
-    color: #FFFFFF;
-    font-family: 'Inter';
+    color: #fff;
     font-size: 20px;
     font-style: normal;
     font-weight: 600px;
@@ -126,25 +122,24 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 605px;
     width: 117px;
   }
-  
+
   .container-instructions {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 249px;
     left: 24px;
     position: absolute;
     top: 642px;
     width: 312px;
   }
-  
+
   .instructions {
     align-items: center;
-    color: #FFFFFF;
     display: flex;
     font-family: 'Inter';
     font-size: 9.5px;
@@ -155,14 +150,13 @@
     position: absolute;
     right: 8px;
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 22px;
     width: 296px;
   }
-  
+
   .video-title {
-    color: #FFFFFF;
-    font-family: 'Inter';
+    color: #fff;
     font-size: 20px;
     font-style: normal;
     font-weight: 600px;
@@ -170,22 +164,22 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 904px;
     width: 57px;
   }
-  
+
   .container-video {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 153px;
     left: 24px;
     position: absolute;
     top: 941px;
     width: 312px;
   }
-  
+
   .frame-video {
     border-radius: 10px;
     height: 143px;
@@ -194,10 +188,9 @@
     top: 6px;
     width: 300px;
   }
-  
+
   .recommendation-title {
-    color: #FFFFFF;
-    font-family: 'Inter';
+    color: #fff;
     font-size: 20px;
     font-style: normal;
     font-weight: 700px;
@@ -205,56 +198,56 @@
     left: 31px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1107px;
     width: 146px;
   }
-  
-  .grid-item {
+
+  .grid-item-food-detail {
     border-radius: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 141px;
     left: 352px;
     top: 4px;
     width: 150px;
   }
-  
+
   .items-wrapper {
     display: flex;
     flex-wrap: nowrap;
     left: 10px;
     margin-bottom: 80px;
-    position: absolute;
     overflow-x: auto;
+    position: absolute;
     top: 320vw;
   }
-  
+
   .items {
     display: flex;
     width: 340px;
   }
-  
+
   .items ::-webkit-scrollbar {
     display: none;
     width: 0;
   }
-  
-  .card-item {
+
+  .card-item-food-detail {
+    background: rgba(15, 15, 15, 0.49);
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     flex: 0 0 auto;
     height: 200px;
     margin: 10px;
     width: 150px;
-    background: rgba(15, 15, 15, 0.49);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
   }
-  
+
   .container-recommendation {
     top: 1150px;
   }
-  
+
   .drink-type {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 12px;
     font-style: normal;
@@ -264,34 +257,34 @@
     line-height: 15px;
     margin-left: 10px;
     margin-top: 5px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1299px;
     width: 100px;
   }
-  
+
   #drink-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
     font-weight: 700px;
     height: 20px;
-    left: 0px;
+    left: 0;
     line-height: 24px;
     margin-left: 10px;
-    margin-top: 0px;
+    margin-top: 0;
     position: relative;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     width: 71px;
   }
-  
+
   .btn-start-recipe {
-    color: #F2F2F2;
-    background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
-    border: 1px solid #191A19;
+    background: linear-gradient(90deg, #1e5128 0.88%, #4e9f3d 98.53%);
+    border: 1px solid #191a19;
     border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 25px;
     font-style: normal;
@@ -303,7 +296,7 @@
     top: 1410px;
     width: 339px;
   }
-  
+
   .start-recipe {
     background: none repeat scroll 0 0 #00ff80;
     border: none;
@@ -316,22 +309,23 @@
   }
 }
 
-@media only screen and (min-width:480px) { /* smartphones, Android phones, landscape iPhone */ 
+@media only screen and ( min-width : 480px ) { /* smartphones, Android phones, landscape iPhone */
+
   .container-grid {
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
     max-width: 360px;
-    right: 0px;
+    right: 0;
   }
-  
+
   .picture-food {
     height: 250px;
     position: absolute;
     width: 360px;
   }
-  
+
   .food-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Work Sans';
     font-size: 20px;
     font-style: normal;
@@ -341,13 +335,13 @@
     letter-spacing: -0.02em;
     line-height: 23px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 264px;
     width: 200px;
   }
-  
+
   .category-title {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 15px;
     font-style: normal;
@@ -355,14 +349,14 @@
     height: 26px;
     left: 24px;
     line-height: 18px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    top: 305px;
     position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 305px;
     width: 171px;
   }
 
   .share-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 259px;
     position: absolute;
@@ -371,7 +365,7 @@
   }
 
   .favorite-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 307px;
     position: absolute;
@@ -380,8 +374,8 @@
   }
 
   .link-copied {
-    color: #FFFFFF;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #fff;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 10px;
     font-style: normal;
     font-weight: 100px;
@@ -391,9 +385,9 @@
     top: 300px;
     width: 100px;
   }
-  
+
   .ingredients-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -402,24 +396,24 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 343px;
     width: 110px;
   }
-  
+
   .container-ingredients {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 206px;
     left: 24px;
     position: absolute;
     top: 380px;
     width: 312px;
   }
-  
+
   .ingredients-list {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 10px;
     font-style: normal;
@@ -428,13 +422,13 @@
     left: 38px;
     line-height: 12px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 10px;
     width: 312px;
   }
-  
+
   .instructions-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -443,25 +437,25 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 605px;
     width: 117px;
   }
-  
+
   .container-instructions {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 249px;
     left: 24px;
     position: absolute;
     top: 642px;
     width: 312px;
   }
-  
+
   .instructions {
     align-items: center;
-    color: #FFFFFF;
+    color: #fff;
     display: flex;
     font-family: 'Inter';
     font-size: 9.5px;
@@ -472,13 +466,13 @@
     position: absolute;
     right: 8px;
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 22px;
     width: 296px;
   }
-  
+
   .video-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -487,22 +481,22 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 904px;
     width: 57px;
   }
-  
+
   .container-video {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 153px;
     left: 24px;
     position: absolute;
     top: 941px;
     width: 312px;
   }
-  
+
   .frame-video {
     border-radius: 10px;
     height: 143px;
@@ -511,9 +505,9 @@
     top: 6px;
     width: 300px;
   }
-  
+
   .recommendation-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -522,72 +516,72 @@
     left: 31px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1107px;
     width: 146px;
   }
-  
+
   .grid-item {
     border-radius: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 141px;
     left: 352px;
     top: 4px;
     width: 150px;
   }
-  
+
   .items-wrapper {
     display: flex;
     flex-wrap: nowrap;
     left: 10px;
     margin-bottom: 80px;
-    position: absolute;
     overflow-x: auto;
+    position: absolute;
     top: 240vw;
   }
-  
+
   .items {
     display: flex;
     width: 340px;
   }
-  
+
   .items ::-webkit-scrollbar {
     display: none;
     width: 0;
   }
-  
-  .card-item {
+
+  .card-item-food-detail {
     background: rgba(15, 15, 15, 0.49);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     flex: 0 0 auto;
     height: 200px;
     margin: 10px;
     width: 150px;
   }
-  
+
   .container-recommendation {
     top: 1150px;
   }
-  
+
   .drink-type {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 12px;
     font-style: normal;
     font-weight: 400px;
     height: 10px;
-    left: 0px;
+    left: 0;
     line-height: 15px;
     margin-left: 10px;
     margin-top: 5px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1299px;
     width: 100px;
   }
-  
+
   .drink-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -596,18 +590,18 @@
     left: 31px;
     line-height: 24px;
     margin-left: 10px;
-    margin-top: 0px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     width: 71px;
   }
-  
+
   .btn-start-recipe {
-    background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
-    border: 1px solid #191A19;
+    background: linear-gradient(90deg, #1e5128 0.88%, #4e9f3d 98.53%);
+    border: 1px solid #191a19;
     border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 25px;
     font-style: normal;
@@ -619,7 +613,7 @@
     top: 1410px;
     width: 339px;
   }
-  
+
   .start-recipe {
     background: none repeat scroll 0 0 #00ff80;
     border: none;
@@ -632,22 +626,23 @@
   }
 }
 
-@media only screen and (min-width:600px) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+@media only screen and ( min-width : 600px ) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+
   .container-grid {
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
     max-width: 360px;
-    right: 0px;
+    right: 0;
   }
-  
+
   .picture-food {
     height: 250px;
     position: absolute;
     width: 360px;
   }
-  
+
   .food-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Work Sans';
     font-size: 20px;
     font-style: normal;
@@ -657,13 +652,13 @@
     letter-spacing: -0.02em;
     line-height: 23px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 264px;
     width: 200px;
   }
-  
+
   .category-title {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 15px;
     font-style: normal;
@@ -671,14 +666,14 @@
     height: 26px;
     left: 24px;
     line-height: 18px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    top: 305px;
     position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 305px;
     width: 171px;
   }
 
   .share-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 259px;
     position: absolute;
@@ -687,7 +682,7 @@
   }
 
   .favorite-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 307px;
     position: absolute;
@@ -696,8 +691,8 @@
   }
 
   .link-copied {
-    color: #FFFFFF;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #fff;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 10px;
     font-style: normal;
     font-weight: 100px;
@@ -707,9 +702,9 @@
     top: 300px;
     width: 100px;
   }
-  
+
   .ingredients-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -718,24 +713,24 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 343px;
     width: 110px;
   }
-  
+
   .container-ingredients {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 206px;
     left: 24px;
     position: absolute;
     top: 380px;
     width: 312px;
   }
-  
+
   .ingredients-list {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 10px;
     font-style: normal;
@@ -744,13 +739,13 @@
     left: 38px;
     line-height: 12px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 10px;
     width: 312px;
   }
-  
+
   .instructions-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -759,25 +754,25 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 605px;
     width: 117px;
   }
-  
+
   .container-instructions {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 249px;
     left: 24px;
     position: absolute;
     top: 642px;
     width: 312px;
   }
-  
+
   .instructions {
     align-items: center;
-    color: #FFFFFF;
+    color: #fff;
     display: flex;
     font-family: 'Inter';
     font-size: 9.5px;
@@ -788,13 +783,13 @@
     position: absolute;
     right: 8px;
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 22px;
     width: 296px;
   }
-  
+
   .video-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -803,22 +798,22 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 904px;
     width: 57px;
   }
-  
+
   .container-video {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 153px;
     left: 24px;
     position: absolute;
     top: 941px;
     width: 312px;
   }
-  
+
   .frame-video {
     border-radius: 10px;
     height: 143px;
@@ -827,9 +822,9 @@
     top: 6px;
     width: 300px;
   }
-  
+
   .recommendation-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -838,56 +833,56 @@
     left: 31px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1107px;
     width: 146px;
   }
-  
+
   .grid-item {
     border-radius: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 141px;
     left: 352px;
     top: 4px;
     width: 150px;
   }
-  
+
   .items-wrapper {
     display: flex;
     flex-wrap: nowrap;
     left: 10px;
     margin-bottom: 80px;
-    position: absolute;
     overflow-x: auto;
+    position: absolute;
     top: 193vw;
   }
-  
+
   .items {
     display: flex;
     width: 340px;
   }
-  
+
   .items ::-webkit-scrollbar {
     display: none;
     width: 0;
   }
-  
+
   .card-item {
     background: rgba(15, 15, 15, 0.49);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     flex: 0 0 auto;
     height: 200px;
     margin: 10px;
     width: 150px;
   }
-  
+
   .container-recommendation {
     top: 1150px;
   }
-  
+
   .drink-type {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 12px;
     font-style: normal;
@@ -897,33 +892,33 @@
     line-height: 15px;
     margin-left: 10px;
     margin-top: 5px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1299px;
     width: 100px;
   }
-  
+
   .drink-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
     font-weight: 700px;
     height: 20px;
-    left: 0px;
+    left: 0;
     line-height: 24px;
     margin-left: 10px;
-    margin-top: 0px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     width: 71px;
   }
-  
+
   .btn-start-recipe {
-    background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
-    border: 1px solid #191A19;
+    background: linear-gradient(90deg, #1e5128 0.88%, #4e9f3d 98.53%);
+    border: 1px solid #191a19;
     border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 25px;
     font-style: normal;
@@ -935,7 +930,7 @@
     top: 1410px;
     width: 339px;
   }
-  
+
   .start-recipe {
     background: none repeat scroll 0 0 #00ff80;
     border: none;
@@ -949,22 +944,23 @@
 
 }
 
-@media only screen and (min-width:801px) { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+@media only screen and ( min-width : 801px ) { /* tablet, landscape iPad, lo-res laptops ands desktops */
+
   .container-grid {
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
     max-width: 360px;
-    right: 0px;
+    right: 0;
   }
-  
+
   .picture-food {
     height: 250px;
     position: absolute;
     width: 360px;
   }
-  
+
   .food-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Work Sans';
     font-size: 20px;
     font-style: normal;
@@ -974,13 +970,13 @@
     letter-spacing: -0.02em;
     line-height: 23px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 264px;
     width: 200px;
   }
-  
+
   .category-title {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 15px;
     font-style: normal;
@@ -988,14 +984,14 @@
     height: 26px;
     left: 24px;
     line-height: 18px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    top: 305px;
     position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 305px;
     width: 171px;
   }
 
   .share-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 259px;
     position: absolute;
@@ -1004,7 +1000,7 @@
   }
 
   .favorite-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 307px;
     position: absolute;
@@ -1013,8 +1009,8 @@
   }
 
   .link-copied {
-    color: #FFFFFF;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #fff;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 10px;
     font-style: normal;
     font-weight: 100px;
@@ -1024,9 +1020,9 @@
     top: 300px;
     width: 100px;
   }
-  
+
   .ingredients-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1035,24 +1031,24 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 343px;
     width: 110px;
   }
-  
+
   .container-ingredients {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 206px;
     left: 24px;
     position: absolute;
     top: 380px;
     width: 312px;
   }
-  
+
   .ingredients-list {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 10px;
     font-style: normal;
@@ -1061,13 +1057,13 @@
     left: 38px;
     line-height: 12px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 10px;
     width: 312px;
   }
-  
+
   .instructions-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1076,25 +1072,25 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 605px;
     width: 117px;
   }
-  
+
   .container-instructions {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 249px;
     left: 24px;
     position: absolute;
     top: 642px;
     width: 312px;
   }
-  
+
   .instructions {
     align-items: center;
-    color: #FFFFFF;
+    color: #fff;
     display: flex;
     font-family: 'Inter';
     font-size: 9.5px;
@@ -1105,13 +1101,13 @@
     position: absolute;
     right: 8px;
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 22px;
     width: 296px;
   }
-  
+
   .video-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1120,22 +1116,22 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 904px;
     width: 57px;
   }
-  
+
   .container-video {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 153px;
     left: 24px;
     position: absolute;
     top: 941px;
     width: 312px;
   }
-  
+
   .frame-video {
     border-radius: 10px;
     height: 143px;
@@ -1144,9 +1140,9 @@
     top: 6px;
     width: 300px;
   }
-  
+
   .recommendation-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1155,56 +1151,56 @@
     left: 31px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1107px;
     width: 146px;
   }
-  
+
   .grid-item {
     border-radius: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 141px;
     left: 352px;
     top: 4px;
     width: 150px;
   }
-  
+
   .items-wrapper {
     display: flex;
     flex-wrap: nowrap;
     left: 10px;
     margin-bottom: 80px;
-    position: absolute;
     overflow-x: auto;
+    position: absolute;
     top: 143vw;
   }
-  
+
   .items {
     display: flex;
     width: 340px;
   }
-  
+
   .items ::-webkit-scrollbar {
     display: none;
     width: 0;
   }
-  
+
   .card-item {
     background: rgba(15, 15, 15, 0.49);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     flex: 0 0 auto;
     height: 200px;
     margin: 10px;
     width: 150px;
   }
-  
+
   .container-recommendation {
     top: 1150px;
   }
-  
+
   .drink-type {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 12px;
     font-style: normal;
@@ -1214,13 +1210,13 @@
     line-height: 15px;
     margin-left: 10px;
     margin-top: 5px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1299px;
     width: 100px;
   }
-  
+
   .drink-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1229,18 +1225,18 @@
     left: 31px;
     line-height: 24px;
     margin-left: 10px;
-    margin-top: 0px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     width: 71px;
   }
-  
+
   .btn-start-recipe {
-    background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
-    border: 1px solid #191A19;
+    background: linear-gradient(90deg, #1e5128 0.88%, #4e9f3d 98.53%);
+    border: 1px solid #191a19;
     border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 25px;
     font-style: normal;
@@ -1252,7 +1248,7 @@
     top: 1410px;
     width: 339px;
   }
-  
+
   .start-recipe {
     background: none repeat scroll 0 0 #00ff80;
     border: none;
@@ -1266,22 +1262,23 @@
 
 }
 
-@media only screen and (min-width:1025px) { /* big landscape tablets, laptops, and desktops */ 
+@media only screen and ( min-width : 1025px ) { /* big landscape tablets, laptops, and desktops */
+
   .container-grid {
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
     max-width: 360px;
-    right: 0px;
+    right: 0;
   }
-  
+
   .picture-food {
     height: 250px;
     position: absolute;
     width: 360px;
   }
-  
+
   .food-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Work Sans';
     font-size: 20px;
     font-style: normal;
@@ -1291,13 +1288,13 @@
     letter-spacing: -0.02em;
     line-height: 23px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 264px;
     width: 200px;
   }
-  
+
   .category-title {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 15px;
     font-style: normal;
@@ -1305,14 +1302,14 @@
     height: 26px;
     left: 24px;
     line-height: 18px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    top: 305px;
     position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 305px;
     width: 171px;
   }
 
   .share-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 259px;
     position: absolute;
@@ -1321,7 +1318,7 @@
   }
 
   .favorite-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 307px;
     position: absolute;
@@ -1330,8 +1327,8 @@
   }
 
   .link-copied {
-    color: #FFFFFF;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #fff;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 10px;
     font-style: normal;
     font-weight: 100px;
@@ -1341,9 +1338,9 @@
     top: 300px;
     width: 100px;
   }
-  
+
   .ingredients-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1352,24 +1349,24 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 343px;
     width: 110px;
   }
-  
+
   .container-ingredients {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 206px;
     left: 24px;
     position: absolute;
     top: 380px;
     width: 312px;
   }
-  
+
   .ingredients-list {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 10px;
     font-style: normal;
@@ -1378,13 +1375,13 @@
     left: 38px;
     line-height: 12px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 10px;
     width: 312px;
   }
-  
+
   .instructions-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1393,25 +1390,25 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 605px;
     width: 117px;
   }
-  
+
   .container-instructions {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 249px;
     left: 24px;
     position: absolute;
     top: 642px;
     width: 312px;
   }
-  
+
   .instructions {
     align-items: center;
-    color: #FFFFFF;
+    color: #fff;
     display: flex;
     font-family: 'Inter';
     font-size: 9.5px;
@@ -1422,13 +1419,13 @@
     position: absolute;
     right: 8px;
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 22px;
     width: 296px;
   }
-  
+
   .video-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1437,22 +1434,22 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 904px;
     width: 57px;
   }
-  
+
   .container-video {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 153px;
     left: 24px;
     position: absolute;
     top: 941px;
     width: 312px;
   }
-  
+
   .frame-video {
     border-radius: 10px;
     height: 143px;
@@ -1461,9 +1458,9 @@
     top: 6px;
     width: 300px;
   }
-  
+
   .recommendation-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1472,56 +1469,56 @@
     left: 31px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1107px;
     width: 146px;
   }
-  
+
   .grid-item {
     border-radius: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 141px;
     left: 352px;
     top: 4px;
     width: 150px;
   }
-  
+
   .items-wrapper {
     display: flex;
     flex-wrap: nowrap;
     left: 10px;
     margin-bottom: 80px;
-    position: absolute;
     overflow-x: auto;
+    position: absolute;
     top: 112vw;
   }
-  
+
   .items {
     display: flex;
     width: 340px;
   }
-  
+
   .items ::-webkit-scrollbar {
     display: none;
     width: 0;
   }
-  
+
   .card-item {
     background: rgba(15, 15, 15, 0.49);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     flex: 0 0 auto;
     height: 200px;
     margin: 10px;
     width: 150px;
   }
-  
+
   .container-recommendation {
     top: 1150px;
   }
-  
+
   .drink-type {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 12px;
     font-style: normal;
@@ -1531,13 +1528,13 @@
     line-height: 15px;
     margin-left: 10px;
     margin-top: 5px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1299px;
     width: 100px;
   }
-  
+
   .drink-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1546,18 +1543,18 @@
     left: 31px;
     line-height: 24px;
     margin-left: 10px;
-    margin-top: 0px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     width: 71px;
   }
-  
+
   .btn-start-recipe {
-    background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
-    border: 1px solid #191A19;
+    background: linear-gradient(90deg, #1e5128 0.88%, #4e9f3d 98.53%);
+    border: 1px solid #191a19;
     border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 25px;
     font-style: normal;
@@ -1569,7 +1566,7 @@
     top: 1410px;
     width: 339px;
   }
-  
+
   .start-recipe {
     background: none repeat scroll 0 0 #00ff80;
     border: none;
@@ -1583,22 +1580,23 @@
 
 }
 
-@media only screen and (min-width:1281px) { /* hi-res laptops and desktops */ 
+@media only screen and ( min-width : 1281px ) { /* hi-res laptops and desktops */
+
   .container-grid {
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
     max-width: 360px;
-    right: 0px;
+    right: 0;
   }
-  
+
   .picture-food {
     height: 250px;
     position: absolute;
     width: 360px;
   }
-  
+
   .food-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Work Sans';
     font-size: 20px;
     font-style: normal;
@@ -1608,13 +1606,13 @@
     letter-spacing: -0.02em;
     line-height: 23px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 264px;
     width: 200px;
   }
-  
+
   .category-title {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 15px;
     font-style: normal;
@@ -1622,14 +1620,14 @@
     height: 26px;
     left: 24px;
     line-height: 18px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    top: 305px;
     position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 305px;
     width: 171px;
   }
 
   .share-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 259px;
     position: absolute;
@@ -1638,7 +1636,7 @@
   }
 
   .favorite-btn {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 30px;
     left: 307px;
     position: absolute;
@@ -1647,8 +1645,8 @@
   }
 
   .link-copied {
-    color: #FFFFFF;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: #fff;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 10px;
     font-style: normal;
     font-weight: 100px;
@@ -1658,9 +1656,9 @@
     top: 300px;
     width: 100px;
   }
-  
+
   .ingredients-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1669,24 +1667,24 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 343px;
     width: 110px;
   }
-  
+
   .container-ingredients {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 206px;
     left: 24px;
     position: absolute;
     top: 380px;
     width: 312px;
   }
-  
+
   .ingredients-list {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 10px;
     font-style: normal;
@@ -1695,13 +1693,13 @@
     left: 38px;
     line-height: 12px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 10px;
     width: 312px;
   }
-  
+
   .instructions-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1710,25 +1708,25 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 605px;
     width: 117px;
   }
-  
+
   .container-instructions {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 249px;
     left: 24px;
     position: absolute;
     top: 642px;
     width: 312px;
   }
-  
+
   .instructions {
     align-items: center;
-    color: #FFFFFF;
+    color: #fff;
     display: flex;
     font-family: 'Inter';
     font-size: 9.5px;
@@ -1739,13 +1737,13 @@
     position: absolute;
     right: 8px;
     text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 22px;
     width: 296px;
   }
-  
+
   .video-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1754,22 +1752,22 @@
     left: 24px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 904px;
     width: 57px;
   }
-  
+
   .container-video {
     background: rgba(25, 26, 25, 0.5);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     height: 153px;
     left: 24px;
     position: absolute;
     top: 941px;
     width: 312px;
   }
-  
+
   .frame-video {
     border-radius: 10px;
     height: 143px;
@@ -1778,9 +1776,9 @@
     top: 6px;
     width: 300px;
   }
-  
+
   .recommendation-title {
-    color: #FFFFFF;
+    color: #fff;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
@@ -1789,56 +1787,56 @@
     left: 31px;
     line-height: 24px;
     position: absolute;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1107px;
     width: 146px;
   }
-  
+
   .grid-item {
     border-radius: 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     height: 141px;
     left: 352px;
     top: 4px;
     width: 150px;
   }
-  
+
   .items-wrapper {
     display: flex;
     flex-wrap: nowrap;
     left: 10px;
     margin-bottom: 80px;
-    position: absolute;
     overflow-x: auto;
+    position: absolute;
     top: 90vw;
   }
-  
+
   .items {
     display: flex;
     width: 340px;
   }
-  
+
   .items ::-webkit-scrollbar {
     display: none;
     width: 0;
   }
-  
+
   .card-item {
     background: rgba(15, 15, 15, 0.49);
     border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     flex: 0 0 auto;
     height: 200px;
     margin: 10px;
     width: 150px;
   }
-  
+
   .container-recommendation {
     top: 1150px;
   }
-  
+
   .drink-type {
-    color: #D8E9A8;
+    color: #d8e9a8;
     font-family: 'Inter';
     font-size: 12px;
     font-style: normal;
@@ -1848,33 +1846,33 @@
     line-height: 15px;
     margin-left: 10px;
     margin-top: 5px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     top: 1299px;
     width: 100px;
   }
-  
+
   .drink-title {
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 20px;
     font-style: normal;
     font-weight: 700px;
     height: 20px;
-    left: 0px;
+    left: 0;
     line-height: 24px;
     margin-left: 10px;
-    margin-top: 0px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     width: 71px;
   }
-  
+
   .btn-start-recipe {
-    background: linear-gradient(90deg, #1E5128 0.88%, #4E9F3D 98.53%);
-    border: 1px solid #191A19;
+    background: linear-gradient(90deg, #1e5128 0.88%, #4e9f3d 98.53%);
+    border: 1px solid #191a19;
     border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     box-sizing: border-box;
-    color: #F2F2F2;
+    color: #f2f2f2;
     font-family: 'Inter';
     font-size: 25px;
     font-style: normal;
@@ -1886,7 +1884,7 @@
     top: 1410px;
     width: 339px;
   }
-  
+
   .start-recipe {
     background: none repeat scroll 0 0 #00ff80;
     border: none;

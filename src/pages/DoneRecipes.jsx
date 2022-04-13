@@ -84,7 +84,7 @@ const DoneRecipes = () => {
             >
               <img
                 data-testid={ `${index}-horizontal-image` }
-                className="card-image"
+                className="card-image-done-recipes"
                 variant="top"
                 src={ recipe.image }
                 alt="Receita"
