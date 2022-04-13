@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Header } from '../components';
 import shareIcon from '../images/shareIcon.svg';
 import { copyLinkRecipe } from '../helpers';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import '../App.css';
+import '../styles/DoneRecipes.css';
+import '../styles/FavoriteRecipes.css';
 
 const FavoriteRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -35,13 +37,14 @@ const FavoriteRecipes = () => {
   };
 
   return (
-    <>
+    <div className="background">
       <Header title="Favorite Recipes" />
-      <div>
+      <div className="container-done-recipes">
         <button // Botoes de Filtro
           type="button"
           data-testid="filter-by-all-btn"
           onClick={ handleFilter }
+          className="recipes"
         >
           All
         </button>
@@ -50,6 +53,7 @@ const FavoriteRecipes = () => {
           id="foods"
           data-testid="filter-by-food-btn"
           onClick={ handleFilter }
+          className="recipes"
         >
           Foods
         </button>
@@ -58,6 +62,7 @@ const FavoriteRecipes = () => {
           id="drinks"
           data-testid="filter-by-drink-btn"
           onClick={ handleFilter }
+          className="recipes"
         >
           Drinks
         </button>
@@ -74,7 +79,7 @@ const FavoriteRecipes = () => {
 
           return true;
         }).map((recipe, index) => (
-          <Card key={ Math.random() } style={ { width: '18rem' } }>
+          <div key={ Math.random() } className="card">
 
             <Link
               to={
@@ -83,15 +88,21 @@ const FavoriteRecipes = () => {
                   : `/foods/${recipe.id}`
               }
             >
-              <Card.Img
-                data-testid={ `${index}-horizontal-image` }
-                variant="top"
-                src={ recipe.image }
-                style={ { width: '100px' } }
-              />
+              <div>
+                <img
+                  data-testid={ `${index}-horizontal-image` }
+                  className="card-image-done-recipes"
+                  variant="top"
+                  src={ recipe.image }
+                  alt="Receita"
+                />
+              </div>
             </Link>
-            <Card.Body>
-              <p data-testid={ `${index}-horizontal-top-text` }>
+            <div className="card-body">
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+                className="recipe-subtitle"
+              >
                 {`${recipe.nationality || recipe.alcoholicOrNot} - ${recipe.category}`}
               </p>
               <Link
@@ -101,19 +112,16 @@ const FavoriteRecipes = () => {
                     : `/foods/${recipe.id}`
                 }
               >
-                <Card.Title
+                <p
                   data-testid={ `${index}-horizontal-name` }
+                  className="recipe-title"
                 >
                   {recipe.name}
 
-                </Card.Title>
+                </p>
               </Link>
-              <Card.Text>
-                {recipe.name}
-
-              </Card.Text>
-              <Button // <-----Botao Share
-                variant="primary"
+              <button // <-----Botao Share
+                type="button"
                 onClick={ () => copyLinkRecipe(setIsCopied, recipe) }
               >
                 <img
@@ -121,7 +129,7 @@ const FavoriteRecipes = () => {
                   src={ shareIcon }
                   alt="button share"
                 />
-              </Button>
+              </button>
               <button
                 type="button"
                 onClick={ () => favoriteRecipe(recipe) }
@@ -135,11 +143,11 @@ const FavoriteRecipes = () => {
 
               </button>
               {isCopied && <span>Link copied!</span>}
-            </Card.Body>
-          </Card>
+            </div>
+          </div>
         ))
       }
-    </>
+    </div>
   );
 };
 

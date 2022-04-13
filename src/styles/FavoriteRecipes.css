@@ -47,16 +47,14 @@
   width: 30px;
 }
 
-.recipe-date {
+.recipe-subtitle {
   color: #d8e9a8;
   font-size: 12px;
   font-style: normal;
   font-weight: 400px;
   line-height: 15px;
-  margin-bottom: 0;
-  margin-left: 0;
   position: absolute;
-  top: 90px;
+  top: 10px;
 }
 
 .category {
@@ -72,9 +70,10 @@
 }
 
 .recipe-title {
-  margin-top: 10px;
+  color: #f2f2f2;
+  font-size: 25px;
   position: absolute;
-  top: 100px;
+  top: 20px;
 }
 
 .card-body {
