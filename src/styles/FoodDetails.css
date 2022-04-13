@@ -4,7 +4,6 @@
     background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
     height: 95em;
     max-width: 360px;
-    right: 0;
   }
 
   .picture-food {
@@ -140,6 +139,7 @@
 
   .instructions {
     align-items: center;
+    color: #fff;
     display: flex;
     font-family: 'Inter';
     font-size: 9.5px;
