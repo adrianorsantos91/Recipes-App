@@ -6,11 +6,11 @@ import {
   recipesInProgress,
 
 } from '../helpers';
-
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/newWhiteHeartIcon.svg';
+import blackHeartIcon from '../images/redHeartIcon.svg';
+import shareIcon from '../images/newShareIcon.svg';
 import saveFavoriteRecipe from '../helpers/favoriteRecipe';
+import '../styles/RecipeInProgress.css';
 
 const RecipeInProgress = () => {
   const { pathname } = useLocation();
@@ -66,10 +66,25 @@ const RecipeInProgress = () => {
   };
 
   return (
-    <div>
-      <h1>Recipe in Progress...</h1>
-      <img data-testid="recipe-photo" src={ recipe.image } alt="recipe" width="100px" />
-      <p data-testid="recipe-title">{recipe.title}</p>
+    <div className="container-grid-in-progress">
+      <img
+        data-testid="recipe-photo"
+        src={ recipe.image }
+        alt="recipe"
+        className="picture-in-progress"
+      />
+      <p
+        data-testid="recipe-title"
+        className="food-or-drink-title-in-progress"
+      >
+        {recipe.title}
+      </p>
+      <p
+        data-testid="recipe-category"
+        className="category-title-in-progress"
+      >
+        {recipe.category}
+      </p>
       <button
         type="button"
         onClick={ () => copyLinkRecipe(setIsCopied) }
@@ -78,6 +93,7 @@ const RecipeInProgress = () => {
           data-testid="share-btn"
           src={ shareIcon }
           alt="button share icon"
+          className="share-btn-in-progress"
         />
 
       </button>
@@ -89,43 +105,58 @@ const RecipeInProgress = () => {
           data-testid="favorite-btn"
           src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
           alt={ isFavorite ? 'black heart favorite icon' : 'white heart favorite icon' }
+          className="favorite-btn-in-progress"
         />
 
       </button>
       {
-        isCopied && <span>Link copied!</span>
+        isCopied && <span className="link-copied-in-progress">Link copied!</span>
       }
-      <ul>
-        {
-          recipe.ingredients
-          && recipe.ingredients.map((ingredient, index) => (
-            <label
-              data-testid={ `${index}-ingredient-step` }
-              key={ ingredient }
-              htmlFor={ ingredient }
-              style={ { display: 'block' } }
-            >
-              <input
-                type="checkbox"
-                name={ ingredient }
-                id={ recipe.id }
-                onChange={ saveLocalStorageOnClick }
-                checked={ inProgress.includes(ingredient) }
-              />
-              {ingredient}
-
-            </label>
-          ))
-        }
-      </ul>
-      <p data-testid="recipe-category">{recipe.category}</p>
-      <p data-testid="instructions">{recipe.instructions}</p>
+      <h3 className="ingredients-title-in-progress">Ingredientes</h3>
+      <div className="container-ingredients-in-progress">
+        <ul className="list-checkbox-in-progress">
+          {
+            recipe.ingredients
+            && recipe.ingredients.map((ingredient, index) => (
+              <label
+                data-testid={ `${index}-ingredient-step` }
+                key={ ingredient }
+                htmlFor={ ingredient }
+                style={ { display: 'block' } }
+                className="label-checkbox-in-progress"
+              >
+                <input
+                  type="checkbox"
+                  name={ ingredient }
+                  id={ recipe.id }
+                  onChange={ saveLocalStorageOnClick }
+                  checked={ inProgress.includes(ingredient) }
+                  className="checkbox-in-progress"
+                />
+                <div className="ingredient-in-progress">
+                  {ingredient}
+                </div>
+              </label>
+            ))
+          }
+        </ul>
+      </div>
+      <h3 className="instructions-title-in-progress">Instruções</h3>
+      <div className="container-instructions-in-progress">
+        <p
+          data-testid="instructions"
+          className="instructions-in-progress"
+        >
+          {recipe.instructions}
+        </p>
+      </div>
       <Link to="/done-recipes">
         <button
           data-testid="finish-recipe-btn"
           type="button"
           disabled={ isDisabled }
           onClick={ () => finishRecipe(recipe) }
+          className="btn-start-recipe-in-progress"
         >
           Finish Recipe
 

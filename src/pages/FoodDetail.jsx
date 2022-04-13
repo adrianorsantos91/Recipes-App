@@ -153,9 +153,10 @@ const FoodDetail = () => {
               <li data-testid={ `${NUM3}-ingredient-name-and-measure` }>
                 { strMeasure4 }
               </li>
-              <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
-                { strIngredient5 }
-              </li>
+              { strMeasure5
+                && <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
+                  { strIngredient5 }
+                </li>}
               <li data-testid={ `${NUM4}-ingredient-name-and-measure` }>
                 { strMeasure5 }
               </li>
@@ -212,7 +213,7 @@ const FoodDetail = () => {
               .map(({ idDrink, strDrinkThumb, strAlcoholic, strDrink }, index) => (
                 <Link key={ strDrink } to={ `/drinks/${idDrink}` }>
                   <div
-                    className="card-item"
+                    className="card-item-food-detail"
                     data-testid={ `${index}-recomendation-card` }
                   >
                     <img

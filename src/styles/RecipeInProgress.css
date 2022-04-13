@@ -1,0 +1,215 @@
+@media only screen and ( min-width : 0 ), ( max-width : 360px ) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  .container-grid-in-progress {
+    background: linear-gradient(180deg, #1e5128 0%, #1b311f 46.88%, #191a19 100%);
+    height: 86em;
+    max-width: 360px;
+  }
+
+  .picture-in-progress {
+    height: 250px;
+    position: absolute;
+    width: 360px;
+  }
+
+  .food-or-drink-title-in-progress {
+    color: #f2f2f2;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700px;
+    height: 23px;
+    left: 24px;
+    letter-spacing: -0.02em;
+    line-height: 23px;
+    margin: auto;
+    position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 264px;
+    width: 400px;
+  }
+
+  .category-title-in-progress {
+    color: #d8e9a8;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600px;
+    height: 26px;
+    left: 24px;
+    line-height: 18px;
+    position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 305px;
+    width: 171px;
+  }
+
+  .share-btn-in-progress {
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+    height: 30px;
+    left: 259px;
+    position: absolute;
+    top: 264px;
+    width: 30px;
+  }
+  
+  .favorite-btn-in-progress {
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+    height: 30px;
+    left: 307px;
+    position: absolute;
+    top: 264px;
+    width: 30px;
+  }
+
+  .link-copied-in-progress {
+    color: #fff;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 100px;
+    height: 30px;
+    left: 250px;
+    position: absolute;
+    top: 300px;
+    width: 100px;
+  }
+
+  .ingredients-title-in-progress {
+    color: #fff;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600px;
+    height: 24px;
+    left: 24px;
+    line-height: 24px;
+    position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 343px;
+    width: 110px;
+  }
+
+  .container-ingredients-in-progress {
+    background: rgba(25, 26, 25, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    height: 430px;
+    left: 24px;
+    position: absolute;
+    top: 380px;
+    width: 312px;
+  }
+
+  .list-checkbox-in-progress {
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: 10px;
+  }
+
+  .label-checkbox-in-progress {
+    display: flex;
+    flex-wrap: nowrap;
+    left: 20px;
+  }
+
+  .checkbox-in-progress {
+    display: flex;
+    height: 14px;
+    width: 14px;
+    margin-right: 24px;
+    position: absolute;
+    margin-left: 10px;
+  }
+
+  .ingredient-in-progress {
+    color: #fff;
+    font-size: 12px;
+    margin-left: 30px;
+  }
+
+  .instructions-title-in-progress {
+    color: #fff;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600px;
+    height: 24px;
+    left: 24px;
+    line-height: 24px;
+    position: absolute;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 850px;
+    width: 117px;
+  }
+
+  .container-instructions-in-progress {
+    background: rgba(25, 26, 25, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    height: 300px;
+    left: 24px;
+    position: absolute;
+    top: 900px;
+    width: 312px;
+  }
+
+  .instructions-in-progress {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700px;
+    height: 216px;
+    line-height: 12px;
+    position: absolute;
+    right: 8px;
+    text-align: center;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    top: 50px;
+    width: 296px;
+  }
+
+  .btn-start-recipe-in-progress {
+    background: linear-gradient(90deg, #1e5128 0.88%, #4e9f3d 98.53%);
+    border: 1px solid #191a19;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    color: #f2f2f2;
+    font-family: 'Inter';
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    height: 76px;
+    left: 11px;
+    line-height: 30px;
+    position: absolute;
+    top: 1250px;
+    width: 339px;
+  }
+
+  .start-recipe {
+    background: none repeat scroll 0 0 #00ff80;
+    border: none;
+    bottom: 0;
+    display: block;
+    height: 50px;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+@media only screen and ( min-width : 480px ) { /* smartphones, Android phones, landscape iPhone */
+}
+
+@media only screen and ( min-width : 600px ) { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+}
+
+@media only screen and ( min-width : 801px ) { /* tablet, landscape iPad, lo-res laptops ands desktops */
+}
+
+@media only screen and ( min-width : 1025px ) { /* big landscape tablets, laptops, and desktops */
+}
+
+@media only screen and ( min-width : 1281px ) { /* hi-res laptops and desktops */
+}
