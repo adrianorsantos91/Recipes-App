@@ -6,7 +6,7 @@ import meal from '../images/restaurant.svg';
 import '../styles/Footer.css';
 
 const Footer = () => (
-  <footer data-testid="footer" className="link">
+  <footer data-testid="footer" className="footer link">
     <Link to="/drinks">
       <img
         src={ drink }

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
 import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES } from '../helpers';
 import {
@@ -11,6 +10,7 @@ import {
   INGREDIENTS_FILTER,
 } from '../redux/actions';
 import '../styles/Foods.css';
+import '../styles/Explore Ingredients.css';
 import { fetchFoodsIngredients } from '../helpers/fetchFoodAPI';
 
 export default function ExploreIngredients() {
@@ -33,37 +33,40 @@ export default function ExploreIngredients() {
   };
 
   return (
-    <div>
+    <div className="background">
       <Header title="Explore Ingredients" />
-      {ingredientsList
-        .filter((_, index) => index < FIRST_TWELVE_RECIPES)
-        .map((ingredient, index) => (
-          <button
-            type="button"
-            key={ ingredient.strIngredient }
-            className="container"
-            data-testid={ `${index}-ingredient` }
-            onClick={ () => filterByCategory(ingredient.strIngredient) }
-          >
-            <Card
-              style={ { width: '18rem' } }
-              data-testid={ `${index}-ingredient-card` }
+      <div className="flex container-explore-ingredients">
+        {ingredientsList
+          .filter((_, index) => index < FIRST_TWELVE_RECIPES)
+          .map((ingredient, index) => (
+            <button
+              type="button"
+              key={ ingredient.strIngredient }
+              className="image-container-explore"
+              data-testid={ `${index}-ingredient` }
+              onClick={ () => filterByCategory(ingredient.strIngredient) }
             >
-              <Card.Img
-                variant="top"
-                src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
-                data-testid={ `${index}-card-img` }
-              />
-              <Card.Body>
-                <Card.Title
-                  data-testid={ `${index}-card-name` }
-                >
-                  { ingredient.strIngredient }
-                </Card.Title>
-              </Card.Body>
-            </Card>
-          </button>
-        ))}
+              <div
+                data-testid={ `${index}-ingredient-card` }
+              >
+                <img
+                  variant="top"
+                  src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
+                  data-testid={ `${index}-card-img` }
+                  alt="Ingredient"
+                  className="card-image-explore"
+                />
+                <div>
+                  <p
+                    data-testid={ `${index}-card-name` }
+                  >
+                    { ingredient.strIngredient }
+                  </p>
+                </div>
+              </div>
+            </button>
+          ))}
+      </div>
       <Footer />
     </div>
   );

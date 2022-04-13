@@ -65,7 +65,7 @@ function Login() {
             </button>
           </div>
           <div className="container-footer">
-            <p className="footer">© 2022</p>
+            <p className="footer-login ">© 2022</p>
           </div>
         </div>
       </Form>
