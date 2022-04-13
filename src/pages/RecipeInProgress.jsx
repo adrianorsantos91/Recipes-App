@@ -142,13 +142,21 @@ const RecipeInProgress = () => {
         </ul>
       </div>
       <h3 className="instructions-title-in-progress">Instruções</h3>
-      <p data-testid="instructions">{recipe.instructions}</p>
+      <div className="container-instructions-in-progress">
+        <p
+          data-testid="instructions"
+          className="instructions-in-progress"
+        >
+          {recipe.instructions}
+        </p>
+      </div>
       <Link to="/done-recipes">
         <button
           data-testid="finish-recipe-btn"
           type="button"
           disabled={ isDisabled }
           onClick={ () => finishRecipe(recipe) }
+          className="btn-start-recipe-in-progress"
         >
           Finish Recipe
 
