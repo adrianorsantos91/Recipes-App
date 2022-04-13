@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { Card, Button } from 'react-bootstrap';
 import { Footer, Header } from '../components';
 import { FIRST_TWELVE_RECIPES, FIRST_FIVE_CATEGORIES } from '../helpers';
 import '../styles/Foods.css';
@@ -9,6 +8,7 @@ import '../App.css';
 import { fetchDrinkThunk, fetchDrinksCategoryThunk,
   fetchDrinksPerCategoryThunk,
 } from '../redux/actions';
+import '../styles/Drinks.css';
 
 export default function Drinks() {
   const dispatch = useDispatch();
@@ -46,68 +46,64 @@ export default function Drinks() {
   }, [allDrinks]);
 
   return (
-    <div>
+    <div className="content-container">
       <Header title="Drinks" hasSearch />
-      <div className="flex">
-        <Button
-          variant="outline-dark"
+      <div className="grid-container">
+        <button
           value=""
           onClick={ (value) => handleCategoryClick(value) }
           data-testid="All-category-filter"
+          type="button"
+          className="grid-item"
         >
           All
-        </Button>
-      </div>
-      {categories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
-        .map((category) => (
-          <div className="flex" key={ category.strCategory }>
-            <Button
+        </button>
+
+        {categories.filter((_, index) => index < FIRST_FIVE_CATEGORIES)
+          .map((category) => (
+
+            <button
               data-testid={ `${category.strCategory}-category-filter` }
-              variant="outline-dark"
               value={ category.strCategory }
               onClick={ (value) => handleCategoryClick(value) }
+              type="button"
+              key={ category.strCategory }
+              className="grid-item"
             >
               {category.strCategory}
+            </button>
 
-            </Button>
-          </div>
-        ))}
-
-      {
-        filteredList
+          ))}
+      </div>
+      <div className="flex">
+        {
+          filteredList
         && filteredList.filter((_, index) => index < FIRST_TWELVE_RECIPES)
           .map((drink, index) => (
             <div
               data-testid={ `${index}-recipe-card` }
               key={ drink.idDrink }
-              className="container"
+              className="image-container"
               onClick={ () => history.push(`./drinks/${drink.idDrink}`) }
               aria-hidden="true"
             >
-              <Card style={ { width: '18rem' } }>
-                <Card.Img
-                  data-testid={ `${index}-card-img` }
-                  variant="top"
-                  src={ drink.strDrinkThumb }
-                />
-                <Card.Body>
-                  <Card.Title
-                    data-testid={ `${index}-card-name` }
-                  >
-                    {drink.strDrink}
+              <img
+                src={ drink.strDrinkThumb }
+                alt={ drink.strDrinkThumb }
+                data-testid={ `${index}-card-img` }
+                className="card-image"
+              />
+              <span
+                className="card-text"
+                data-testid={ `${index}-card-name` }
+              >
+                {drink.strDrink}
+              </span>
 
-                  </Card.Title>
-                  <Button
-                    variant="primary"
-                  >
-                    See more
-
-                  </Button>
-                </Card.Body>
-              </Card>
             </div>
           ))
-      }
+        }
+      </div>
       <Footer />
     </div>
   );

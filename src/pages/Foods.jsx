@@ -45,6 +45,7 @@ export default function Foods() {
 
   return (
     <div className="content-container">
+
       <Header title="Foods" hasSearch />
       <div className="grid-container">
         <button
@@ -92,6 +93,7 @@ export default function Foods() {
                 className="card-image"
               />
               <span
+                className="card-text"
                 data-testid={ `${index}-card-name` }
               >
                 {recipe.strMeal}
